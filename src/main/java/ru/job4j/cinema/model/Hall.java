@@ -4,12 +4,17 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
+ * Класс описывает модель зала в кинотеатре
+ *
  * @author Artem Chernikov
  * @version 1.0
  * @since 09.02.2023
  */
 public class Hall {
-
+    /**
+     * Поле используется для маппинга модели где ключи это названия
+     * столбцов в БД, а значения это названия полей модели
+     */
     public static final Map<String, String> COLUMN_MAPPING = Map.of(
             "id", "id",
             "name", "name",
@@ -21,11 +26,17 @@ public class Hall {
     private int id;
 
     private String name;
-
+    /**
+     * Поле количество рядов
+     */
     private int rowCount;
-
+    /**
+     * Поле количество мест в каждом ряду
+     */
     private int placeCount;
-
+    /**
+     * Поле описание
+     */
     private String description;
 
     public Hall(String name, int rowCount, int placeCount, String description) {

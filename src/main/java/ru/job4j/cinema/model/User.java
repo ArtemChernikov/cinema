@@ -4,12 +4,17 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
+ * Класс описывает модель пользователя
+ *
  * @author Artem Chernikov
  * @version 1.0
  * @since 09.02.2023
  */
 public class User {
-
+    /**
+     * Поле используется для маппинга модели где ключи это названия
+     * столбцов в БД, а значения это названия полей модели
+     */
     public static final Map<String, String> COLUMN_MAPPING = Map.of(
             "id", "id",
             "full_name", "fullName",

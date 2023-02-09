@@ -3,6 +3,8 @@ package ru.job4j.cinema.model;
 import java.util.Objects;
 
 /**
+ * Класс описывает модель жанра фильма
+ *
  * @author Artem Chernikov
  * @version 1.0
  * @since 09.02.2023

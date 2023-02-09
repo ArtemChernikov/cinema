@@ -3,6 +3,8 @@ package ru.job4j.cinema.model;
 import java.util.Objects;
 
 /**
+ * Класс описывает модель файла-постера к фильму
+ *
  * @author Artem Chernikov
  * @version 1.0
  * @since 09.02.2023
@@ -13,6 +15,9 @@ public class File {
 
     private String name;
 
+    /**
+     * Поле путь к файлу
+     */
     private String path;
 
     public File(String name, String path) {

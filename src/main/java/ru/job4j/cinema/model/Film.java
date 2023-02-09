@@ -4,12 +4,17 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
+ * Класс описывает модель фильма
+ *
  * @author Artem Chernikov
  * @version 1.0
  * @since 09.02.2023
  */
 public class Film {
-
+    /**
+     * Поле используется для маппинга модели где ключи это названия
+     * столбцов в БД, а значения это названия полей модели
+     */
     public static final Map<String, String> COLUMN_MAPPING = Map.of(
             "id", "id",
             "name", "name",
@@ -24,17 +29,29 @@ public class Film {
     private int id;
 
     private String name;
-
+    /**
+     * Поле описание
+     */
     private String description;
-
+    /**
+     * Поле год выпуска
+     */
     private int year;
-
+    /**
+     * Поле жанр
+     */
     private int genreId;
-
+    /**
+     * Поле минимальный возраст
+     */
     private int minimalAge;
-
+    /**
+     * Поле продолжительность фильма в минутах
+     */
     private int durationInMinutes;
-
+    /**
+     * Поле id постера {@link File} к фильму
+     */
     private int fileId;
 
     public Film(String name, String description, int year, int genreId, int minimalAge, int durationInMinutes, int fileId) {

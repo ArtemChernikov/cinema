@@ -4,12 +4,17 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
+ * Класс описывает модель билета в кинотеатре
+ *
  * @author Artem Chernikov
  * @version 1.0
  * @since 09.02.2023
  */
 public class Ticket {
-
+    /**
+     * Поле используется для маппинга модели где ключи это названия
+     * столбцов в БД, а значения это названия полей модели
+     */
     public static final Map<String, String> COLUMN_MAPPING = Map.of(
             "id", "id",
             "session_id", "sessionId",
@@ -21,9 +26,13 @@ public class Ticket {
     private int id;
 
     private int sessionId;
-
+    /**
+     * Поле номер ряда
+     */
     private int rowNumber;
-
+    /**
+     * Поле номер места
+     */
     private int placeNumber;
 
     private int userId;

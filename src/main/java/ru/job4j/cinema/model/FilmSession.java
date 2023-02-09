@@ -5,18 +5,23 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
+ * Класс описывает модель киносеанса в кинотеатре
+ *
  * @author Artem Chernikov
  * @version 1.0
  * @since 09.02.2023
  */
 public class FilmSession {
-
+    /**
+     * Поле используется для маппинга модели где ключи это названия
+     * столбцов в БД, а значения это названия полей модели
+     */
     public static final Map<String, String> COLUMN_MAPPING = Map.of(
-      "id", "id",
-      "film_id", "filmId",
-      "halls_id", "hallsId",
-      "start_time", "startTime",
-      "end_time", "endTime"
+            "id", "id",
+            "film_id", "filmId",
+            "halls_id", "hallsId",
+            "start_time", "startTime",
+            "end_time", "endTime"
     );
 
     private int id;
@@ -24,9 +29,13 @@ public class FilmSession {
     private int filmId;
 
     private int hallsId;
-
+    /**
+     * Поле начало киносеанса
+     */
     private LocalDateTime startTime;
-
+    /**
+     * Поле конец киносеанса
+     */
     private LocalDateTime endTime;
 
     public FilmSession(int filmId, int hallsId, LocalDateTime startTime, LocalDateTime endTime) {
