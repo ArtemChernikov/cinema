@@ -1,4 +1,4 @@
-insert into film_sessions(film_id, halls_id, start_time, end_time) values
+insert into film_sessions(film_id, hall_id, start_time, end_time) values
                                                                        (1, 1, '2023-02-09 09:00:00', '2023-02-09 12:30:00'),
                                                                        (1, 2, '2023-02-09 09:00:00', '2023-02-09 12:30:00'),
                                                                        (1, 3, '2023-02-09 09:00:00', '2023-02-09 12:30:00'),
