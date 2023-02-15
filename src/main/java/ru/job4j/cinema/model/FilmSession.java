@@ -38,11 +38,17 @@ public class FilmSession {
      */
     private LocalDateTime endTime;
 
-    public FilmSession(int filmId, int hallId, LocalDateTime startTime, LocalDateTime endTime) {
+    /**
+     * Поле цена за киносеанс
+     */
+    private int price;
+
+    public FilmSession(int filmId, int hallId, LocalDateTime startTime, LocalDateTime endTime, int price) {
         this.filmId = filmId;
         this.hallId = hallId;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.price = price;
     }
 
     public int getId() {
@@ -83,6 +89,14 @@ public class FilmSession {
 
     public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     @Override
