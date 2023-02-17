@@ -1,11 +1,11 @@
 insert into files(name, path) values
-                                  ('avatar_the_way_of_water', 'files/avatar_the_way_of_water.jpeg'),
-                                  ('black_adam', 'files/black_adam.jpeg'),
-                                  ('black_panther_wakanda_forever', 'files/black_panther_wakanda_forever.jpeg'),
-                                  ('knives_out_glass_onion', 'files/knives_out_glass_onion.jpeg'),
-                                  ('luck', 'files/luck.jpeg'),
-                                  ('the_batman', 'files/the_batman.jpeg'),
-                                  ('the_menu', 'files/the_menu.jpeg'),
-                                  ('top_gun_maverick', 'files/top_gun_maverick.jpeg'),
-                                  ('turning_red', 'files/turning_red.jpeg'),
-                                  ('winnie_the_pooh_blood_and_honey', 'files/winnie_the_pooh_blood_and_honey.jpeg');
+                                  ('avatar_the_way_of_water', 'src/main/resources/static/posters/avatar_the_way_of_water.jpeg'),
+                                  ('black_adam', 'src/main/resources/static/posters/black_adam.jpeg'),
+                                  ('black_panther_wakanda_forever', 'src/main/resources/static/posters/black_panther_wakanda_forever.jpeg'),
+                                  ('knives_out_glass_onion', 'src/main/resources/static/posters/knives_out_glass_onion.jpeg'),
+                                  ('luck', 'src/main/resources/static/posters/luck.jpeg'),
+                                  ('the_batman', 'src/main/resources/static/posters/the_batman.jpeg'),
+                                  ('the_menu', 'src/main/resources/static/posters/the_menu.jpeg'),
+                                  ('top_gun_maverick', 'src/main/resources/static/posters/top_gun_maverick.jpeg'),
+                                  ('turning_red', 'src/main/resources/static/posters/turning_red.jpeg'),
+                                  ('winnie_the_pooh_blood_and_honey', 'src/main/resources/static/posters/winnie_the_pooh_blood_and_honey.jpeg');
