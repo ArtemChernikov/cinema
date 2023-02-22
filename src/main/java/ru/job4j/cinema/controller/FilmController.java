@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.job4j.cinema.dto.FilmDto;
 import ru.job4j.cinema.service.FilmService;
 
-import java.util.Collection;
-
 /**
- * Класс-контроллер для работы с фильмами{@link FilmDto} в кинотеке
+ * Класс-контроллер для работы с фильмами {@link FilmDto} в кинотеке
  *
  * @author Artem Chernikov
  * @version 1.0
@@ -20,12 +18,12 @@ import java.util.Collection;
 
 @ThreadSafe
 @Controller
-@RequestMapping("/library")
-public class FilmLibraryController {
+@RequestMapping("/films")
+public class FilmController {
 
     private final FilmService filmService;
 
-    public FilmLibraryController(FilmService filmService) {
+    public FilmController(FilmService filmService) {
         this.filmService = filmService;
     }
 
@@ -38,8 +36,8 @@ public class FilmLibraryController {
      */
     @GetMapping
     public String getFilms(Model model) {
-        Collection<FilmDto> films = filmService.getAllFilms();
+        var films = filmService.getAllFilms();
         model.addAttribute("films", films);
-        return "library/list";
+        return "films/list";
     }
 }

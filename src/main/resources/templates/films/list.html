@@ -25,9 +25,9 @@
             <div class="collapse navbar-collapse">
                 <div class="navbar-nav me-auto">
                     <a class="nav-item nav-link" href="/">Главная</a>
-                    <a class="nav-item nav-link">Расписание</a>
-                    <a class="nav-item nav-link active" th:href="@{/library}">Кинотека</a>
-                    <a class="nav-item nav-link">Купить билет</a>
+                    <a class="nav-item nav-link" th:href="@{/filmSessions}">Расписание</a>
+                    <a class="nav-item nav-link active" th:href="@{/films}">Кинотека</a>
+                    <a class="nav-item nav-link" th:href="@{halls}">Залы</a>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
     <br>
     <div class="container">
         <div class="row">
-            <table class="table"/>
+            <table class="table">
             <thead>
             <tr>
                 <th></th>
@@ -44,6 +44,7 @@
                 <th>Возраст</th>
                 <th>Жанр</th>
                 <th>Год</th>
+                <th>Продолжительность</th>
             </tr>
             </thead>
             <tbody>
@@ -51,12 +52,13 @@
                 <td><img th:src="@{/posters/{fileId}(fileId=*{film.fileId})}" width="250" alt="No image"></td>
                 <td th:text="${film.name}"/>
                 <td th:text="${film.description}"/>
-                <td th:text="|От ${film.minimalAge} лет|"/>
+                <td th:text="|${film.minimalAge}+|"/>
                 <td th:text="${film.genre}"/>
                 <td th:text="${film.year}"/>
+                <td th:text="|${film.durationInMinutes} мин.|"/>
             </tr>
             </tbody>
-
+            </table>
         </div>
     </div>
 </div>
