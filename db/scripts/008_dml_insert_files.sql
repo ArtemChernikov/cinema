@@ -8,4 +8,7 @@ insert into files(name, path) values
                                   ('the_menu', 'src/main/resources/static/posters/the_menu.jpeg'),
                                   ('top_gun_maverick', 'src/main/resources/static/posters/top_gun_maverick.jpeg'),
                                   ('turning_red', 'src/main/resources/static/posters/turning_red.jpeg'),
-                                  ('winnie_the_pooh_blood_and_honey', 'src/main/resources/static/posters/winnie_the_pooh_blood_and_honey.jpeg');
+                                  ('winnie_the_pooh_blood_and_honey', 'src/main/resources/static/posters/winnie_the_pooh_blood_and_honey.jpeg'),
+                                  ('first_hall', 'src/main/resources/static/halls/first_hall.png'),
+                                  ('second_hall', 'src/main/resources/static/halls/second_hall.png'),
+                                  ('third_hall', 'src/main/resources/static/halls/third_hall.png');

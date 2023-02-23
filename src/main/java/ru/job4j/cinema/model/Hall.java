@@ -7,8 +7,8 @@ import java.util.Objects;
  * Класс описывает модель зала в кинотеатре
  *
  * @author Artem Chernikov
- * @version 1.0
- * @since 09.02.2023
+ * @version 1.1
+ * @since 23.02.2023
  */
 public class Hall {
     /**
@@ -20,7 +20,8 @@ public class Hall {
             "name", "name",
             "row_count", "rowCount",
             "place_count", "placeCount",
-            "description", "description"
+            "description", "description",
+            "file_id", "fileId"
     );
 
     private int id;
@@ -38,12 +39,14 @@ public class Hall {
      * Поле описание
      */
     private String description;
+    private int fileId;
 
-    public Hall(String name, int rowCount, int placeCount, String description) {
+    public Hall(String name, int rowCount, int placeCount, String description, int fileId) {
         this.name = name;
         this.rowCount = rowCount;
         this.placeCount = placeCount;
         this.description = description;
+        this.fileId = fileId;
     }
 
     public int getId() {
@@ -84,6 +87,14 @@ public class Hall {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(int fileId) {
+        this.fileId = fileId;
     }
 
     @Override

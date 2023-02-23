@@ -13,12 +13,12 @@ import ru.job4j.cinema.dto.FileDto;
  * Класс-контроллер для работы с {@link FileDto}
  *
  * @author Artem Chernikov
- * @version 1.0
- * @since 21.02.2023
+ * @version 1.1
+ * @since 23.02.2023
  */
 @ThreadSafe
 @Controller
-@RequestMapping("/posters")
+@RequestMapping
 public class FileController {
     /**
      * Поле сервис для работы с файлами
@@ -37,8 +37,8 @@ public class FileController {
      * @param id - id файла
      * @return - возвращает файл в отображении
      */
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable int id) {
+    @GetMapping({"/posters/{id}", "/halls/{id}"})
+    public ResponseEntity<?> getPosterById(@PathVariable int id) {
         var contentOptional = fileService.getFileById(id);
         if (contentOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
