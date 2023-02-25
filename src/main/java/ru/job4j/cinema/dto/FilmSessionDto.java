@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
  */
 public class FilmSessionDto {
 
+    private int id;
+
     private String film;
 
     private String hall;
@@ -23,12 +25,21 @@ public class FilmSessionDto {
 
     private int price;
 
-    public FilmSessionDto(String film, String hall, LocalDateTime startTime, LocalDateTime endTime, int price) {
+    public FilmSessionDto(int id, String film, String hall, LocalDateTime startTime, LocalDateTime endTime, int price) {
+        this.id = id;
         this.film = film;
         this.hall = hall;
         this.startTime = startTime;
         this.endTime = endTime;
         this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFilm() {
