@@ -14,7 +14,7 @@
             integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
             crossorigin="anonymous"></script>
 
-    <title>Расписание</title>
+    <title>Успешно</title>
 </head>
 <body>
 
@@ -32,28 +32,10 @@
             </div>
         </div>
     </nav>
-    <br>
+
     <div class="container">
-        <div class="row">
-            <table class="table">
-                <tr>
-                    <th>Название</th>
-                    <th>Зал</th>
-                    <th>Начало сеанса</th>
-                    <th>Конец сеанса</th>
-                    <th>Цена</th>
-                    <th></th>
-                </tr>
-                <tr th:each="filmSession : ${filmSessions}">
-                    <td th:text="${filmSession.film}"/>
-                    <td> <a th:href="@{/halls}" th:text="${filmSession.hall}"></a></td>
-                    <td th:text="${#temporals.format(filmSession.startTime, 'd MMMM HH:mm')}"/>
-                    <td th:text="${#temporals.format(filmSession.endTime, 'd MMMM HH:mm')}"/>
-                    <td th:text="|${filmSession.price} руб.|"/>
-                    <td><a th:href="@{/ticket/{filmSessionId}(filmSessionId=${filmSession.id})}">Купить билет</a></td>
-                </tr>
-            </table>
-        </div>
+        <h3 class="mt-3">Запрос выполнен успешно</h3>
+        <p class="text-success" th:text="${message}"></p>
     </div>
 
 </div>

@@ -27,8 +27,4 @@ public class SimpleTicketService implements TicketService {
         return ticketRepository.save(ticket);
     }
 
-    @Override
-    public Optional<Ticket> getByRowNumberAndPlaceNumber(int filmSessionId, int rowNumber, int placeNumber) {
-        return ticketRepository.findByRowNumberAndPlaceNumber(filmSessionId, rowNumber, placeNumber);
-    }
 }

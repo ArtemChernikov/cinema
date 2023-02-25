@@ -13,6 +13,4 @@ import java.util.Optional;
  */
 public interface TicketService {
     Optional<Ticket> save(Ticket ticket);
-
-    Optional<Ticket> getByRowNumberAndPlaceNumber(int filmSessionId, int rowNumber, int placeNumber);
 }

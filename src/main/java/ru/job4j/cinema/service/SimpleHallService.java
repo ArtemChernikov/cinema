@@ -5,7 +5,9 @@ import ru.job4j.cinema.model.Hall;
 import ru.job4j.cinema.repository.HallRepository;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 /**
  * Класс-сервис для работы с кинозалами {@link Hall}
@@ -31,5 +33,27 @@ public class SimpleHallService implements HallService {
     @Override
     public Collection<Hall> getAllHalls() {
         return hallRepository.findAll();
+    }
+
+    /**
+     * Метод используется для получения всех рядов в зале в виде списка
+     *
+     * @param hall - зал
+     * @return - список рядов
+     */
+    @Override
+    public List<Integer> getRows(Hall hall) {
+        return IntStream.rangeClosed(1, hall.getRowCount()).boxed().toList();
+    }
+
+    /**
+     * Метод используется для получения всех мест в ряду в зале в виде списка
+     *
+     * @param hall - зал
+     * @return - список мест в ряду
+     */
+    @Override
+    public List<Integer> getPlaces(Hall hall) {
+        return IntStream.rangeClosed(1, hall.getPlaceCount()).boxed().toList();
     }
 }
