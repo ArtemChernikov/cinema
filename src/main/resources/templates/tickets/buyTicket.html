@@ -75,13 +75,11 @@
                         <div class="row mb-3">
                             <div class="mb-3">
                                 <label for="row" class="form-label"><b>Ряд</b></label>
-                                <select class="form-control" id="row" name="rowNumber">
-                                    <option selected>Выберите ряд</option>
+                                <select class="form-control" id="row" name="rowNumber" required>
                                     <option th:each="row : ${rows}" th:value="${row}" th:text="${row}"></option>
                                 </select>
                                 <label for="place" class="form-label"><b>Место</b></label>
-                                <select class="form-control" id="place" name="placeNumber">
-                                    <option selected>Выберите место</option>
+                                <select class="form-control" id="place" name="placeNumber" required>
                                     <option th:each="place : ${places}" th:value="${place}"
                                             th:text="${place}"></option>
                                 </select>
