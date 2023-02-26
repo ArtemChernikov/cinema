@@ -81,7 +81,7 @@ public class TicketController {
             model.addAttribute("message", "Вы успешно приобрели билет."
                     + System.lineSeparator() + "Ваш ряд: " + ticket.getRowNumber() + System.lineSeparator()
                     + "Ваше место: " + ticket.getPlaceNumber());
-            return "redirect:success/201";
+            return "success/201";
         } catch (Exception e) {
             model.addAttribute("message", e.getMessage());
             return "errors/404";

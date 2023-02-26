@@ -8,8 +8,8 @@ import java.util.Optional;
  * Общий интерфейс для всех репозиториев с пользователями {@link User}
  *
  * @author Artem Chernikov
- * @version 1.0
- * @since 13.02.2023
+ * @version 1.1
+ * @since 26.02.2023
  */
 public interface UserRepository {
     Optional<User> save(User user);

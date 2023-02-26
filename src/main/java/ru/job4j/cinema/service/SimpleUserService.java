@@ -10,8 +10,8 @@ import java.util.Optional;
  * Класс-сервис для работы с пользователями {@link User}
  *
  * @author Artem Chernikov
- * @version 1.0
- * @since 15.02.2023
+ * @version 1.1
+ * @since 26.02.2023
  */
 @Service
 public class SimpleUserService implements UserService {

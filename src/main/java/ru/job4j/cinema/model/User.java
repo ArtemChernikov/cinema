@@ -7,8 +7,8 @@ import java.util.Objects;
  * Класс описывает модель пользователя
  *
  * @author Artem Chernikov
- * @version 1.0
- * @since 09.02.2023
+ * @version 1.1
+ * @since 26.02.2023
  */
 public class User {
     /**
@@ -34,6 +34,9 @@ public class User {
         this.fullName = fullName;
         this.email = email;
         this.password = password;
+    }
+
+    public User() {
     }
 
     public int getId() {

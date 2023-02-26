@@ -11,8 +11,8 @@ import java.util.Optional;
  * Класс-репозиторий для работы с пользователями {@link User} в БД
  *
  * @author Artem Chernikov
- * @version 1.0
- * @since 13.02.2023
+ * @version 1.1
+ * @since 26.02.2023
  */
 @ThreadSafe
 @Repository
@@ -61,6 +61,8 @@ public class Sql2oUserRepository implements UserRepository {
     public Optional<User> findByEmailAndPassword(String email, String password) {
         try (var connection = sql2o.open()) {
             var query = connection.createQuery("SELECT * FROM users WHERE email = :email AND password = :password");
+            query.addParameter("email", email);
+            query.addParameter("password", password);
             var user = query.setColumnMappings(User.COLUMN_MAPPING).executeAndFetchFirst(User.class);
             return Optional.ofNullable(user);
         }
