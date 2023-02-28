@@ -36,7 +36,7 @@ public class FileController {
      * @return - возвращает файл в отображении
      */
     @GetMapping({"/posters/{id}", "/halls/{id}"})
-    public ResponseEntity<?> getPosterById(@PathVariable int id) {
+    public ResponseEntity<?> getFileById(@PathVariable int id) {
         var contentOptional = fileService.getFileById(id);
         if (contentOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
