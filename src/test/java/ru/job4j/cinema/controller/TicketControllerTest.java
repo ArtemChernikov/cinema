@@ -9,6 +9,7 @@ import ru.job4j.cinema.model.Ticket;
 import ru.job4j.cinema.service.FilmSessionService;
 import ru.job4j.cinema.service.HallService;
 import ru.job4j.cinema.service.TicketService;
+import org.mockito.ArgumentCaptor;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -89,16 +90,19 @@ class TicketControllerTest {
     @Test
     public void whenResponseBuyTicketThenGetSuccessPage() {
         var ticket = new Ticket(1, 1, 1, 1);
+        var ticketArgumentCapture = ArgumentCaptor.forClass(Ticket.class);
         var expectedMessage = "Вы успешно приобрели билет." + System.lineSeparator() + "Ваш ряд: 1"
                 + System.lineSeparator() + "Ваше место: 1";
-        when(ticketService.save(any(Ticket.class))).thenReturn(Optional.of(ticket));
+        when(ticketService.save(ticketArgumentCapture.capture())).thenReturn(Optional.of(ticket));
 
         var model = new ConcurrentModel();
         var view = ticketController.buyTicket(ticket, model);
         var actualMessage = model.getAttribute("message");
+        var actualTicket = ticketArgumentCapture.getValue();
 
         assertThat(view).isEqualTo("success/201");
         assertThat(actualMessage).isEqualTo(expectedMessage);
+        assertThat(actualTicket).usingRecursiveComparison().isEqualTo(ticket);
     }
 
     /**
@@ -107,17 +111,21 @@ class TicketControllerTest {
      */
     @Test
     public void whenResponseBuyTicketThenGetErrorPage() {
+        var ticket = new Ticket(1, 1, 1, 1);
+        var ticketArgumentCapture = ArgumentCaptor.forClass(Ticket.class);
         var expectedMessage = """
                 Не удалось приобрести билет на заданное место. Вероятно оно уже занято.
                 Перейдите на страницу бронирования билетов и попробуйте снова.
                 """;
-        when(ticketService.save(any(Ticket.class))).thenReturn(Optional.empty());
+        when(ticketService.save(ticketArgumentCapture.capture())).thenReturn(Optional.empty());
 
         var model = new ConcurrentModel();
-        var view = ticketController.buyTicket(new Ticket(), model);
+        var view = ticketController.buyTicket(ticket, model);
         var actualMessage = model.getAttribute("message");
+        var actualTicket = ticketArgumentCapture.getValue();
 
         assertThat(view).isEqualTo("errors/404");
+        assertThat(actualTicket).usingRecursiveComparison().isEqualTo(ticket);
         assertThat(actualMessage).isEqualTo(expectedMessage);
     }
 
