@@ -89,20 +89,22 @@ class TicketControllerTest {
      */
     @Test
     public void whenResponseBuyTicketThenGetSuccessPage() {
-        var ticket = new Ticket(1, 1, 1, 1);
+        var expectedTicket = new Ticket(1, 1, 1, 1);
+        var expectedFilmSession = new FilmSessionDto(1, "film1", "hall1", 1, LocalDateTime.now(), LocalDateTime.now().plusHours(2), 300);
         var ticketArgumentCapture = ArgumentCaptor.forClass(Ticket.class);
-        var expectedMessage = "Вы успешно приобрели билет." + System.lineSeparator() + "Ваш ряд: 1"
-                + System.lineSeparator() + "Ваше место: 1";
-        when(ticketService.save(ticketArgumentCapture.capture())).thenReturn(Optional.of(ticket));
+        when(ticketService.save(ticketArgumentCapture.capture())).thenReturn(Optional.of(expectedTicket));
+        when(filmSessionService.getFilmSessionById(any(Integer.class))).thenReturn(Optional.of(expectedFilmSession));
 
         var model = new ConcurrentModel();
-        var view = ticketController.buyTicket(ticket, model);
-        var actualMessage = model.getAttribute("message");
-        var actualTicket = ticketArgumentCapture.getValue();
+        var view = ticketController.buyTicket(expectedTicket, model);
+        var actualCaptureTicket = ticketArgumentCapture.getValue();
+        var actualModelTicket = model.getAttribute("ticket");
+        var actualFilmSession = model.getAttribute("filmSession");
 
         assertThat(view).isEqualTo("success/201");
-        assertThat(actualMessage).isEqualTo(expectedMessage);
-        assertThat(actualTicket).usingRecursiveComparison().isEqualTo(ticket);
+        assertThat(actualCaptureTicket).usingRecursiveComparison().isEqualTo(expectedTicket);
+        assertThat(actualModelTicket).usingRecursiveComparison().isEqualTo(expectedTicket);
+        assertThat(actualFilmSession).usingRecursiveComparison().isEqualTo(expectedFilmSession);
     }
 
     /**

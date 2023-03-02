@@ -78,9 +78,8 @@ public class TicketController {
                         """);
                 return "errors/404";
             }
-            model.addAttribute("message", "Вы успешно приобрели билет."
-                    + System.lineSeparator() + "Ваш ряд: " + ticket.getRowNumber() + System.lineSeparator()
-                    + "Ваше место: " + ticket.getPlaceNumber());
+            model.addAttribute("ticket", ticket);
+            model.addAttribute("filmSession", filmSessionService.getFilmSessionById(ticket.getSessionId()).get());
             return "success/201";
         } catch (Exception e) {
             model.addAttribute("message", e.getMessage());
