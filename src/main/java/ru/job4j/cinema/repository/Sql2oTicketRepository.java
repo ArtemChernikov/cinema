@@ -1,5 +1,6 @@
 package ru.job4j.cinema.repository;
 
+import lombok.extern.slf4j.Slf4j;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
@@ -15,6 +16,7 @@ import java.util.Optional;
  * @since 13.02.2023
  */
 @ThreadSafe
+@Slf4j
 @Repository
 public class Sql2oTicketRepository implements TicketRepository {
     /**
@@ -48,8 +50,9 @@ public class Sql2oTicketRepository implements TicketRepository {
             ticket.setId(generatedId);
             return Optional.of(ticket);
         } catch (Exception e) {
-            return Optional.empty();
+            log.error(e.getMessage(), e);
         }
+        return Optional.empty();
     }
 
     /**

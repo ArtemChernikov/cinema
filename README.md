@@ -23,6 +23,7 @@
 - **H2database 1.4.2**
 - **SQL2o 1.6.0**
 - **Commons-dbcp2 2.9.0**
+- **Slf4j**
 - **Junit 5**
 - **Mockito 4.8.0**
 - **Liquibase 4.15.0**

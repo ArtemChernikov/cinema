@@ -1,5 +1,6 @@
 package ru.job4j.cinema.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.job4j.cinema.dto.FileDto;
 import ru.job4j.cinema.model.File;
@@ -17,6 +18,7 @@ import java.util.Optional;
  * @version 1.0
  * @since 15.02.2023
  */
+@Slf4j
 @Service
 public class SimpleFileService implements FileService {
 
@@ -36,8 +38,9 @@ public class SimpleFileService implements FileService {
         try {
             return Files.readAllBytes(Path.of(path));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            log.error(e.getMessage());
         }
+        return new byte[8];
     }
 
     /**

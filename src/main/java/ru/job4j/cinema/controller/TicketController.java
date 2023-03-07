@@ -1,5 +1,6 @@
 package ru.job4j.cinema.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import ru.job4j.cinema.dto.FilmSessionDto;
  * @since 25.02.2023
  */
 @ThreadSafe
+@Slf4j
 @Controller
 @RequestMapping("/ticket")
 public class TicketController {
@@ -82,6 +84,7 @@ public class TicketController {
             model.addAttribute("filmSession", filmSessionService.getFilmSessionById(ticket.getSessionId()).get());
             return "success/201";
         } catch (Exception e) {
+            log.error(e.getMessage(), e);
             model.addAttribute("message", e.getMessage());
             return "errors/404";
         }
