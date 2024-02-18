@@ -33,9 +33,9 @@ public class DataSourceConfiguration {
      * @return - возвращает {@link DataSource}
      */
     @Bean
-    public DataSource connectionPool(@Value("jdbc:postgresql://127.0.0.1:5432/cinema") String url,
-                                     @Value("postgres") String username,
-                                     @Value("password") String password) {
+    public DataSource connectionPool(@Value("${datasource.url}") String url,
+                                     @Value("${datasource.username}") String username,
+                                     @Value("${datasource.password}") String password) {
         return new BasicDataSource() {
             {
                 setUrl(url);
