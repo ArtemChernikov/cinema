@@ -70,4 +70,20 @@ public class Sql2oUserRepository implements UserRepository {
             return Optional.ofNullable(user);
         }
     }
+
+    /**
+     * Метод используется для поиска пользователя {@link User} в БД по email
+     *
+     * @param email    - email
+     * @return - возвращает пользователя {@link User} обернутого в {@link Optional}
+     */
+    @Override
+    public Optional<User> findByEmail(String email) {
+        try (var connection = sql2o.open()) {
+            var query = connection.createQuery("SELECT * FROM users WHERE email = :email");
+            query.addParameter("email", email);
+            var user = query.setColumnMappings(User.COLUMN_MAPPING).executeAndFetchFirst(User.class);
+            return Optional.ofNullable(user);
+        }
+    }
 }

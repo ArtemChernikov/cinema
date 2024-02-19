@@ -123,15 +123,4 @@ class UserControllerTest {
         assertThat(view).isEqualTo("users/login");
         assertThat(actualMessage).isEqualTo(expectedMessage);
     }
-
-    /**
-     * Метод используется для проверки корректной работы контроллера
-     * по выходу пользователя из системы (сессии)
-     */
-    @Test
-    public void whenLogOutThenGetLoginPage() {
-        var httpSession = mock(HttpSession.class);
-        var view = userController.logout(httpSession);
-        assertThat(view).isEqualTo("redirect:/users/login");
-    }
 }

@@ -1,5 +1,6 @@
 package ru.job4j.cinema.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.job4j.cinema.model.User;
 import ru.job4j.cinema.repository.UserRepository;
@@ -17,18 +18,21 @@ import java.util.Optional;
 public class SimpleUserService implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public SimpleUserService(UserRepository userRepository) {
+    public SimpleUserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public Optional<User> save(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
     @Override
     public Optional<User> getByEmailAndPassword(String email, String password) {
-        return userRepository.findByEmailAndPassword(email, password);
+        return userRepository.findByEmailAndPassword(email, passwordEncoder.encode(password));
     }
 }

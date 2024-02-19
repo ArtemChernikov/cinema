@@ -84,14 +84,9 @@ public class UserController {
             model.addAttribute("error", "Почта или пароль введены неверно");
             return "users/login";
         }
-        var newSession = request.getSession();
-        newSession.setAttribute("user", userOptional.get());
-        return "redirect:/index";
-    }
-
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/users/login";
+//        var newSession = request.getSession();
+//        newSession.setAttribute("user", userOptional.get());
+//        return "redirect:/index";
+        return "users/login";
     }
 }
