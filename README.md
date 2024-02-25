@@ -16,6 +16,7 @@
 - **Java 17**
 - **Spring Boot 2.7.6**
 - **PostgreSQL 14**
+- **Spring Security 5**
 - **HTML 5**
 - **CSS**
 - **Thymeleaf 2.7.6**
