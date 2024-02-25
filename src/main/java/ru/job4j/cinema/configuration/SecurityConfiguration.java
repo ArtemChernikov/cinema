@@ -39,6 +39,7 @@ public class SecurityConfiguration {
                 .formLogin()
                 .loginPage("/users/login")
                 .usernameParameter("email")
+                .failureUrl("/users/login-error")
                 .and()
                 .logout()
                 .logoutUrl("/logout")

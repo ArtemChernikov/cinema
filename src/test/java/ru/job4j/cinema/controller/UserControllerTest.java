@@ -7,14 +7,11 @@ import org.springframework.ui.ConcurrentModel;
 import ru.job4j.cinema.model.User;
 import ru.job4j.cinema.service.UserService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.mockito.ArgumentMatchers.any;
 
 class UserControllerTest {
 
@@ -86,38 +83,14 @@ class UserControllerTest {
 
     /**
      * Метод используется для проверки корректной работы контроллера
-     * по авторизации пользователя (авторизация успешна)
-     */
-    @Test
-    public void whenResponseLoginThenGetHomePage() {
-        var httpSession = mock(HttpSession.class);
-        var httpServletRequest = mock(HttpServletRequest.class);
-        var user = new User("Artem Chernikov", "qwerty@yandex.ru", "12345");
-        when(httpServletRequest.getSession()).thenReturn(httpSession);
-        when(userService.getByEmailAndPassword(any(String.class), any(String.class))).thenReturn(Optional.of(user));
-        when(httpSession.getAttribute("user")).thenReturn(user);
-
-        var model = new ConcurrentModel();
-        var view = userController.loginUser(user, model, httpServletRequest);
-        var actualUser = httpSession.getAttribute("user");
-
-        assertThat(view).isEqualTo("redirect:/index");
-        assertThat(actualUser).usingRecursiveComparison().isEqualTo(user);
-    }
-
-    /**
-     * Метод используется для проверки корректной работы контроллера
      * по авторизации пользователя (ошибка авторизации)
      */
     @Test
     public void whenResponseLoginThenGetErrorAndGetLoginPage() {
-        var httpServletRequest = mock(HttpServletRequest.class);
-        var user = new User("Artem Chernikov", "qwerty@yandex.ru", "12345");
         var expectedMessage = "Почта или пароль введены неверно";
-        when(userService.getByEmailAndPassword(any(String.class), any(String.class))).thenReturn(Optional.empty());
 
         var model = new ConcurrentModel();
-        var view = userController.loginUser(user, model, httpServletRequest);
+        var view = userController.getLoginError(model);
         var actualMessage = model.getAttribute("error");
 
         assertThat(view).isEqualTo("users/login");

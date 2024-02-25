@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.job4j.cinema.model.User;
 import ru.job4j.cinema.service.UserService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 /**
  * Класс-контроллер для работы с пользователями {@link User}
  *
@@ -70,23 +67,14 @@ public class UserController {
     }
 
     /**
-     * Метод используется для авторизации пользователя {@link User}, если данные (email и password)
-     * введены корректно, авторизация успешна, иначе будет уведомление об ошибке
+     * Метод используется для вывода на страницу сообщения об ошибке
      *
-     * @param user  - пользователь
      * @param model - модель
-     * @return - перенаправляет на главную страницу
+     * @return - перенаправляет на страницу авторизации
      */
-    @PostMapping("/login")
-    public String loginUser(@ModelAttribute User user, Model model, HttpServletRequest request) {
-        var userOptional = userService.getByEmailAndPassword(user.getEmail(), user.getPassword());
-        if (userOptional.isEmpty()) {
+    @GetMapping("/login-error")
+    public String getLoginError(Model model) {
             model.addAttribute("error", "Почта или пароль введены неверно");
             return "users/login";
-        }
-//        var newSession = request.getSession();
-//        newSession.setAttribute("user", userOptional.get());
-//        return "redirect:/index";
-        return "users/login";
     }
 }
