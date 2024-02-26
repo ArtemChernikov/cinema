@@ -1,6 +1,5 @@
 package ru.job4j.cinema.configuration;
 
-import liquibase.integration.spring.SpringLiquibase;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
