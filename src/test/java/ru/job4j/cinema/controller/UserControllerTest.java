@@ -39,7 +39,7 @@ class UserControllerTest {
      */
     @Test
     public void whenResponseRegisterThenGetLoginPage() {
-        var user = new User("Artem Chernikov", "qwerty@yandex.ru", "12345");
+        var user = new User("Artem Chernikov", "qwerty@yandex.ru", "12345", 1);
         var userArgumentCapture = ArgumentCaptor.forClass(User.class);
         when(userService.save(userArgumentCapture.capture())).thenReturn(Optional.of(user));
 
@@ -57,7 +57,7 @@ class UserControllerTest {
      */
     @Test
     public void whenResponseRegisterThenGetErrorPage() {
-        var user = new User("Artem Chernikov", "qwerty@yandex.ru", "12345");
+        var user = new User("Artem Chernikov", "qwerty@yandex.ru", "12345", 1);
         var userArgumentCapture = ArgumentCaptor.forClass(User.class);
         var expectedMessage = "Пользователь с данной почтой уже существует.";
         when(userService.save(userArgumentCapture.capture())).thenReturn(Optional.empty());

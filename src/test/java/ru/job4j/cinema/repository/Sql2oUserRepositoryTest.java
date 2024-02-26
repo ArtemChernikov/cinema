@@ -48,7 +48,7 @@ class Sql2oUserRepositoryTest {
      */
     @Test
     public void whenSaveAndThenGetUserIsSuccess() {
-        var expectedUser = new User("Artem Chernikov", "qwerty@yandex.ru", "12345");
+        var expectedUser = new User("Artem Chernikov", "qwerty@yandex.ru", "12345", 1);
         var savedUser = sql2oUserRepository.save(expectedUser);
         var findUser = sql2oUserRepository.findByEmailAndPassword("qwerty@yandex.ru", "12345");
         assertThat(savedUser).isPresent();
@@ -63,7 +63,7 @@ class Sql2oUserRepositoryTest {
      */
     @Test
     public void whenSaveIsSuccessAndGetUserIsFiled() {
-        var expectedUser = new User("Artem Chernikov", "qwerty@yandex.ru", "12345");
+        var expectedUser = new User("Artem Chernikov", "qwerty@yandex.ru", "12345", 1);
         var savedUser = sql2oUserRepository.save(expectedUser);
         var findUser = sql2oUserRepository.findByEmailAndPassword("123@yandex.ru", "12345");
         assertThat(savedUser).isPresent();
