@@ -1,5 +1,6 @@
 package ru.job4j.cinema.configuration;
 
+import liquibase.integration.spring.SpringLiquibase;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -33,9 +34,9 @@ public class DataSourceConfiguration {
      * @return - возвращает {@link DataSource}
      */
     @Bean
-    public DataSource connectionPool(@Value("${datasource.url}") String url,
-                                     @Value("${datasource.username}") String username,
-                                     @Value("${datasource.password}") String password) {
+    public DataSource connectionPool(@Value("${spring.datasource.url}") String url,
+                                     @Value("${spring.datasource.username}") String username,
+                                     @Value("${spring.datasource.password}") String password) {
         return new BasicDataSource() {
             {
                 setUrl(url);

@@ -20,12 +20,12 @@ class Sql2oTicketRepositoryTest {
     @BeforeAll
     public static void initRepositories() throws Exception {
         var properties = new Properties();
-        try (var inputStream = Sql2oFileRepository.class.getClassLoader().getResourceAsStream("connection.properties")) {
+        try (var inputStream = Sql2oFileRepository.class.getClassLoader().getResourceAsStream("application-test.properties")) {
             properties.load(inputStream);
         }
-        var url = properties.getProperty("datasource.url");
-        var username = properties.getProperty("datasource.username");
-        var password = properties.getProperty("datasource.password");
+        var url = properties.getProperty("spring.datasource.url");
+        var username = properties.getProperty("spring.datasource.username");
+        var password = properties.getProperty("spring.datasource.password");
 
         var configuration = new DataSourceConfiguration();
         var connection = configuration.connectionPool(url, username, password);

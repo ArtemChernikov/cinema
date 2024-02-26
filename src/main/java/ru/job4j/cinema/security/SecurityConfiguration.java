@@ -20,12 +20,6 @@ public class SecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 
-//    @Bean
-//    public UserDetailsService userDetailsService(UserRepository userRepository) {
-//        return email -> new CustomUserDetails(userRepository.findByEmail(email).orElseThrow(() ->
-//                new UsernameNotFoundException("Пользователь c адресом '" + email + "' не найден")));
-//    }
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
