@@ -1,4 +1,4 @@
-package ru.job4j.cinema.configuration;
+package ru.job4j.cinema.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,8 +25,8 @@ public class SecurityConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository) {
-        return email -> userRepository.findByEmail(email).orElseThrow(() ->
-                new UsernameNotFoundException("Пользователь c адресом '" + email + "' не найден"));
+        return email -> new CustomUserDetails(userRepository.findByEmail(email).orElseThrow(() ->
+                new UsernameNotFoundException("Пользователь c адресом '" + email + "' не найден")));
     }
 
     @Bean
