@@ -3,14 +3,19 @@ package ru.job4j.cinema.repository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.sql2o.Sql2o;
 import ru.job4j.cinema.configuration.DataSourceConfiguration;
 import ru.job4j.cinema.model.User;
 
+import javax.sql.DataSource;
 import java.util.Properties;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@SpringBootTest
+@ActiveProfiles("test")
 class Sql2oUserRepositoryTest {
 
     private static Sql2oUserRepository sql2oUserRepository;
@@ -19,17 +24,17 @@ class Sql2oUserRepositoryTest {
 
     @BeforeAll
     public static void initRepositories() throws Exception {
-        var properties = new Properties();
+        Properties properties = new Properties();
         try (var inputStream = Sql2oFileRepository.class.getClassLoader().getResourceAsStream("application-test.properties")) {
             properties.load(inputStream);
         }
-        var url = properties.getProperty("spring.datasource.url");
-        var username = properties.getProperty("spring.datasource.username");
-        var password = properties.getProperty("spring.datasource.password");
+        String url = properties.getProperty("spring.datasource.url");
+        String username = properties.getProperty("spring.datasource.username");
+        String password = properties.getProperty("spring.datasource.password");
 
-        var configuration = new DataSourceConfiguration();
-        var connection = configuration.connectionPool(url, username, password);
-        sql2o = configuration.databaseClient(connection);
+        DataSourceConfiguration configuration = new DataSourceConfiguration();
+        DataSource dataSource = configuration.connectionPool(url, username, password);
+        sql2o = configuration.databaseClient(dataSource);
 
         sql2oUserRepository = new Sql2oUserRepository(sql2o);
     }

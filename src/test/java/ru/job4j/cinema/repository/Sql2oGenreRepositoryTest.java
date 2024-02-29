@@ -2,29 +2,35 @@ package ru.job4j.cinema.repository;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.sql2o.Sql2o;
 import ru.job4j.cinema.configuration.DataSourceConfiguration;
 
+import javax.sql.DataSource;
 import java.util.Properties;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@SpringBootTest
+@ActiveProfiles("test")
 class Sql2oGenreRepositoryTest {
 
     private static Sql2oGenreRepository sql2oGenreRepository;
 
     @BeforeAll
     public static void initRepositories() throws Exception {
-        var properties = new Properties();
+        Properties properties = new Properties();
         try (var inputStream = Sql2oFileRepository.class.getClassLoader().getResourceAsStream("application-test.properties")) {
             properties.load(inputStream);
         }
-        var url = properties.getProperty("spring.datasource.url");
-        var username = properties.getProperty("spring.datasource.username");
-        var password = properties.getProperty("spring.datasource.password");
+        String url = properties.getProperty("spring.datasource.url");
+        String username = properties.getProperty("spring.datasource.username");
+        String password = properties.getProperty("spring.datasource.password");
 
-        var configuration = new DataSourceConfiguration();
-        var connection = configuration.connectionPool(url, username, password);
-        var sql2o = configuration.databaseClient(connection);
+        DataSourceConfiguration configuration = new DataSourceConfiguration();
+        DataSource dataSource = configuration.connectionPool(url, username, password);
+        Sql2o sql2o = configuration.databaseClient(dataSource);
 
         sql2oGenreRepository = new Sql2oGenreRepository(sql2o);
     }
