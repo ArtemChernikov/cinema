@@ -1,15 +1,11 @@
 package ru.job4j.cinema.repository;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.sql2o.Sql2o;
-import ru.job4j.cinema.configuration.DataSourceConfiguration;
 
-import javax.sql.DataSource;
 import java.util.List;
-import java.util.Properties;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -17,23 +13,11 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @ActiveProfiles("test")
 class Sql2oFilmSessionRepositoryTest {
 
-    private static Sql2oFilmSessionRepository sql2oFilmSessionRepository;
+    private final Sql2oFilmSessionRepository sql2oFilmSessionRepository;
 
-    @BeforeAll
-    public static void initRepositories() throws Exception {
-        Properties properties = new Properties();
-        try (var inputStream = Sql2oFileRepository.class.getClassLoader().getResourceAsStream("application-test.properties")) {
-            properties.load(inputStream);
-        }
-        String url = properties.getProperty("spring.datasource.url");
-        String username = properties.getProperty("spring.datasource.username");
-        String password = properties.getProperty("spring.datasource.password");
-
-        DataSourceConfiguration configuration = new DataSourceConfiguration();
-        DataSource dataSource = configuration.connectionPool(url, username, password);
-        Sql2o sql2o = configuration.databaseClient(dataSource);
-
-        sql2oFilmSessionRepository = new Sql2oFilmSessionRepository(sql2o);
+    @Autowired
+    Sql2oFilmSessionRepositoryTest(Sql2oFilmSessionRepository sql2oFilmSessionRepository) {
+        this.sql2oFilmSessionRepository = sql2oFilmSessionRepository;
     }
 
     /**
