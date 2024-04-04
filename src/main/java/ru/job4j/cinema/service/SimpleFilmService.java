@@ -1,5 +1,6 @@
 package ru.job4j.cinema.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.job4j.cinema.dto.FilmDto;
 import ru.job4j.cinema.model.Film;
@@ -9,7 +10,6 @@ import ru.job4j.cinema.repository.GenreRepository;
 
 import java.util.Collection;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Класс-сервис для работы с фильмами {@link Film} и DTO {@link FilmDto}
@@ -18,41 +18,13 @@ import java.util.stream.Collectors;
  * @version 1.0
  * @since 15.02.2023
  */
+@RequiredArgsConstructor
 @Service
 public class SimpleFilmService implements FilmService {
 
     private final FilmRepository filmRepository;
 
     private final GenreRepository genreRepository;
-
-    public SimpleFilmService(FilmRepository filmRepository, GenreRepository genreRepository) {
-        this.filmRepository = filmRepository;
-        this.genreRepository = genreRepository;
-    }
-
-    /**
-     * Метод используется для получения жанра {@link Genre} фильма {@link Film}
-     * из репозитория {@link GenreRepository}
-     *
-     * @param film - фильм
-     * @return - возвращает название жанра
-     */
-    private String getGenre(Film film) {
-        var optionalGenre = genreRepository.findById(film.getGenreId());
-        return optionalGenre.isPresent() ? optionalGenre.get().getName() : "Неизвестный жанр";
-    }
-
-    /**
-     * Метод используется для преобразования фильма {@link Film} в DTO {@link FilmDto}
-     *
-     * @param film - фильм
-     * @return - возвращает DTO {@link FilmDto}
-     */
-    private FilmDto convert(Film film) {
-        return new FilmDto(film.getName(), film.getDescription(), film.getYear(),
-                getGenre(film), film.getMinimalAge(),
-                film.getDurationInMinutes(), film.getFileId());
-    }
 
     /**
      * Метод используется для получения фильма {@link Film}
@@ -80,6 +52,30 @@ public class SimpleFilmService implements FilmService {
     @Override
     public Collection<FilmDto> getAllFilms() {
         var films = filmRepository.findAll();
-        return films.stream().map(this::convert).collect(Collectors.toList());
+        return films.stream().map(this::convert).toList();
+    }
+
+    /**
+     * Метод используется для получения жанра {@link Genre} фильма {@link Film}
+     * из репозитория {@link GenreRepository}
+     *
+     * @param film - фильм
+     * @return - возвращает название жанра
+     */
+    private String getGenre(Film film) {
+        var optionalGenre = genreRepository.findById(film.getGenre().getId());
+        return optionalGenre.isPresent() ? optionalGenre.get().getName() : "Неизвестный жанр";
+    }
+
+    /**
+     * Метод используется для преобразования фильма {@link Film} в DTO {@link FilmDto}
+     *
+     * @param film - фильм
+     * @return - возвращает DTO {@link FilmDto}
+     */
+    private FilmDto convert(Film film) {
+        return new FilmDto(film.getName(), film.getDescription(), film.getYear(),
+                getGenre(film), film.getMinimalAge(),
+                film.getDurationInMinutes(), film.getFile().getId());
     }
 }

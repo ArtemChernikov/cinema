@@ -11,6 +11,7 @@ import ru.job4j.cinema.service.HallService;
 import ru.job4j.cinema.service.TicketService;
 import org.mockito.ArgumentCaptor;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +36,7 @@ class TicketControllerTest {
         ticketService = mock(TicketService.class);
         filmSessionService = mock(FilmSessionService.class);
         hallService = mock(HallService.class);
-        ticketController = new TicketController(ticketService, filmSessionService, hallService);
+        ticketController = new TicketController(ticketService, filmSessionService, hallService, userService);
     }
 
     /**
@@ -54,7 +55,12 @@ class TicketControllerTest {
         when(hallService.getPlaces(any(Hall.class))).thenReturn(expectedPlaces);
 
         var model = new ConcurrentModel();
-        var view = ticketController.getById(model, 1);
+        var view = ticketController.getById(model, 1, new Principal() {
+            @Override
+            public String getName() {
+                return null;
+            }
+        });
         var actualRows = model.getAttribute("rows");
         var actualPlaces = model.getAttribute("places");
         var actualFilmSession = model.getAttribute("filmSession");
@@ -77,7 +83,12 @@ class TicketControllerTest {
         when(filmSessionService.getFilmSessionById(any(Integer.class))).thenReturn(Optional.empty());
 
         var model = new ConcurrentModel();
-        var view = ticketController.getById(model, 1);
+        var view = ticketController.getById(model, 1, new Principal() {
+            @Override
+            public String getName() {
+                return null;
+            }
+        });
         var actualMessage = model.getAttribute("message");
 
         assertThat(view).isEqualTo("errors/404");

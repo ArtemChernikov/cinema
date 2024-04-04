@@ -1,7 +1,18 @@
 package ru.job4j.cinema.model;
 
-import java.util.Map;
-import java.util.Objects;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * Класс описывает модель зала в кинотеатре
@@ -10,107 +21,31 @@ import java.util.Objects;
  * @version 1.1
  * @since 23.02.2023
  */
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity
+@Table(name = "halls")
 public class Hall {
-    /**
-     * Поле используется для маппинга модели где ключи это названия
-     * столбцов в БД, а значения это названия полей модели
-     */
-    public static final Map<String, String> COLUMN_MAPPING = Map.of(
-            "id", "id",
-            "name", "name",
-            "row_count", "rowCount",
-            "place_count", "placeCount",
-            "description", "description",
-            "file_id", "fileId"
-    );
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private int id;
 
     private String name;
-    /**
-     * Поле количество рядов
-     */
+
+    @Column(name = "row_count")
     private int rowCount;
-    /**
-     * Поле количество мест в каждом ряду
-     */
+
+    @Column(name = "place_count")
     private int placeCount;
-    /**
-     * Поле описание
-     */
+
     private String description;
-    private int fileId;
 
-    public Hall(String name, int rowCount, int placeCount, String description, int fileId) {
-        this.name = name;
-        this.rowCount = rowCount;
-        this.placeCount = placeCount;
-        this.description = description;
-        this.fileId = fileId;
-    }
+    @OneToOne
+    @JoinColumn(name = "file_id")
+    private File file;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getRowCount() {
-        return rowCount;
-    }
-
-    public void setRowCount(int rowCount) {
-        this.rowCount = rowCount;
-    }
-
-    public int getPlaceCount() {
-        return placeCount;
-    }
-
-    public void setPlaceCount(int placeCount) {
-        this.placeCount = placeCount;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getFileId() {
-        return fileId;
-    }
-
-    public void setFileId(int fileId) {
-        this.fileId = fileId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Hall hall = (Hall) o;
-        return id == hall.id && Objects.equals(name, hall.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
-    }
 }

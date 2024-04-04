@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import ru.job4j.cinema.repository.sql2o.Sql2oGenreRepository;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 

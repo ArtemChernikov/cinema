@@ -1,5 +1,6 @@
 package ru.job4j.cinema.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.job4j.cinema.dto.FilmSessionDto;
 import ru.job4j.cinema.model.FilmSession;
@@ -11,7 +12,6 @@ import ru.job4j.cinema.repository.HallRepository;
 
 import java.util.Collection;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Класс-сервис для работы с киносеансами {@link FilmSession} и DTO {@link FilmSessionDto}
@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
  * @version 1.0
  * @since 15.02.2023
  */
+@RequiredArgsConstructor
 @Service
 public class SimpleFilmSessionService implements FilmSessionService {
 
@@ -28,48 +29,6 @@ public class SimpleFilmSessionService implements FilmSessionService {
     private final FilmRepository filmRepository;
 
     private final HallRepository hallRepository;
-
-    public SimpleFilmSessionService(FilmSessionRepository filmSessionRepository,
-                                    FilmRepository filmRepository, HallRepository hallRepository) {
-        this.filmSessionRepository = filmSessionRepository;
-        this.filmRepository = filmRepository;
-        this.hallRepository = hallRepository;
-    }
-
-    /**
-     * Метод используется для получения названия фильма {@link Film}
-     * киносеанса {@link FilmSession} из репозитория {@link FilmRepository}
-     *
-     * @param filmSession - киносеанс
-     * @return - возвращает название фильма
-     */
-    private String getFilm(FilmSession filmSession) {
-        var optionalFilm = filmRepository.findById(filmSession.getFilmId());
-        return optionalFilm.isPresent() ? optionalFilm.get().getName() : "Неизвестный фильм";
-    }
-
-    /**
-     * Метод используется для получения названия зала {@link Hall}
-     * киносеанса {@link FilmSession} из репозитория {@link HallRepository}
-     *
-     * @param filmSession - киносеанс
-     * @return - возвращает название зала
-     */
-    private String getHall(FilmSession filmSession) {
-        var optionalHall = hallRepository.findById(filmSession.getHallId());
-        return optionalHall.isPresent() ? optionalHall.get().getName() : "Неизвестный кинозал";
-    }
-
-    /**
-     * Метод используется для преобразования киносеанса {@link FilmSession} в DTO {@link FilmSessionDto}
-     *
-     * @param filmSession - киносеанс
-     * @return - возвращает DTO {@link FilmSessionDto}
-     */
-    private FilmSessionDto convert(FilmSession filmSession) {
-        return new FilmSessionDto(filmSession.getId(), getFilm(filmSession), getHall(filmSession), filmSession.getHallId(),
-                filmSession.getStartTime(), filmSession.getEndTime(), filmSession.getPrice());
-    }
 
     /**
      * Метод используется для получения киносеанса {@link FilmSession}
@@ -97,6 +56,41 @@ public class SimpleFilmSessionService implements FilmSessionService {
     @Override
     public Collection<FilmSessionDto> getAllFilmSessions() {
         var filmSessions = filmSessionRepository.findAll();
-        return filmSessions.stream().map(this::convert).collect(Collectors.toList());
+        return filmSessions.stream().map(this::convert).toList();
+    }
+
+    /**
+     * Метод используется для получения названия фильма {@link Film}
+     * киносеанса {@link FilmSession} из репозитория {@link FilmRepository}
+     *
+     * @param filmSession - киносеанс
+     * @return - возвращает название фильма
+     */
+    private String getFilm(FilmSession filmSession) {
+        var optionalFilm = filmRepository.findById(filmSession.getFilm().getId());
+        return optionalFilm.isPresent() ? optionalFilm.get().getName() : "Неизвестный фильм";
+    }
+
+    /**
+     * Метод используется для получения названия зала {@link Hall}
+     * киносеанса {@link FilmSession} из репозитория {@link HallRepository}
+     *
+     * @param filmSession - киносеанс
+     * @return - возвращает название зала
+     */
+    private String getHall(FilmSession filmSession) {
+        var optionalHall = hallRepository.findById(filmSession.getHall().getId());
+        return optionalHall.isPresent() ? optionalHall.get().getName() : "Неизвестный кинозал";
+    }
+
+    /**
+     * Метод используется для преобразования киносеанса {@link FilmSession} в DTO {@link FilmSessionDto}
+     *
+     * @param filmSession - киносеанс
+     * @return - возвращает DTO {@link FilmSessionDto}
+     */
+    private FilmSessionDto convert(FilmSession filmSession) {
+        return new FilmSessionDto(filmSession.getId(), getFilm(filmSession), getHall(filmSession),
+                filmSession.getHall().getId(), filmSession.getStartTime(), filmSession.getEndTime(), filmSession.getPrice());
     }
 }

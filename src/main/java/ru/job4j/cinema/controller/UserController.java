@@ -1,5 +1,6 @@
 package ru.job4j.cinema.controller;
 
+import lombok.RequiredArgsConstructor;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.job4j.cinema.model.User;
 import ru.job4j.cinema.service.UserService;
 
+import java.util.Optional;
+
 /**
  * Класс-контроллер для работы с пользователями {@link User}
  *
@@ -18,15 +21,12 @@ import ru.job4j.cinema.service.UserService;
  * @since 26.02.2023
  */
 @ThreadSafe
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     /**
      * Метод используется для вывода в отображение страницы регистрации нового пользователя {@link User}
@@ -48,9 +48,9 @@ public class UserController {
      */
     @PostMapping("/register")
     public String register(Model model, @ModelAttribute User user) {
-        var newUser = userService.save(user);
+        Optional<User> newUser = userService.save(user);
         if (newUser.isEmpty()) {
-            model.addAttribute("message", "Пользователь с данной почтой уже существует.");
+            model.addAttribute("message", "Пользователь с данным логином уже существует.");
             return "errors/404";
         }
         return "redirect:/users/login";
@@ -74,7 +74,7 @@ public class UserController {
      */
     @GetMapping("/login-error")
     public String getLoginError(Model model) {
-            model.addAttribute("error", "Почта или пароль введены неверно");
-            return "users/login";
+        model.addAttribute("error", "Логин или пароль введены неверно");
+        return "users/login";
     }
 }

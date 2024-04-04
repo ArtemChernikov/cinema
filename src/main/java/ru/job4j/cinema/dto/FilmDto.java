@@ -1,5 +1,8 @@
 package ru.job4j.cinema.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.job4j.cinema.model.Film;
 
 /**
@@ -9,6 +12,9 @@ import ru.job4j.cinema.model.Film;
  * @version 1.0
  * @since 14.02.2023
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class FilmDto {
 
     private String name;
@@ -25,69 +31,4 @@ public class FilmDto {
 
     private int fileId;
 
-    public FilmDto(String name, String description, int year, String genre, int minimalAge, int durationInMinutes, int fileId) {
-        this.name = name;
-        this.description = description;
-        this.year = year;
-        this.genre = genre;
-        this.minimalAge = minimalAge;
-        this.durationInMinutes = durationInMinutes;
-        this.fileId = fileId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public int getMinimalAge() {
-        return minimalAge;
-    }
-
-    public void setMinimalAge(int minimalAge) {
-        this.minimalAge = minimalAge;
-    }
-
-    public int getDurationInMinutes() {
-        return durationInMinutes;
-    }
-
-    public void setDurationInMinutes(int durationInMinutes) {
-        this.durationInMinutes = durationInMinutes;
-    }
-
-    public int getFileId() {
-        return fileId;
-    }
-
-    public void setFileId(int fileId) {
-        this.fileId = fileId;
-    }
 }

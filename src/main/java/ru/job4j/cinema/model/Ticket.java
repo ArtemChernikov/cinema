@@ -1,7 +1,19 @@
 package ru.job4j.cinema.model;
 
-import java.util.Map;
-import java.util.Objects;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * Класс описывает модель билета в кинотеатре
@@ -10,97 +22,32 @@ import java.util.Objects;
  * @version 1.0
  * @since 09.02.2023
  */
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity
+@Table(name = "tickets")
 public class Ticket {
-    /**
-     * Поле используется для маппинга модели где ключи это названия
-     * столбцов в БД, а значения это названия полей модели
-     */
-    public static final Map<String, String> COLUMN_MAPPING = Map.of(
-            "id", "id",
-            "session_id", "sessionId",
-            "row_number", "rowNumber",
-            "place_number", "placeNumber",
-            "user_id", "userId"
-    );
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private int id;
 
-    private int sessionId;
-    /**
-     * Поле номер ряда
-     */
+    @ManyToOne
+    @JoinColumn(name = "session_id")
+    private FilmSession filmSession;
+
+    @Column(name = "row_number")
     private int rowNumber;
-    /**
-     * Поле номер места
-     */
+
+    @Column(name = "place_number")
     private int placeNumber;
 
-    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public Ticket(int sessionId, int rowNumber, int placeNumber, int userId) {
-        this.sessionId = sessionId;
-        this.rowNumber = rowNumber;
-        this.placeNumber = placeNumber;
-        this.userId = userId;
-    }
-
-    public Ticket() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(int sessionId) {
-        this.sessionId = sessionId;
-    }
-
-    public int getRowNumber() {
-        return rowNumber;
-    }
-
-    public void setRowNumber(int rowNumber) {
-        this.rowNumber = rowNumber;
-    }
-
-    public int getPlaceNumber() {
-        return placeNumber;
-    }
-
-    public void setPlaceNumber(int placeNumber) {
-        this.placeNumber = placeNumber;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Ticket ticket = (Ticket) o;
-        return id == ticket.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }

@@ -1,7 +1,19 @@
 package ru.job4j.cinema.model;
 
-import java.util.Map;
-import java.util.Objects;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * Класс описывает модель фильма
@@ -10,138 +22,38 @@ import java.util.Objects;
  * @version 1.0
  * @since 09.02.2023
  */
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity
+@Table(name = "films")
 public class Film {
-    /**
-     * Поле используется для маппинга модели где ключи это названия
-     * столбцов в БД, а значения это названия полей модели
-     */
-    public static final Map<String, String> COLUMN_MAPPING = Map.of(
-            "id", "id",
-            "name", "name",
-            "description", "description",
-            "year", "year",
-            "genre_id", "genreId",
-            "minimal_age", "minimalAge",
-            "duration_in_minutes", "durationInMinutes",
-            "file_id", "fileId"
-    );
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private int id;
 
+    @EqualsAndHashCode.Include
     private String name;
-    /**
-     * Поле описание
-     */
+
     private String description;
-    /**
-     * Поле год выпуска
-     */
+
     private int year;
-    /**
-     * Поле жанр
-     */
-    private int genreId;
-    /**
-     * Поле минимальный возраст
-     */
+
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
+
+    @Column(name = "minimal_age")
     private int minimalAge;
-    /**
-     * Поле продолжительность фильма в минутах
-     */
+
+    @Column(name = "duration_in_minutes")
     private int durationInMinutes;
-    /**
-     * Поле id постера {@link File} к фильму
-     */
-    private int fileId;
 
-    public Film(String name, String description, int year, int genreId, int minimalAge, int durationInMinutes, int fileId) {
-        this.name = name;
-        this.description = description;
-        this.year = year;
-        this.genreId = genreId;
-        this.minimalAge = minimalAge;
-        this.durationInMinutes = durationInMinutes;
-        this.fileId = fileId;
-    }
+    @OneToOne
+    @JoinColumn(name = "file_id")
+    private File file;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public int getGenreId() {
-        return genreId;
-    }
-
-    public void setGenreId(int genreId) {
-        this.genreId = genreId;
-    }
-
-    public int getMinimalAge() {
-        return minimalAge;
-    }
-
-    public void setMinimalAge(int minimalAge) {
-        this.minimalAge = minimalAge;
-    }
-
-    public int getDurationInMinutes() {
-        return durationInMinutes;
-    }
-
-    public void setDurationInMinutes(int durationInMinutes) {
-        this.durationInMinutes = durationInMinutes;
-    }
-
-    public int getFileId() {
-        return fileId;
-    }
-
-    public void setFileId(int fileId) {
-        this.fileId = fileId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Film film = (Film) o;
-        return id == film.id && Objects.equals(name, film.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
-    }
 }

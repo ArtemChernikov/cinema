@@ -17,14 +17,15 @@
 - **Spring Boot 2.7.6**
 - **PostgreSQL 14**
 - **Spring Security 5**
+- **Hibernate**
 - **HTML 5**
 - **CSS**
 - **Thymeleaf 2.7.6**
 - **Bootstrap 4.4.1**
 - **H2database 1.4.2**
-- **SQL2o 1.6.0**
 - **Commons-dbcp2 2.9.0**
 - **Slf4j**
+- **Lombok**
 - **Junit 5**
 - **Mockito 4.8.0**
 - **Liquibase 4.15.0**
@@ -87,7 +88,7 @@ http://localhost:8080/
 - Покупка билета возможна только после авторизации пользователя!
 - При выборе ряда или места отображается выпадающий список.
 - Покупка билета успешна, только если место свободно. <br/>
-  
+
 ![ticket_buy](src/main/resources/static/application_pictures/ticket_buy.png)
 
 ### Страница с успешной покупкой билета:

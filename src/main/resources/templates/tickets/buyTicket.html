@@ -46,7 +46,8 @@
 
         <div class="container">
             <form class="mt-3" th:action="@{/ticket/buy}" method="post" th:object="${ticket}">
-                <input type="hidden" id="session" name="sessionId" th:value="${filmSession.id}">
+                <input type="hidden" id="session" name="filmSessionId" th:value="${filmSession.id}">
+                <input type="hidden" id="user" name="userId" th:value="${user.id}">
                 <div class="row">
                     <div class="col-3"></div>
                     <div class="col-6">
