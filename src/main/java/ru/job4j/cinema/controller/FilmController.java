@@ -10,7 +10,6 @@ import ru.job4j.cinema.dto.FilmDto;
 import ru.job4j.cinema.service.FilmService;
 
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Класс-контроллер для работы с фильмами {@link FilmDto} в кинотеке
