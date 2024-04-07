@@ -1,15 +1,28 @@
 package ru.job4j.cinema.controller;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import ru.job4j.cinema.dto.FilmSessionDto;
+import ru.job4j.cinema.dto.TicketDto;
+import ru.job4j.cinema.model.Hall;
 import ru.job4j.cinema.model.Ticket;
+import ru.job4j.cinema.model.User;
 import ru.job4j.cinema.service.FilmSessionService;
 import ru.job4j.cinema.service.HallService;
 import ru.job4j.cinema.service.TicketService;
-import ru.job4j.cinema.dto.FilmSessionDto;
+import ru.job4j.cinema.service.UserService;
+
+import java.security.Principal;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Класс-контроллер для работы с билетами {@link Ticket}
@@ -20,6 +33,7 @@ import ru.job4j.cinema.dto.FilmSessionDto;
  */
 @ThreadSafe
 @Slf4j
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/ticket")
 public class TicketController {
@@ -30,11 +44,7 @@ public class TicketController {
 
     private final HallService hallService;
 
-    public TicketController(TicketService ticketService, FilmSessionService filmSessionService, HallService hallService) {
-        this.ticketService = ticketService;
-        this.filmSessionService = filmSessionService;
-        this.hallService = hallService;
-    }
+    private final UserService userService;
 
     /**
      * Метод используется для вывода на страницу по id киносеанса {@link FilmSessionDto}
@@ -45,34 +55,36 @@ public class TicketController {
      * @return - возвращает страницу с покупкой билета {@link Ticket}
      */
     @GetMapping("/{id}")
-    public String getById(Model model, @PathVariable int id) {
-        var optFilmSession = filmSessionService.getFilmSessionById(id);
+    public String getById(Model model, @PathVariable int id, Principal principal) {
+        Optional<FilmSessionDto> optFilmSession = filmSessionService.getFilmSessionById(id);
         if (optFilmSession.isEmpty()) {
             model.addAttribute("message", "Указанный киносеанс не найден");
             return "errors/404";
         }
-        var filmSession = optFilmSession.get();
-        var hall = hallService.getHallById(filmSession.getHallId()).get();
-        var rows = hallService.getRows(hall);
-        var places = hallService.getPlaces(hall);
+        Optional<User> optionalUser = userService.getByUsername(principal.getName());
+        optionalUser.ifPresent(user -> model.addAttribute("user", user));
+        FilmSessionDto filmSession = optFilmSession.get();
+        Hall hall = hallService.getHallById(filmSession.getHallId()).get();
+        List<Integer> rows = hallService.getRows(hall);
+        List<Integer> places = hallService.getPlaces(hall);
         model.addAttribute("rows", rows);
         model.addAttribute("places", places);
         model.addAttribute("filmSession", filmSession);
-        model.addAttribute("ticket", new Ticket());
+        model.addAttribute("ticket", new TicketDto());
         return "tickets/buyTicket";
     }
 
     /**
      * Метод используется для покупки билета {@link Ticket} и сохранения его в БД
      *
-     * @param ticket - билет
-     * @param model  - модель для вывода данных на страницу
+     * @param ticketDto - билет
+     * @param model     - модель для вывода данных на страницу
      * @return - возвращает страницу с успешной покупкой билета
      */
     @PostMapping("/buy")
-    public String buyTicket(@ModelAttribute Ticket ticket, Model model) {
+    public String buyTicket(@ModelAttribute TicketDto ticketDto, Model model) {
         try {
-            var optSavedTicket = ticketService.save(ticket);
+            var optSavedTicket = ticketService.save(ticketDto);
             if (optSavedTicket.isEmpty()) {
                 model.addAttribute("message", """
                         Не удалось приобрести билет на заданное место. Вероятно оно уже занято.
@@ -80,8 +92,9 @@ public class TicketController {
                         """);
                 return "errors/404";
             }
-            model.addAttribute("ticket", ticket);
-            model.addAttribute("filmSession", filmSessionService.getFilmSessionById(ticket.getSessionId()).get());
+            model.addAttribute("ticket", ticketDto);
+            model.addAttribute("filmSession", filmSessionService
+                    .getFilmSessionById(ticketDto.getFilmSessionId()).get());
             return "success/201";
         } catch (Exception e) {
             log.error(e.getMessage(), e);

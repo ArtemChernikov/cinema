@@ -1,5 +1,6 @@
 package ru.job4j.cinema.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,19 +19,14 @@ import static ru.job4j.cinema.utils.Constants.ROLE_NOT_FOUND;
  * @version 1.0
  * @since 26.02.2024
  */
+@RequiredArgsConstructor
 public class CustomUserDetails implements UserDetails {
-
-    private final RoleRepository roleRepository;
     private final User user;
-
-    public CustomUserDetails(User user, RoleRepository roleRepository) {
-        this.user = user;
-        this.roleRepository = roleRepository;
-    }
+    private final RoleRepository roleRepository;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Role role = roleRepository.findById(user.getRoleId())
+        Role role = roleRepository.findById(user.getRole().getId())
                 .orElseThrow(() -> new RoleNotFoundException(ROLE_NOT_FOUND));
         return List.of(new SimpleGrantedAuthority(role.getName()));
     }
@@ -42,7 +38,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getFullName();
+        return user.getUsername();
     }
 
     @Override

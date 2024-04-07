@@ -1,20 +1,17 @@
 package ru.job4j.cinema.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import ru.job4j.cinema.model.User;
 
 import java.util.Optional;
 
 /**
- * Общий интерфейс для всех репозиториев с пользователями {@link User}
- *
  * @author Artem Chernikov
  * @version 1.1
  * @since 26.02.2023
  */
-public interface UserRepository {
-    Optional<User> save(User user);
+public interface UserRepository extends JpaRepository<User, Integer> {
+    Optional<User> findByUsernameAndPassword(String username, String password);
 
-    Optional<User> findByEmailAndPassword(String email, String password);
-
-    Optional<User> findByEmail(String email);
+    Optional<User> findByUsername(String username);
 }

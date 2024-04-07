@@ -1,5 +1,6 @@
 package ru.job4j.cinema.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.job4j.cinema.dto.FileDto;
@@ -19,14 +20,11 @@ import java.util.Optional;
  * @since 15.02.2023
  */
 @Slf4j
+@RequiredArgsConstructor
 @Service
 public class SimpleFileService implements FileService {
 
     private final FileRepository fileRepository;
-
-    public SimpleFileService(FileRepository fileRepository) {
-        this.fileRepository = fileRepository;
-    }
 
     /**
      * Метод используется для чтения контента из файла по определенному пути

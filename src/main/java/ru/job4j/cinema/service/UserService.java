@@ -14,5 +14,9 @@ import java.util.Optional;
 public interface UserService {
     Optional<User> save(User user);
 
-    Optional<User> getByEmailAndPassword(String email, String password);
+    Optional<User> getById(int id);
+
+    Optional<User> getByUsername(String username);
+
+    Optional<User> getByUsernameAndPassword(String username, String password);
 }

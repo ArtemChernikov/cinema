@@ -1,5 +1,6 @@
 package ru.job4j.cinema.controller;
 
+import lombok.RequiredArgsConstructor;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,16 +17,13 @@ import ru.job4j.cinema.dto.FileDto;
  * @since 23.02.2023
  */
 @ThreadSafe
+@RequiredArgsConstructor
 @Controller
 public class FileController {
     /**
      * Поле сервис для работы с файлами
      */
     private final FileService fileService;
-
-    public FileController(FileService fileService) {
-        this.fileService = fileService;
-    }
 
     /**
      * Метод используется для взаимодействия с файлом по id,

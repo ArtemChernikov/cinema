@@ -1,5 +1,6 @@
 package ru.job4j.cinema.controller;
 
+import lombok.RequiredArgsConstructor;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.job4j.cinema.dto.FilmDto;
 import ru.job4j.cinema.service.FilmService;
+
+import java.util.Collection;
 
 /**
  * Класс-контроллер для работы с фильмами {@link FilmDto} в кинотеке
@@ -17,15 +20,12 @@ import ru.job4j.cinema.service.FilmService;
  */
 
 @ThreadSafe
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/films")
 public class FilmController {
 
     private final FilmService filmService;
-
-    public FilmController(FilmService filmService) {
-        this.filmService = filmService;
-    }
 
     /**
      * Метод используется для отображения всех фильмов {@link FilmDto}
@@ -36,7 +36,7 @@ public class FilmController {
      */
     @GetMapping
     public String getFilms(Model model) {
-        var films = filmService.getAllFilms();
+        Collection<FilmDto> films = filmService.getAllFilms();
         model.addAttribute("films", films);
         return "films/list";
     }

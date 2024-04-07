@@ -1,5 +1,6 @@
 package ru.job4j.cinema.controller;
 
+import lombok.RequiredArgsConstructor;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,15 +17,12 @@ import ru.job4j.cinema.model.Hall;
  * @since 22.02.2023
  */
 @ThreadSafe
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/halls")
 public class HallController {
 
     private final HallService hallService;
-
-    public HallController(HallService hallService) {
-        this.hallService = hallService;
-    }
 
     /**
      * Метод используется для отображения всех кинозалов {@link Hall}

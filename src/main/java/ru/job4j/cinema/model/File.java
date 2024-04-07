@@ -1,6 +1,16 @@
 package ru.job4j.cinema.model;
 
-import java.util.Objects;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Класс описывает модель файла-постера к фильму
@@ -9,60 +19,22 @@ import java.util.Objects;
  * @version 1.0
  * @since 09.02.2023
  */
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Builder
+@Entity
+@Table(name = "files")
 public class File {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private int id;
 
     private String name;
 
-    /**
-     * Поле путь к файлу
-     */
     private String path;
 
-    public File(String name, String path) {
-        this.name = name;
-        this.path = path;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        File file = (File) o;
-        return id == file.id && Objects.equals(path, file.path);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, path);
-    }
 }
