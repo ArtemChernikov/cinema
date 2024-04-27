@@ -56,7 +56,7 @@ http://localhost:8080/
 
 ### Главная страница web-приложения:
 
-![home_page](src/main/resources/static/application_pictures/home_page.png)
+![home_page](cinema-main-service/src/main/resources/static/application_pictures/home_page.png)
 
 ### Страница с доступными киносеансами:
 
