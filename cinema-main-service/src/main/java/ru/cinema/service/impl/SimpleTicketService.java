@@ -1,4 +1,4 @@
-package ru.cinema.service;
+package ru.cinema.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,6 +8,8 @@ import ru.cinema.model.Ticket;
 import ru.cinema.model.User;
 import ru.cinema.repository.FilmSessionRepository;
 import ru.cinema.repository.TicketRepository;
+import ru.cinema.service.TicketService;
+import ru.cinema.service.UserService;
 
 import java.util.Optional;
 

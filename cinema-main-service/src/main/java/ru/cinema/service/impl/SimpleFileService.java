@@ -1,10 +1,11 @@
-package ru.cinema.service;
+package ru.cinema.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.cinema.dto.FileDto;
 import ru.cinema.repository.FileRepository;
+import ru.cinema.service.FileService;
 
 import java.io.IOException;
 import java.nio.file.Files;

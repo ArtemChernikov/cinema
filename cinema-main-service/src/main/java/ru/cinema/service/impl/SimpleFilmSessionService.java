@@ -1,4 +1,4 @@
-package ru.cinema.service;
+package ru.cinema.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -7,6 +7,7 @@ import ru.cinema.model.FilmSession;
 import ru.cinema.repository.FilmRepository;
 import ru.cinema.repository.FilmSessionRepository;
 import ru.cinema.repository.HallRepository;
+import ru.cinema.service.FilmSessionService;
 
 import java.util.Collection;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package ru.cinema.service;
+package ru.cinema.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -8,6 +8,7 @@ import ru.cinema.model.Role;
 import ru.cinema.model.User;
 import ru.cinema.repository.RoleRepository;
 import ru.cinema.repository.UserRepository;
+import ru.cinema.service.UserService;
 import ru.cinema.utils.Constants;
 
 import java.util.Optional;

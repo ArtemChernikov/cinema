@@ -1,4 +1,4 @@
-package ru.cinema.service;
+package ru.cinema.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -6,6 +6,7 @@ import ru.cinema.dto.FilmDto;
 import ru.cinema.model.Film;
 import ru.cinema.repository.FilmRepository;
 import ru.cinema.repository.GenreRepository;
+import ru.cinema.service.FilmService;
 
 import java.util.Collection;
 import java.util.Optional;

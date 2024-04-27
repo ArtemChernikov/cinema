@@ -1,9 +1,10 @@
-package ru.cinema.service;
+package ru.cinema.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.cinema.model.Hall;
 import ru.cinema.repository.HallRepository;
+import ru.cinema.service.HallService;
 
 import java.util.Collection;
 import java.util.List;
