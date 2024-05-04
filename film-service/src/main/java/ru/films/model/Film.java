@@ -1,4 +1,4 @@
-package ru.cinema.model;
+package ru.films.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FilmResponseDto {
+public class Film {
     private Long id;
     private String name;
     private String alternativeName;
@@ -22,11 +22,10 @@ public class FilmResponseDto {
     private String year;
     private String description;
     private String shortDescription;
-    private RatingResponseDto rating;
+    private Rating rating;
     private Integer movieLength;
     private Integer ageRating;
-    private PosterResponseDto poster;
+    private Poster poster;
     private List<String> genres;
     private List<String> countries;
-
 }

@@ -1,4 +1,4 @@
-package ru.cinema.model.response;
+package ru.films.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

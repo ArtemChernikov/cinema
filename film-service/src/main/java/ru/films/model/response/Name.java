@@ -1,4 +1,4 @@
-package ru.cinema.model.response;
+package ru.films.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,10 +12,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Votes {
-    private int kp;
-    private int imdb;
-    private int filmCritics;
-    private int russianFilmCritics;
-    private int await;
+public class Name {
+    private String name;
+    private String language;
+    private String type;
 }

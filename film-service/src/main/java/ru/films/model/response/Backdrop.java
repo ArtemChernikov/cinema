@@ -1,4 +1,4 @@
-package ru.cinema.model.response;
+package ru.films.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,9 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Rating {
-    private double kp;
-    private double imdb;
-    private double filmCritics;
-    private double russianFilmCritics;
+public class Backdrop {
+    private String url;
+    private String previewUrl;
 }

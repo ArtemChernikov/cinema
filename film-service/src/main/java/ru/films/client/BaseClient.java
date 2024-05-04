@@ -1,4 +1,4 @@
-package ru.cinema;
+package ru.films.client;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

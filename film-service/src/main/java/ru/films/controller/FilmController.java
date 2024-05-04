@@ -1,4 +1,4 @@
-package ru.cinema.controller;
+package ru.films.controller;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,8 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.cinema.KinopoiskClient;
-import ru.cinema.model.response.Response;
+import ru.films.client.KinopoiskClient;
+import ru.films.model.response.Response;
 
 /**
  * @author Artem Chernikov
@@ -17,7 +17,7 @@ import ru.cinema.model.response.Response;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/kinopoisk")
-public class KinopoiskController {
+public class FilmController {
     private final KinopoiskClient kinopoiskClient;
     private final ObjectMapper objectMapper = new ObjectMapper();
 

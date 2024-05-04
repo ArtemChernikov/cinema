@@ -1,4 +1,4 @@
-package ru.cinema.model;
+package ru.films.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +12,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PosterResponseDto {
+public class Poster {
+    private Long id;
     private String url;
     private String previewUrl;
 }
