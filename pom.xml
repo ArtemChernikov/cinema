@@ -11,7 +11,7 @@
 
     <modules>
         <module>cinema-main-service</module>
-        <module>kinopoisk-api</module>
+        <module>film-service</module>
     </modules>
 
     <parent>
