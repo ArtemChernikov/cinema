@@ -8,9 +8,9 @@ import lombok.experimental.UtilityClass;
  * @since 06.05.2024
  */
 @UtilityClass
-public class BackDropExceptionMessage {
+public class BackdropExceptionMessage {
     public static final String URL_VALUE_IS_INVALID =
-            "Значение поля 'url' у сущности 'BackDrop' не может быть пустым.";
+            "Значение поля 'url' у сущности 'Backdrop' не может быть пустым.";
     public static final String PREVIEW_URL_VALUE_IS_INVALID =
-            "Значение поля 'previewUrl' у сущности 'BackDrop' не может быть пустым.";
+            "Значение поля 'previewUrl' у сущности 'Backdrop' не может быть пустым.";
 }

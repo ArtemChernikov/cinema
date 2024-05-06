@@ -23,6 +23,7 @@ import static ru.films.exception.message.FilmExceptionMessage.AGE_RATING_MAX_VAL
 import static ru.films.exception.message.FilmExceptionMessage.AGE_RATING_MIN_VALUE_IS_INVALID;
 import static ru.films.exception.message.FilmExceptionMessage.AGE_RATING_VALUE_IS_INVALID;
 import static ru.films.exception.message.FilmExceptionMessage.ALTERNATIVE_NAME_VALUE_IS_INVALID;
+import static ru.films.exception.message.FilmExceptionMessage.BACKDROP_VALUE_IS_INVALID;
 import static ru.films.exception.message.FilmExceptionMessage.DESCRIPTION_VALUE_IS_INVALID;
 import static ru.films.exception.message.FilmExceptionMessage.MOVIE_LENGTH_MIN_VALUE_IS_INVALID;
 import static ru.films.exception.message.FilmExceptionMessage.MOVIE_LENGTH_VALUE_IS_INVALID;
@@ -87,6 +88,11 @@ public class Film {
     @OneToOne
     @JoinColumn(name = "poster_id")
     private Poster poster;
+
+    @NotNull(message = BACKDROP_VALUE_IS_INVALID)
+    @OneToOne
+    @JoinColumn(name = "backdrop_id")
+    private Backdrop backdrop;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "films_genres",

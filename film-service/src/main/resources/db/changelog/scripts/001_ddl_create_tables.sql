@@ -14,7 +14,7 @@ create table if not exists posters
     preview_url text not null
 );
 
-create table if not exists back_drops
+create table if not exists backdrops
 (
     id  bigserial primary key,
     url text not null,
@@ -45,7 +45,8 @@ create table if not exists films
     rating_id bigint references ratings(id) not null,
     movie_length int not null check (movie_length > 0),
     age_rating int not null check (age_rating >= 0 and age_rating <= 100),
-    poster_id bigint references posters(id) not null
+    poster_id bigint references posters(id) not null,
+    backdrop_id bigint references backdrops(id) not null
 );
 
 create table if not exists films_genres

@@ -12,8 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import static ru.films.exception.message.BackDropExceptionMessage.PREVIEW_URL_VALUE_IS_INVALID;
-import static ru.films.exception.message.BackDropExceptionMessage.URL_VALUE_IS_INVALID;
+import static ru.films.exception.message.BackdropExceptionMessage.PREVIEW_URL_VALUE_IS_INVALID;
+import static ru.films.exception.message.BackdropExceptionMessage.URL_VALUE_IS_INVALID;
 
 /**
  * @author Artem Chernikov
@@ -21,11 +21,11 @@ import static ru.films.exception.message.BackDropExceptionMessage.URL_VALUE_IS_I
  * @since 28.04.2024
  */
 @Entity
-@Table(name = "back_drops")
+@Table(name = "backdrops")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BackDrop {
+public class Backdrop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

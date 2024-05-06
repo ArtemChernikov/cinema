@@ -35,4 +35,6 @@ public class FilmExceptionMessage {
             "Значение поля 'ageRating' у сущности 'Film' не может быть больше 100.";
     public static final String POSTER_VALUE_IS_INVALID =
             "Значение поля 'poster' у сущности 'Film' не может быть null.";
+    public static final String BACKDROP_VALUE_IS_INVALID =
+            "Значение поля 'backdrop' у сущности 'Film' не может быть null.";
 }
