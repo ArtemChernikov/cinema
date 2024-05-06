@@ -21,6 +21,7 @@ public interface FilmMapper {
     @Mapping(target = "movieLength", source = "movieLength")
     @Mapping(target = "ageRating", source = "ageRating")
     @Mapping(target = "poster", source = "poster")
+    @Mapping(target = "backdrop", source = "backdrop")
     @Mapping(target = "genres", source = "genres")
     @Mapping(target = "countries", source = "countries")
     Film documentToFilm(Document document);
