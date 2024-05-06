@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 08.02.2023
  */
 @SpringBootApplication
-public class Main {
+public class MainServiceApp {
     public static void main(String[] args) {
-        SpringApplication.run(ru.cinema.Main.class, args);
+        SpringApplication.run(MainServiceApp.class, args);
     }
 }
