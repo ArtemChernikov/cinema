@@ -3,7 +3,6 @@ package ru.films.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.films.exception.message.BackDropExceptionMessage;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
