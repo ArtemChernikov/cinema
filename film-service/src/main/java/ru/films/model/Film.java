@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -36,6 +37,7 @@ import static ru.films.exception.message.FilmExceptionMessage.YEAR_VALUE_IS_INVA
  * @version 1.0
  * @since 28.04.2024
  */
+@Entity
 @Table(name = "films")
 @Data
 @NoArgsConstructor

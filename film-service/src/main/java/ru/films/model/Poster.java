@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,6 +20,7 @@ import static ru.films.exception.message.PosterExceptionMessage.URL_VALUE_IS_INV
  * @version 1.0
  * @since 28.04.2024
  */
+@Entity
 @Table(name = "posters")
 @Data
 @NoArgsConstructor
