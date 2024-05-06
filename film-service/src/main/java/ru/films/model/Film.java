@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -67,6 +68,8 @@ public class Film {
     private String shortDescription;
 
     @NotNull(message = RATING_VALUE_IS_INVALID)
+    @OneToOne
+    @JoinColumn(name = "rating_id")
     private Rating rating;
 
     @NotNull(message = MOVIE_LENGTH_VALUE_IS_INVALID)
@@ -81,17 +84,19 @@ public class Film {
     private Integer ageRating;
 
     @NotNull(message = POSTER_VALUE_IS_INVALID)
+    @OneToOne
+    @JoinColumn(name = "poster_id")
     private Poster poster;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "films_genres",
             joinColumns = {@JoinColumn(name = "film_id")},
             inverseJoinColumns = {@JoinColumn(name = "genre_id")})
-    private List<String> genres;
+    private List<Genre> genres;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "films_countries",
             joinColumns = {@JoinColumn(name = "film_id")},
             inverseJoinColumns = {@JoinColumn(name = "country_id")})
-    private List<String> countries;
+    private List<Country> countries;
 }
