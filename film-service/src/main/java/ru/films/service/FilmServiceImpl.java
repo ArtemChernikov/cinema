@@ -8,6 +8,7 @@ import ru.films.client.KinopoiskClient;
 import ru.films.model.Country;
 import ru.films.model.Film;
 import ru.films.model.Genre;
+import ru.films.model.dto.FilmDto;
 import ru.films.model.response.Document;
 import ru.films.model.response.Response;
 import ru.films.repository.CountryRepository;
@@ -49,6 +50,11 @@ public class FilmServiceImpl implements FilmService {
         filmRepository.saveAll(films);
     }
 
+    public FilmDto getAll() {
+        List<Film> films = filmRepository.findAll();
+        return null;
+    }
+
     private void setCountry(List<Film> films) {
         Set<String> allCountryNames = films.stream()
                 .flatMap(film -> film.getCountries().stream())
@@ -71,9 +77,9 @@ public class FilmServiceImpl implements FilmService {
                 .collect(Collectors.toMap(Country::getName, Function.identity()));
 
         films.forEach(film -> {
-            List<Country> updatedCountries = film.getCountries().stream()
+            Set<Country> updatedCountries = film.getCountries().stream()
                     .map(country -> countryMap.get(country.getName()))
-                    .toList();
+                    .collect(Collectors.toSet());
             film.setCountries(updatedCountries);
         });
     }
@@ -101,9 +107,9 @@ public class FilmServiceImpl implements FilmService {
                 .collect(Collectors.toMap(Genre::getName, Function.identity()));
 
         films.forEach(film -> {
-            List<Genre> updatedGenres = film.getGenres().stream()
+            Set<Genre> updatedGenres = film.getGenres().stream()
                     .map(genre -> genreMap.get(genre.getName()))
-                    .toList();
+                    .collect(Collectors.toSet());
             film.setGenres(updatedGenres);
         });
     }

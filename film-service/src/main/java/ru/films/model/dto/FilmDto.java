@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author Artem Chernikov
@@ -27,6 +27,6 @@ public class FilmDto {
     private Integer ageRating;
     private PosterDto poster;
     private BackdropDto backdrop;
-    private List<String> genres;
-    private List<String> countries;
+    private Set<String> genres;
+    private Set<String> countries;
 }

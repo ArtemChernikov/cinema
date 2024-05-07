@@ -10,10 +10,7 @@ import java.util.List;
 
 @Repository
 public interface FilmRepository extends JpaRepository<Film, Long> {
-    @Override
     @NonNull
-    @EntityGraph(attributePaths = {"genres", "countries"})
+    @EntityGraph(attributePaths = {"rating", "poster", "backdrop", "genres", "countries"})
     List<Film> findAll();
-
-    boolean existsByName(String name);
 }

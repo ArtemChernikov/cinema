@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -56,7 +56,7 @@ public class Film {
     private String shortDescription;
 
     @NotNull(message = RATING_VALUE_IS_INVALID)
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "rating_id")
     private Rating rating;
 
@@ -67,11 +67,11 @@ public class Film {
     private Integer ageRating;
 
     @NotNull(message = POSTER_VALUE_IS_INVALID)
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "poster_id")
     private Poster poster;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "backdrop_id")
     private Backdrop backdrop;
 
@@ -79,11 +79,11 @@ public class Film {
     @JoinTable(name = "films_genres",
             joinColumns = {@JoinColumn(name = "film_id")},
             inverseJoinColumns = {@JoinColumn(name = "genre_id")})
-    private List<Genre> genres;
+    private Set<Genre> genres;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "films_countries",
             joinColumns = {@JoinColumn(name = "film_id")},
             inverseJoinColumns = {@JoinColumn(name = "country_id")})
-    private List<Country> countries;
+    private Set<Country> countries;
 }
