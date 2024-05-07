@@ -3,11 +3,12 @@ package ru.films.utils.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import ru.films.model.Film;
+import ru.films.model.dto.FilmDto;
 import ru.films.model.response.Document;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {RatingMapper.class})
+@Mapper(componentModel = "spring", uses = {RatingMapper.class, CountryMapper.class, GenreMapper.class})
 public interface FilmMapper {
 
     @Mapping(target = "id", source = "id")
@@ -28,4 +29,7 @@ public interface FilmMapper {
 
     List<Film> documentListToFilmList(List<Document> documentList);
 
+    @Mapping(source = "genres", target = "genres", qualifiedByName = "listGenresToStringListGenres")
+    @Mapping(source = "countries", target = "countries", qualifiedByName = "listCountriesToStringListCountries")
+    FilmDto filmToFilmDto(Film film);
 }
