@@ -2,6 +2,8 @@ package ru.films.service;
 
 import ru.films.model.dto.FilmDto;
 
+import java.util.List;
+
 /**
  * @author Artem Chernikov
  * @version 1.0
@@ -10,5 +12,5 @@ import ru.films.model.dto.FilmDto;
 public interface FilmService {
     void addFilms();
 
-    FilmDto getAll();
+    List<FilmDto> getAll();
 }

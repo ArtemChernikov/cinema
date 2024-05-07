@@ -32,4 +32,6 @@ public interface FilmMapper {
     @Mapping(source = "genres", target = "genres", qualifiedByName = "listGenresToStringListGenres")
     @Mapping(source = "countries", target = "countries", qualifiedByName = "listCountriesToStringListCountries")
     FilmDto filmToFilmDto(Film film);
+
+    List<FilmDto> filmListToFilmDtoList(List<Film> filmList);
 }

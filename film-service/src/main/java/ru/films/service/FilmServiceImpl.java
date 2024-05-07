@@ -50,9 +50,8 @@ public class FilmServiceImpl implements FilmService {
         filmRepository.saveAll(films);
     }
 
-    public FilmDto getAll() {
-        List<Film> films = filmRepository.findAll();
-        return null;
+    public List<FilmDto> getAll() {
+        return filmMapper.filmListToFilmDtoList(filmRepository.findAll());
     }
 
     private void setCountry(List<Film> films) {
