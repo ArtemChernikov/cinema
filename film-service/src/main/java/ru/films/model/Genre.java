@@ -1,6 +1,7 @@
 package ru.films.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,6 +23,7 @@ import static ru.films.exception.message.GenreExceptionMessage.NAME_VALUE_IS_INV
 @Entity
 @Table(name = "genres")
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Genre {

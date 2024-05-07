@@ -6,5 +6,5 @@ package ru.films.service;
  * @since 04.05.2024
  */
 public interface FilmService {
-
+    void addFilms();
 }

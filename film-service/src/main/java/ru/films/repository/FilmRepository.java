@@ -14,4 +14,6 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
     @NonNull
     @EntityGraph(attributePaths = {"genres", "countries"})
     List<Film> findAll();
+
+    boolean existsByName(String name);
 }

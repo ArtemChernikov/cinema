@@ -1,13 +1,10 @@
 package ru.films.controller;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.films.client.KinopoiskClient;
-import ru.films.model.response.Response;
+import ru.films.service.FilmService;
 
 /**
  * @author Artem Chernikov
@@ -16,16 +13,12 @@ import ru.films.model.response.Response;
  */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/kinopoisk")
+@RequestMapping("/films")
 public class FilmController {
-    private final KinopoiskClient kinopoiskClient;
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final FilmService filmService;
 
-    @PatchMapping("/update")
-    public void updateFilms() {
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        Response response = objectMapper.convertValue(kinopoiskClient.getTop10Films().getBody(), Response.class);
-        System.out.println("Total documents: " + response.getTotal());
-        System.out.println(response);
+    @PostMapping("/add-popular-films")
+    public void addPopularFilms() {
+        filmService.addFilms();
     }
 }

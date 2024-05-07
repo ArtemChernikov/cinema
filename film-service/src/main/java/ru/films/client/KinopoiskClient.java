@@ -1,4 +1,4 @@
-package ru.cinema;
+package ru.films.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,14 +26,12 @@ public class KinopoiskClient extends BaseClient {
         );
     }
 
-    public ResponseEntity<Object> getTop10Films() {
+    public ResponseEntity<Object> getPopularFilms() {
         Map<String, Object> parameters = Map.of(
-                "page", 1,
-                "limit", 10,
-                "year", new int[]{2018},
+                "limit", 250,
                 "lists", new String[]{"popular-films"}
         );
-        return get("?page={page}&limit={limit}&year={year}&lists={lists}", parameters);
+        return get("?limit={limit}&lists={lists}", parameters);
     }
 
 }

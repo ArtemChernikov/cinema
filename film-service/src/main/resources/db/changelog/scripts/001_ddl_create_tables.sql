@@ -37,16 +37,16 @@ create table if not exists films
 (
     id  bigint primary key,
     name varchar not null,
-    alternative_name varchar not null,
+    alternative_name varchar,
     type varchar not null,
     year integer not null,
-    description text not null,
-    short_description text not null,
+    description text,
+    short_description text,
     rating_id bigint references ratings(id) not null,
-    movie_length int not null check (movie_length > 0),
-    age_rating int not null check (age_rating >= 0 and age_rating <= 100),
+    movie_length int,
+    age_rating int,
     poster_id bigint references posters(id) not null,
-    backdrop_id bigint references backdrops(id) not null
+    backdrop_id bigint references backdrops(id)
 );
 
 create table if not exists films_genres

@@ -1,6 +1,7 @@
 package ru.films.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,6 +23,7 @@ import static ru.films.exception.message.CountryExceptionMessage.NAME_VALUE_IS_I
 @Entity
 @Table(name = "countries")
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Country {
