@@ -30,4 +30,9 @@ public class FilmController {
     public List<FilmDto> getAll() {
         return filmService.getAll();
     }
+
+    @GetMapping("/{id}")
+    public FilmDto getFilmById(Long id) {
+        return filmService.getById(id);
+    }
 }

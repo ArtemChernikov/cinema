@@ -13,4 +13,6 @@ public interface FilmService {
     void addFilms();
 
     List<FilmDto> getAll();
+
+    FilmDto getById(Long id);
 }

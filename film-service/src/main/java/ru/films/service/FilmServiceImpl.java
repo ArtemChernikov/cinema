@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.films.client.KinopoiskClient;
+import ru.films.exception.FilmNotFoundException;
 import ru.films.model.Country;
 import ru.films.model.Film;
 import ru.films.model.Genre;
@@ -23,6 +24,8 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static ru.films.exception.message.FilmExceptionMessage.FILM_NOT_FOUND;
 
 /**
  * @author Artem Chernikov
@@ -52,6 +55,12 @@ public class FilmServiceImpl implements FilmService {
 
     public List<FilmDto> getAll() {
         return filmMapper.filmListToFilmDtoList(filmRepository.findAll());
+    }
+
+    @Override
+    public FilmDto getById(Long id) {
+        return filmMapper.filmToFilmDto(filmRepository.findById(id)
+                .orElseThrow(() -> new FilmNotFoundException(FILM_NOT_FOUND)));
     }
 
     private void setCountry(List<Film> films) {
