@@ -1,6 +1,6 @@
 package ru.cinema.service;
 
-import ru.cinema.dto.FileDto;
+import ru.cinema.model.dto.FileDto;
 
 import java.util.Optional;
 

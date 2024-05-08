@@ -1,6 +1,6 @@
 package ru.cinema.service;
 
-import ru.cinema.dto.FilmSessionDto;
+import ru.cinema.model.dto.FilmSessionDto;
 
 import java.util.Collection;
 import java.util.Optional;

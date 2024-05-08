@@ -2,7 +2,7 @@ package ru.cinema.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.cinema.dto.FilmSessionDto;
+import ru.cinema.model.dto.FilmSessionDto;
 import ru.cinema.model.FilmSession;
 import ru.cinema.repository.FilmRepository;
 import ru.cinema.repository.FilmSessionRepository;

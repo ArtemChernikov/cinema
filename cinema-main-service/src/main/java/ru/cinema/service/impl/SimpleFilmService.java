@@ -2,7 +2,7 @@ package ru.cinema.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.cinema.dto.FilmDto;
+import ru.cinema.model.dto.FilmDto;
 import ru.cinema.model.Film;
 import ru.cinema.repository.FilmRepository;
 import ru.cinema.repository.GenreRepository;
@@ -39,6 +39,11 @@ public class SimpleFilmService implements FilmService {
     public Collection<FilmDto> getAllFilms() {
         var films = filmRepository.findAll();
         return films.stream().map(this::convert).toList();
+    }
+
+    @Override
+    public Collection<ru.cinema.model.dto.response.FilmDto> getAllFilms1() {
+        return null;
     }
 
     private String getGenre(Film film) {

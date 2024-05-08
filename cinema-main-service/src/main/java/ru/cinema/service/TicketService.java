@@ -1,6 +1,6 @@
 package ru.cinema.service;
 
-import ru.cinema.dto.TicketDto;
+import ru.cinema.model.dto.TicketDto;
 import ru.cinema.model.Ticket;
 
 import java.util.Optional;

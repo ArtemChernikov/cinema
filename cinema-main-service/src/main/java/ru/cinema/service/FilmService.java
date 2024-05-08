@@ -1,6 +1,6 @@
 package ru.cinema.service;
 
-import ru.cinema.dto.FilmDto;
+import ru.cinema.model.dto.FilmDto;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -16,4 +16,6 @@ public interface FilmService {
     Optional<FilmDto> getFilmById(int id);
 
     Collection<FilmDto> getAllFilms();
+
+    Collection<ru.cinema.model.dto.response.FilmDto> getAllFilms1();
 }

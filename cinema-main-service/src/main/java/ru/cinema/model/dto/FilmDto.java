@@ -1,4 +1,4 @@
-package ru.cinema.dto;
+package ru.cinema.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,10 +13,20 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FileDto {
+public class FilmDto {
 
     private String name;
 
-    private byte[] content;
+    private String description;
+
+    private int year;
+
+    private String genre;
+
+    private int minimalAge;
+
+    private int durationInMinutes;
+
+    private int fileId;
 
 }

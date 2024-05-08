@@ -1,4 +1,4 @@
-package ru.cinema.dto;
+package ru.cinema.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
