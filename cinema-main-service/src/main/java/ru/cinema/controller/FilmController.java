@@ -6,8 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.cinema.dto.FilmDto;
-import ru.cinema.service.FilmService;
+import ru.cinema.model.dto.response.FilmDto;
+import ru.cinema.service.impl.FilmServiceImpl;
 
 import java.util.Collection;
 
@@ -23,11 +23,11 @@ import java.util.Collection;
 @RequestMapping("/films")
 public class FilmController {
 
-    private final FilmService filmService;
+    private final FilmServiceImpl filmServiceImpl;
 
     @GetMapping
     public String getFilms(Model model) {
-        Collection<FilmDto> films = filmService.getAllFilms();
+        Collection<FilmDto> films = filmServiceImpl.getAllFilms();
         model.addAttribute("films", films);
         return "films/list";
     }

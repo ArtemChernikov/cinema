@@ -17,5 +17,4 @@ public interface FilmService {
 
     Collection<FilmDto> getAllFilms();
 
-    Collection<ru.cinema.model.dto.response.FilmDto> getAllFilms1();
 }
