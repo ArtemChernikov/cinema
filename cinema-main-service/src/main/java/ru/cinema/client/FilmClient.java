@@ -22,7 +22,11 @@ public class FilmClient extends BaseClient {
     }
 
     public ResponseEntity<Object> getAllFilms() {
-        return get("", null);
+        return get("");
+    }
+
+    public ResponseEntity<Object> getFilmById(Long id) {
+        return get(String.valueOf(id));
     }
 
 }

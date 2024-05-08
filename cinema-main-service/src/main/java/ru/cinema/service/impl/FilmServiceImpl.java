@@ -8,6 +8,7 @@ import ru.cinema.client.FilmClient;
 import ru.cinema.model.dto.response.FilmDto;
 
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * @author Artem Chernikov
@@ -22,6 +23,11 @@ public class FilmServiceImpl {
     private final ObjectMapper objectMapper;
 
     public Collection<FilmDto> getAllFilms() {
-        return objectMapper.convertValue(filmClient.getAllFilms().getBody(), new TypeReference<>() {});
+        return objectMapper.convertValue(filmClient.getAllFilms().getBody(), new TypeReference<>() {
+        });
+    }
+
+    public Optional<FilmDto> getFilmById(Long id) {
+        return Optional.of(objectMapper.convertValue(filmClient.getFilmById(id), FilmDto.class));
     }
 }
