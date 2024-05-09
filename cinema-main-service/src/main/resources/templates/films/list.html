@@ -45,7 +45,7 @@
                     <td th:text="${film.ageRating != null ? film.ageRating + '+' : 'Нет данных'}"/>
                     <td th:text="${film.genres != null ? #strings.listJoin(film.genres, ', ') : 'Нет данных'}"></td>
                     <td th:text="${film.year != null ? film.year : 'Нет данных'}"></td>
-                    <td th:text="${film.movieLength != null ? film.movieLength + 'мин.' : 'Нет данных'}"/>
+                    <td th:text="${film.movieLength != null ? film.movieLength + ' мин.' : 'Нет данных'}"/>
                 </tr>
                 </tbody>
             </table>
