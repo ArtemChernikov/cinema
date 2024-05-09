@@ -28,6 +28,6 @@ public class FilmServiceImpl {
     }
 
     public Optional<FilmDto> getFilmById(Long id) {
-        return Optional.of(objectMapper.convertValue(filmClient.getFilmById(id), FilmDto.class));
+        return Optional.of(objectMapper.convertValue(filmClient.getFilmById(id).getBody(), FilmDto.class));
     }
 }

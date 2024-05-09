@@ -26,7 +26,7 @@ public class FilmClient extends BaseClient {
     }
 
     public ResponseEntity<Object> getFilmById(Long id) {
-        return get(String.valueOf(id));
+        return get("/" + id);
     }
 
 }

@@ -1,6 +1,7 @@
 package ru.films.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import java.util.List;
  * @version 1.0
  * @since 28.04.2024
  */
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/films")
@@ -24,16 +26,24 @@ public class FilmController {
 
     @PostMapping("/add-popular-films")
     public void addPopularFilms() {
+        log.info("film-api: выполнение запроса на добавление популярных фильмов из kinopoisk API");
         filmService.addFilms();
+        log.info("film-api: выполен запрос на добавление популярных фильмов из kinopoisk API");
     }
 
     @GetMapping
     public List<FilmDto> getAll() {
-        return filmService.getAll();
+        log.info("film-api: выполнение запроса на получение всех фильмов");
+        List<FilmDto> films = filmService.getAll();
+        log.info("film-api: выполнен запрос на получение всех фильмов, количество фильмов: {}", films.size());
+        return films;
     }
 
     @GetMapping("/{id}")
     public FilmDto getFilmById(@PathVariable Long id) {
-        return filmService.getById(id);
+        log.info("film-api: выполнение запроса на получение фильма по id: {}", id);
+        FilmDto film = filmService.getById(id);
+        log.info("film-api: выполнен запрос на получение фильма по id: {}, фильм: {}", id, film);
+        return film;
     }
 }
