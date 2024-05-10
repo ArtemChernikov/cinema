@@ -40,7 +40,7 @@ public class BaseClient {
                 serverResponse = rest.exchange(path, method, requestEntity, Object.class);
             }
         } catch (HttpStatusCodeException e) {
-            return ResponseEntity.status(e.getStatusCode()).body(e.getResponseBodyAsByteArray());
+            return ResponseEntity.status(e.getStatusCode()).body(e.getResponseBodyAsString());
         }
         return prepareGatewayResponse(serverResponse);
     }

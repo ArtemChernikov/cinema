@@ -1,32 +1,65 @@
 package ru.cinema.client;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.DefaultUriBuilderFactory;
+import ru.cinema.exception.ApiError;
+import ru.cinema.exception.FilmNotFoundException;
+import ru.cinema.model.dto.response.FilmDto;
 
+import java.util.List;
+
+@Slf4j
 @Service
 public class FilmClient extends BaseClient {
+    private final ObjectMapper objectMapper;
     private static final String API_PREFIX = "/films";
 
     @Autowired
-    public FilmClient(RestTemplateBuilder builder, @Value("${films.api.url}") String serverUrl) {
+    public FilmClient(RestTemplateBuilder builder, @Value("${films.api.url}") String serverUrl,
+                      ObjectMapper objectMapper) {
         super(
                 builder.uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl + API_PREFIX))
                         .requestFactory(HttpComponentsClientHttpRequestFactory::new)
                         .build()
         );
+        this.objectMapper = objectMapper;
     }
 
-    public ResponseEntity<Object> getAllFilms() {
-        return get("");
+    public List<FilmDto> getAllFilms() {
+        ResponseEntity<Object> response = get("");
+        return objectMapper.convertValue(response.getBody(), new TypeReference<>() {
+        });
     }
 
-    public ResponseEntity<Object> getFilmById(Long id) {
-        return get("/" + id);
+    public FilmDto getFilmById(Long id) {
+        ResponseEntity<Object> response = get("/" + id);
+        HttpStatus statusCode = response.getStatusCode();
+        if (!statusCode.is2xxSuccessful()) {
+            checkStatusCode(response, statusCode);
+        }
+        return objectMapper.convertValue(response.getBody(), FilmDto.class);
+    }
+
+    private void checkStatusCode(ResponseEntity<Object> response, HttpStatus httpStatus) {
+        try {
+            ApiError apiError = objectMapper.readValue((String) response.getBody(), ApiError.class);
+            if (httpStatus.equals(HttpStatus.NOT_FOUND)) {
+                log.warn("cinema-main-service FilmClient: " + apiError);
+                throw new FilmNotFoundException(apiError.getMessage());
+            }
+        } catch (JsonProcessingException e) {
+            log.warn("cinema-main-service FilmClient: " + e.getMessage());
+        }
     }
 
 }

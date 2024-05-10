@@ -20,7 +20,7 @@ public class ApiErrorHandler {
     @ExceptionHandler({FilmNotFoundException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ApiError badRequestException(final RuntimeException e) {
-        log.info(HttpStatus.NOT_FOUND + " {}", e.getMessage());
+        log.warn("film-api: " + HttpStatus.NOT_FOUND + " {}", e.getMessage());
         return ApiError.builder()
                 .status(HttpStatus.NOT_FOUND)
                 .reason("Ресурс не найден.")

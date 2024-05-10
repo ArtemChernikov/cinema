@@ -11,7 +11,6 @@ import ru.cinema.model.dto.response.FilmDto;
 import ru.cinema.service.impl.FilmServiceImpl;
 
 import java.util.Collection;
-import java.util.Optional;
 
 /**
  * @author Artem Chernikov
@@ -28,7 +27,7 @@ public class FilmController {
 
     @GetMapping
     public String getFilms(Model model) {
-        log.info("cinema-main-api: выполнение запроса на получение всех фильмов");
+        log.info("cinema-main-service: выполнение запроса на получение всех фильмов");
         Collection<FilmDto> films = filmServiceImpl.getAllFilms();
         model.addAttribute("films", films);
         log.info("cinema-main-api: выполнен запрос на получение всех фильмов, количество фильмов: {}", films.size());
@@ -37,14 +36,10 @@ public class FilmController {
 
     @GetMapping("/{id}")
     public String getFilmById(@PathVariable Long id, Model model) {
-        log.info("cinema-main-api: выполнение запроса на получение фильма по {}", id);
-        Optional<FilmDto> film = filmServiceImpl.getFilmById(id);
-        if (film.isEmpty()) {
-            model.addAttribute("message", "Фильм не найден");
-            return "errors/404";
-        }
-        model.addAttribute("film", film.get());
-        log.info("cinema-main-api: выполнен запрос на получение фильма по id: {}, фильм: {}", id, film.get());
+        log.info("cinema-main-service: выполнение запроса на получение фильма по {}", id);
+        FilmDto film = filmServiceImpl.getFilmById(id);
+        model.addAttribute("film", film);
+        log.info("cinema-main-service: выполнен запрос на получение фильма по id: {}, фильм: {}", id, film);
         return "films/one";
     }
 }
