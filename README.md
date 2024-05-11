@@ -73,18 +73,22 @@ http://localhost:8080/
 
 ![home_page](cinema-main-service/src/main/resources/static/application_pictures/home_page.png)
 
+### Страница со всеми доступными фильмами и их описание:
+
+- При нажатии на постер фильма будет выполнен переход страницу с подробным описанием фильма
+
+![films](cinema-main-service/src/main/resources/static/application_pictures/films.png)
+
+### Страница с подробным описанием фильма:
+
+![film](cinema-main-service/src/main/resources/static/application_pictures/film.png)
+
 ### Страница с доступными киносеансами:
 
-- При нажатии на название фильма, будет выполнен переход к списку фильмов для ознакомления с описанием фильма.
-- При нажатии на название кинозала, будет выполнен преход к списку кинозалов.
 - При нажатии на "купить билет", будет выполнен переход на страницу с покупкой билета (покупка возможна только после
   авторизации пользователя).
 
 ![film_sessions](cinema-main-service/src/main/resources/static/application_pictures/film_sessions.png)
-
-### Страница со всеми доступными фильмами и их описание:
-
-![films](cinema-main-service/src/main/resources/static/application_pictures/films.png)
 
 ### Страница с кинозалами и их описание:
 
