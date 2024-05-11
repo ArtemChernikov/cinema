@@ -13,10 +13,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
             integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
             crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
     <title>Регистрация</title>
 </head>
-<body>
+<body class="background-all-body">
 
 <div class="container-fluid p-0">
     <header th:insert="blocks/header :: header"></header>
@@ -26,28 +26,28 @@
                 <div class="col-3"></div>
                 <div class="col-6">
                     <div class="mb-3">
-                        <label for="name" class="form-label"><b>Имя</b></label>
+                        <label for="name" class="form-label white"><b>Имя</b></label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Иван"
                                required>
                     </div>
                     <div class="mb-3">
-                        <label for="surname" class="form-label"><b>Фамилия</b></label>
+                        <label for="surname" class="form-label white"><b>Фамилия</b></label>
                         <input type="text" class="form-control" id="surname" name="surname" placeholder="Иванов"
                                required>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label"><b>Почта</b></label>
+                        <label for="email" class="form-label white"><b>Почта</b></label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="ivan@mail.ru"
                                required>
                     </div>
                     <div class="mb-3">
-                        <label for="username" class="form-label"><b>Логин</b></label>
+                        <label for="username" class="form-label white"><b>Логин</b></label>
                         <input type="username" class="form-control" id="username" name="username"
                                placeholder="MyUsername0010"
                                required>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label"><b>Пароль</b></label>
+                        <label for="password" class="form-label white"><b>Пароль</b></label>
                         <input type="password" class="form-control" id="password" name="password" required>
                     </div>
                     <div class="mb-3 row">

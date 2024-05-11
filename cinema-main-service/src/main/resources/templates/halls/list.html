@@ -13,30 +13,28 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
             integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
             crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
     <title>Залы</title>
 </head>
-<body>
+<body class="background-all-body">
 
 <div class="container-fluid p-0">
     <header th:insert="blocks/header :: header"></header>
-    <br>
-
-    <div class="container">
+    <div class="container text-for-background">
         <div class="row">
             <table class="table">
                 <thead>
                 <tr>
                     <th></th>
-                    <th>Кинозал</th>
-                    <th>Описание</th>
+                    <th class="white">Кинозал</th>
+                    <th class="white">Описание</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="hall : ${halls}">
                     <td> <img th:src="@{/halls/{fileId}(fileId=${hall.file.id})}" width="500" alt="No image"> </td>
-                    <td th:text="${hall.name}"/>
-                    <td th:text="${hall.description}"/>
+                    <td class="white" th:text="${hall.name}"/>
+                    <td class="white" th:text="${hall.description}"/>
                 </tr>
                 </tbody>
             </table>

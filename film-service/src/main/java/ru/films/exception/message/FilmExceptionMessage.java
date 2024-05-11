@@ -19,5 +19,5 @@ public class FilmExceptionMessage {
             "Значение поля 'rating' у сущности 'Film' не может быть null.";
     public static final String POSTER_VALUE_IS_INVALID =
             "Значение поля 'poster' у сущности 'Film' не может быть null.";
-    public static final String FILM_NOT_FOUND = "Фильм по данному id не найден.";
+    public static final String FILM_NOT_FOUND = "Фильм не найден.";
 }

@@ -13,31 +13,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
             integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
             crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
     <title>Расписание</title>
 </head>
-<body>
+<body class="background-all-body">
 
 <div class="container-fluid p-0">
     <header th:insert="blocks/header :: header"></header>
-    <br>
-    <div class="container">
+    <div class="container text-for-background">
         <div class="row">
             <table class="table">
                 <tr>
-                    <th>Название</th>
-                    <th>Зал</th>
-                    <th>Начало сеанса</th>
-                    <th>Конец сеанса</th>
-                    <th>Цена</th>
+                    <th class="white">Название</th>
+                    <th class="white">Зал</th>
+                    <th class="white">Начало сеанса</th>
+                    <th class="white">Конец сеанса</th>
+                    <th class="white">Цена</th>
                     <th></th>
                 </tr>
                 <tr th:each="filmSession : ${filmSessions}">
-                    <td><a th:href="@{/films}" th:text="${filmSession.film}"></a></td>
-                    <td><a th:href="@{/halls}" th:text="${filmSession.hall}"></a></td>
-                    <td th:text="${#temporals.format(filmSession.startTime, 'd MMMM HH:mm')}"/>
-                    <td th:text="${#temporals.format(filmSession.endTime, 'd MMMM HH:mm')}"/>
-                    <td th:text="|${filmSession.price} руб.|"/>
+                    <td class="white" th:text="${filmSession.film}">
+                    <td class="white" th:text="${filmSession.hall}">
+                    <td class="white" th:text="${#temporals.format(filmSession.startTime, 'd MMMM HH:mm')}"/>
+                    <td class="white" th:text="${#temporals.format(filmSession.endTime, 'd MMMM HH:mm')}"/>
+                    <td class="white" th:text="|${filmSession.price} руб.|"/>
                     <td><a th:href="@{/ticket/{filmSessionId}(filmSessionId=${filmSession.id})}">Купить билет</a></td>
                 </tr>
             </table>

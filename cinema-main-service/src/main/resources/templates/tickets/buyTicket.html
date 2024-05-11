@@ -13,31 +13,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
             integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
             crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
     <title>Купить билет</title>
 </head>
-<body>
+<body class="background-all-body">
 
 <div class="container-fluid p-0">
     <header th:insert="blocks/header :: header"></header>
-    <br/>
     <div class="container">
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
                 <div class="row mb-3">
                     <div class="mb-3">
-                        <label for="film" class="form-label"><b>Название фильма</b></label>
+                        <label for="film" class="form-label white"><b>Название фильма</b></label>
                         <p type="text" class="form-control" id="film" th:text="${filmSession.film}"></p>
-                        <label for="hall" class="form-label"><b>Зал</b></label>
+                        <label for="hall" class="form-label white"><b>Зал</b></label>
                         <p type="text" class="form-control" id="hall" th:text="${filmSession.hall}"></p>
-                        <label for="startTime" class="form-label"><b>Начало киносеанса</b></label>
+                        <label for="startTime" class="form-label white"><b>Начало киносеанса</b></label>
                         <p type="text" class="form-control" id="startTime"
                            th:text="${#temporals.format(filmSession.startTime, 'd MMMM HH:mm')}"></p>
-                        <label for="endTime" class="form-label"><b>Конец киносеанса</b></label>
+                        <label for="endTime" class="form-label white"><b>Конец киносеанса</b></label>
                         <p type="text" class="form-control" id="endTime"
                            th:text="${#temporals.format(filmSession.endTime, 'd MMMM HH:mm')}"></p>
-                        <label for="price" class="form-label"><b>Цена</b></label>
+                        <label for="price" class="form-label white"><b>Цена</b></label>
                         <p type="text" class="form-control" id="price" th:text="|${filmSession.price} руб.|"></p>
                     </div>
                 </div>
@@ -53,11 +52,11 @@
                     <div class="col-6">
                         <div class="row mb-3">
                             <div class="mb-3">
-                                <label for="row" class="form-label"><b>Ряд</b></label>
+                                <label for="row" class="form-label white"><b>Ряд</b></label>
                                 <select class="form-control" id="row" name="rowNumber" required>
                                     <option th:each="row : ${rows}" th:value="${row}" th:text="${row}"></option>
                                 </select>
-                                <label for="place" class="form-label"><b>Место</b></label>
+                                <label for="place" class="form-label white"><b>Место</b></label>
                                 <select class="form-control" id="place" name="placeNumber" required>
                                     <option th:each="place : ${places}" th:value="${place}"
                                             th:text="${place}"></option>

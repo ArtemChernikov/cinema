@@ -34,7 +34,7 @@
             <img th:src="${film.poster != null ? film.poster.url : '/images/poster_not_found.jpg'}"
                  class="img-fluid poster" alt="Постер фильма">
         </div>
-        <div class="col-md-8 film-one-text-background">
+        <div class="col-md-8 text-for-background">
             <h5 th:text="${film.name != null ? film.name : 'Нет данных'}">Название фильма</h5>
             <p th:text="${film.alternativeName != null ? film.alternativeName : 'Нет данных'}">
                 <strong>Альтернативное название:</strong> Альтернативное название фильма
