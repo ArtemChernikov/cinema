@@ -12,9 +12,12 @@ import ru.films.model.Genre;
 import ru.films.model.dto.FilmDto;
 import ru.films.model.response.Document;
 import ru.films.model.response.Response;
+import ru.films.repository.BackdropRepository;
 import ru.films.repository.CountryRepository;
 import ru.films.repository.FilmRepository;
 import ru.films.repository.GenreRepository;
+import ru.films.repository.PosterRepository;
+import ru.films.repository.RatingRepository;
 import ru.films.utils.mapper.FilmMapper;
 
 import java.util.ArrayList;
@@ -37,6 +40,9 @@ import static ru.films.exception.message.FilmExceptionMessage.FILM_NOT_FOUND;
 public class FilmServiceImpl implements FilmService {
     private final KinopoiskClient kinopoiskClient;
     private final FilmRepository filmRepository;
+    private final BackdropRepository backdropRepository;
+    private final PosterRepository posterRepository;
+    private final RatingRepository ratingRepository;
     private final CountryRepository countryRepository;
     private final GenreRepository genreRepository;
     private final FilmMapper filmMapper;
@@ -123,6 +129,9 @@ public class FilmServiceImpl implements FilmService {
     }
 
     private void clearData() {
-        filmRepository.deleteAll();
+        filmRepository.deleteAllInBatch();
+        backdropRepository.deleteAllInBatch();
+        posterRepository.deleteAllInBatch();
+        ratingRepository.deleteAllInBatch();
     }
 }
