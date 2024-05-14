@@ -2,12 +2,15 @@ package ru.cinema.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
 import ru.cinema.model.dto.FileDto;
 import ru.cinema.repository.FileRepository;
 import ru.cinema.service.FileService;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -27,11 +30,13 @@ public class SimpleFileService implements FileService {
 
     private byte[] readFileAsBytes(String path) {
         try {
-            return Files.readAllBytes(Path.of(path));
+            ClassPathResource classPathResource = new ClassPathResource(path);
+            InputStream inputStream = classPathResource.getInputStream();
+            return FileCopyUtils.copyToByteArray(inputStream);
         } catch (IOException e) {
-            log.error(e.getMessage());
+            log.error("Error reading file", e);
         }
-        return new byte[8];
+        return new byte[0];
     }
 
     @Override
