@@ -6,6 +6,5 @@ create table if not exists films
     "year"              int                        not null,
     genre_id            int references genres (id),
     minimal_age         int                        not null,
-    duration_in_minutes int                        not null,
-    file_id             int references files (id)
+    duration_in_minutes int                        not null
 );

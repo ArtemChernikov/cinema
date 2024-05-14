@@ -50,8 +50,4 @@ public class Film {
     @Column(name = "duration_in_minutes")
     private int durationInMinutes;
 
-    @OneToOne
-    @JoinColumn(name = "file_id")
-    private File file;
-
 }

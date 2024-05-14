@@ -27,6 +27,4 @@ public class FilmDto {
 
     private int durationInMinutes;
 
-    private int fileId;
-
 }
