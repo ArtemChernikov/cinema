@@ -1,0 +1,58 @@
+version: '3.8'
+services:
+  film-service:
+    build:
+      context: ./film-service
+      dockerfile: Dockerfile
+    image: film-service
+    container_name: film-service
+    ports:
+      - "9090:9090"
+    depends_on:
+      - film-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://film-db:5432/films
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 2236
+      FILM_SERVER_PORT: 9090
+      KINOPOISK_API_KEY: ZJ0XHNA-RDG4Z6Y-G6MPD34-CHRBV6E
+      KINOPOISK_API_HEADERS: X-API-KEY
+      KINOPOISK_API_URL: https://api.kinopoisk.dev/v1.4
+
+  film-db:
+    image: postgres:14.7-alpine
+    container_name: film-db
+    ports:
+      - "6541:5432"
+    environment:
+      POSTGRES_DB: films
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 2236
+
+  cinema-main-service:
+    build:
+      context: ./cinema-main-service
+      dockerfile: Dockerfile
+    image: cinema-main-service
+    container_name: cinema-main-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - cinema-db
+      - film-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://cinema-db:5432/cinema
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 2236
+      MAIN_SERVER_PORT: 8080
+      FILM_API_URL: http://film-service:9090
+
+  cinema-db:
+    image: postgres:14.7-alpine
+    container_name: cinema-db
+    environment:
+      POSTGRES_DB: cinema
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 2236
+    ports:
+      - "6542:5432"
