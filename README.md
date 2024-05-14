@@ -31,6 +31,7 @@ UI приложения включает в себя следующие комп
 - **Spring Security 5**
 - **Hibernate**
 - **RestTemplate**
+- **Docker**
 - **Mapstruct 1.5.5**
 - **HTML 5**
 - **CSS**
@@ -48,17 +49,63 @@ UI приложения включает в себя следующие комп
 
 ## Сборка и запуск<br>
 
-- **Создать БД**
+### Docker:
+
+- **В терминале (в корне проекта) запустить команду для выполнения сборки проекта**
+
+``` shell 
+./mvnw clean install
+```
+
+- **В терминале (в корне проекта) запустить команду для старта приложения в docker контейнерах**
+
+``` shell 
+docker-compose up
+```
+
+- **Перейти в браузере по ссылке**
+
+``` shell 
+http://localhost:8080/
+```
+
+### Если отсутствует Docker:
+
+- **Создать БД PostgreSQL**
 
 ``` shell 
 create database films;
 create database cinema;
 ```
 
-- **Запустить проект по команде**
+- **В терминале (в корне проекта) запустить команду для выполнения сборки проекта**
 
 ``` shell 
-mvn spring-boot:run
+./mvnw clean install
+```
+
+- **Изменить параметры конфигурации БД под свои**
+
+    **Пути к файлам для изменений:**  
+    ***./film-service/src/main/resources/application.properties***  
+    ***./cinema-main-service/src/main/resources/application.properties***<br></br>
+
+    Заменяем знаки вопросов на свои параметры (username и password):
+``` shell 
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME:???}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD:???}
+```
+
+- **В терминале (по пути ./film-service) запустить команду для старта приложения**
+
+``` shell 
+./mvnw spring-boot:run
+```
+
+- **В терминале (по пути ./cinema-main-service) запустить команду для старта приложения**
+
+``` shell 
+./mvnw spring-boot:run
 ```
 
 - **Перейти в браузере по ссылке**
