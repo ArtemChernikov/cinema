@@ -25,7 +25,7 @@ public class SimpleFilmService implements FilmService {
     private final GenreRepository genreRepository;
 
     @Override
-    public Optional<FilmDto> getFilmById(int id) {
+    public Optional<FilmDto> getFilmById(long id) {
         var optionalFilm = filmRepository.findById(id);
         if (optionalFilm.isEmpty()) {
             return Optional.empty();

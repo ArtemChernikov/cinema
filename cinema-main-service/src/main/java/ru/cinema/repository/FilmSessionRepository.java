@@ -8,5 +8,5 @@ import ru.cinema.model.FilmSession;
  * @version 1.0
  * @since 13.02.2023
  */
-public interface FilmSessionRepository extends JpaRepository<FilmSession, Integer> {
+public interface FilmSessionRepository extends JpaRepository<FilmSession, Long> {
 }

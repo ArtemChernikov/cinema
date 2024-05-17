@@ -33,7 +33,7 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int id;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "session_id")

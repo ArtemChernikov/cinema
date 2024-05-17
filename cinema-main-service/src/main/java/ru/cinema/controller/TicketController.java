@@ -45,7 +45,7 @@ public class TicketController {
     private final UserService userService;
 
     @GetMapping("/{id}")
-    public String getById(Model model, @PathVariable int id, Principal principal) {
+    public String getById(Model model, @PathVariable long id, Principal principal) {
         Optional<FilmSessionDto> optFilmSession = filmSessionService.getFilmSessionById(id);
         if (optFilmSession.isEmpty()) {
             model.addAttribute("message", "Указанный киносеанс не найден");

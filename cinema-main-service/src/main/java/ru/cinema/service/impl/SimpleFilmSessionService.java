@@ -29,7 +29,7 @@ public class SimpleFilmSessionService implements FilmSessionService {
     private final HallRepository hallRepository;
 
     @Override
-    public Optional<FilmSessionDto> getFilmSessionById(int id) {
+    public Optional<FilmSessionDto> getFilmSessionById(long id) {
         var optionalFilmSession = filmSessionRepository.findById(id);
         if (optionalFilmSession.isEmpty()) {
             return Optional.empty();

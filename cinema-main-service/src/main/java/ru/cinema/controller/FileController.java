@@ -22,7 +22,7 @@ public class FileController {
     private final FileService fileService;
 
     @GetMapping({"/posters/{id}", "/halls/{id}"})
-    public ResponseEntity<?> getFileById(@PathVariable int id) {
+    public ResponseEntity<?> getFileById(@PathVariable long id) {
         var contentOptional = fileService.getFileById(id);
         if (contentOptional.isEmpty()) {
             return ResponseEntity.notFound().build();

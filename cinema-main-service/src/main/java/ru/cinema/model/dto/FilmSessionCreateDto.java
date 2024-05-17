@@ -15,13 +15,11 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FilmSessionDto {
+public class FilmSessionCreateDto {
 
     private long id;
 
-    private String film;
-
-    private String hall;
+    private long filmId;
 
     private long hallId;
 

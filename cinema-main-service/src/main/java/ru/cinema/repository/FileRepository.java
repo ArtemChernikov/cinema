@@ -8,6 +8,6 @@ import ru.cinema.model.File;
  * @version 1.0
  * @since 13.02.2023
  */
-public interface FileRepository extends JpaRepository<File, Integer> {
+public interface FileRepository extends JpaRepository<File, Long> {
 
 }

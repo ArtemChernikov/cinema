@@ -41,7 +41,7 @@ public class SimpleUserService implements UserService {
     }
 
     @Override
-    public Optional<User> getById(int id) {
+    public Optional<User> getById(long id) {
         return userRepository.findById(id);
     }
 

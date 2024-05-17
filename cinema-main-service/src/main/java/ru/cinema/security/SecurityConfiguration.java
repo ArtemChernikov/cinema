@@ -25,6 +25,7 @@ public class SecurityConfiguration {
         return httpSecurity
                 .authorizeRequests()
                 .antMatchers("/ticket", "/ticket/**").hasRole("USER")
+                .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
                 .antMatchers("/", "/**").permitAll()
                 .and()
                 .formLogin()

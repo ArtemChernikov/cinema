@@ -8,5 +8,5 @@ import ru.cinema.model.Genre;
  * @version 1.0
  * @since 13.02.2023
  */
-public interface GenreRepository extends JpaRepository<Genre, Integer> {
+public interface GenreRepository extends JpaRepository<Genre, Long> {
 }

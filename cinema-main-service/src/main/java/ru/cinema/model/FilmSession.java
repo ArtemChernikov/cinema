@@ -32,7 +32,7 @@ public class FilmSession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int id;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "film_id")

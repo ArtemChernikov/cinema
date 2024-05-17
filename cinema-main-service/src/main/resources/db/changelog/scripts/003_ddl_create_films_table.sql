@@ -1,6 +1,6 @@
 create table if not exists films
 (
-    id                  serial primary key,
+    id                  bigserial primary key,
     name                varchar                    not null,
     description         varchar                    not null,
     "year"              int                        not null,

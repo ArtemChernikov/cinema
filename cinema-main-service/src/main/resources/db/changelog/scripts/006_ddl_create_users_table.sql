@@ -1,6 +1,6 @@
 create table if not exists users
 (
-    id       serial primary key,
+    id       bigserial primary key,
     name     varchar        not null,
     surname  varchar        not null,
     email    varchar        not null,

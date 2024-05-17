@@ -8,6 +8,6 @@ import ru.cinema.model.Film;
  * @version 1.0
  * @since 13.02.2023
  */
-public interface FilmRepository extends JpaRepository<Film, Integer> {
+public interface FilmRepository extends JpaRepository<Film, Long> {
 
 }

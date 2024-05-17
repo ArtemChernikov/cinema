@@ -13,7 +13,7 @@ import java.util.Optional;
  */
 public interface FilmSessionService {
 
-    Optional<FilmSessionDto> getFilmSessionById(int id);
+    Optional<FilmSessionDto> getFilmSessionById(long id);
 
     Collection<FilmSessionDto> getAllFilmSessions();
 }

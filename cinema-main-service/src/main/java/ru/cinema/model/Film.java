@@ -31,7 +31,7 @@ public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int id;
+    private long id;
 
     @EqualsAndHashCode.Include
     private String name;

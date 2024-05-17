@@ -13,11 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TicketDto {
-    private int filmSessionId;
+    private long filmSessionId;
 
     private int rowNumber;
 
     private int placeNumber;
 
-    private int userId;
+    private long userId;
 }

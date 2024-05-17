@@ -1,6 +1,6 @@
 create table if not exists halls
 (
-    id          serial primary key,
+    id          bigserial primary key,
     name        varchar not null,
     row_count   int     not null,
     place_count int     not null,

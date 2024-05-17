@@ -1,6 +1,6 @@
 create table if not exists tickets
 (
-    id           serial primary key,
+    id           bigserial primary key,
     session_id   int references film_sessions (id),
     row_number   int                               not null,
     place_number int                               not null,

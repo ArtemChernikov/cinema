@@ -1,5 +1,5 @@
 create table if not exists genres
 (
-    id   serial primary key,
+    id   bigserial primary key,
     name varchar unique not null
 );

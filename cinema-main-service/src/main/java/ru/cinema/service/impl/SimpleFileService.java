@@ -11,8 +11,6 @@ import ru.cinema.service.FileService;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Optional;
 
 /**
@@ -40,7 +38,7 @@ public class SimpleFileService implements FileService {
     }
 
     @Override
-    public Optional<FileDto> getFileById(int id) {
+    public Optional<FileDto> getFileById(long id) {
         var file = fileRepository.findById(id);
         if (file.isEmpty()) {
             return Optional.empty();
