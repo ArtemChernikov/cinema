@@ -16,8 +16,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ApiErrorHandler {
 
     @ExceptionHandler({FilmNotFoundException.class})
-    public String badRequestException(final RuntimeException e, Model model) {
+    public String notFoundException(final RuntimeException e, Model model) {
         log.warn("cinema-main-service ApiErrorHandler: " + HttpStatus.NOT_FOUND + " {}", e.getMessage());
+        model.addAttribute("message", e.getMessage());
+        return "errors/404";
+    }
+
+    @ExceptionHandler({NotCorrectDateTimeException.class})
+    public String dateTimeException(final RuntimeException e, Model model) {
+        log.warn("cinema-main-service ApiErrorHandler: " + HttpStatus.BAD_REQUEST + " {}", e.getMessage());
         model.addAttribute("message", e.getMessage());
         return "errors/404";
     }

@@ -1,14 +1,12 @@
 package ru.cinema.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.cinema.model.dto.FilmSessionDto;
-import ru.cinema.model.dto.response.FilmDto;
-import ru.cinema.service.impl.FilmServiceImpl;
+import ru.cinema.model.dto.FilmSessionCreateDto;
+import ru.cinema.service.FilmSessionService;
 
 /**
  * @author Artem Chernikov
@@ -17,23 +15,15 @@ import ru.cinema.service.impl.FilmServiceImpl;
  */
 @RequiredArgsConstructor
 @RequestMapping("/admin")
+@Controller
 public class AdminController {
 
-    private final FilmServiceImpl filmService;
+    private final FilmSessionService filmSessionService;
 
-//    @GetMapping("/new-film-session/{filmId}")
-//    public String getNewFilmSessionPage(@PathVariable long filmId, Model model) {
-//        FilmDto film = filmService.getFilmById(filmId);
-//        model.addAttribute("newFilmSession", new FilmSessionDto());
-//        model.addAttribute("filmName", film.getName());
-//        return "redirect:/films";
-//    }
-
-    @PostMapping("/add-film-session/{filmId}")
-    public String addFilmSession(@PathVariable long filmId, Model model) {
-        FilmDto film = filmService.getFilmById(filmId);
-        model.addAttribute("newFilmSession", new FilmSessionDto());
-        model.addAttribute("filmName", film.getName());
+    @PostMapping("/add-film-session")
+    public String addFilmSession(@ModelAttribute FilmSessionCreateDto filmSessionCreateDto) {
+        filmSessionService.createFilmSession(filmSessionCreateDto);
         return "redirect:/films";
     }
+
 }

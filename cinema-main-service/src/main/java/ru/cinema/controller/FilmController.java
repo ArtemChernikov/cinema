@@ -37,9 +37,9 @@ public class FilmController {
     public String getFilms(Model model) {
         log.info("cinema-main-service: выполнение запроса на получение всех фильмов");
         Collection<FilmDto> films = filmServiceImpl.getAllFilms();
-        List<HallDto> halls = hallService.getAllHallsAsDto();
         model.addAttribute("films", films);
         if (isAdmin()) {
+            List<HallDto> halls = hallService.getAllHallsAsDto();
             model.addAttribute("halls", halls);
             model.addAttribute("newFilmSession", new FilmSessionCreateDto());
         }

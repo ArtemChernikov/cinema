@@ -3,11 +3,11 @@ package ru.cinema.model.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
 /**
- *
  * @author Artem Chernikov
  * @version 1.0
  * @since 15.02.2023
@@ -16,17 +16,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FilmSessionCreateDto {
-
-    private long id;
-
     private long filmId;
-
     private long hallId;
-
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime startTime;
-
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime endTime;
-
     private int price;
-
 }

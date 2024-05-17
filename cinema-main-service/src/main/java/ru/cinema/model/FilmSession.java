@@ -1,6 +1,7 @@
 package ru.cinema.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,7 @@ import javax.persistence.Table;
  */
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
@@ -34,9 +36,7 @@ public class FilmSession {
     @EqualsAndHashCode.Include
     private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "film_id")
-    private Film film;
+    private long filmId;
 
     @ManyToOne
     @JoinColumn(name = "hall_id")
