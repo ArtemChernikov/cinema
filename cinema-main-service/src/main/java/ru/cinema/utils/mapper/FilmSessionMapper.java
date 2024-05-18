@@ -2,6 +2,7 @@ package ru.cinema.utils.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 import ru.cinema.model.FilmSession;
 import ru.cinema.model.dto.FilmSessionCreateDto;
 import ru.cinema.model.dto.FilmSessionDto;
@@ -18,4 +19,9 @@ public interface FilmSessionMapper {
     FilmSession filmSessionCreateDtoToFilmSession(FilmSessionCreateDto filmSessionCreateDto);
 
     List<FilmSessionDto> filmSessionListToFilmSessionListDto(List<FilmSession> filmSessionList);
+
+    @Named("createFilmSessionWithId")
+    default FilmSession createFilmSessionWithId(Long id) {
+        return FilmSession.builder().id(id).build();
+    }
 }

@@ -13,4 +13,6 @@ public class FilmSessionExceptionMessage {
             "Дата начала сеанса не может быть позже даты конца сеанса.";
     public static final String START_END_BEFORE_CURRENT =
             "Дата начала или конца сеанса не может быть раньше текущей даты.";
+    public static final String FILM_SESSION_NOT_FOUND =
+            "Киносеанс не найден.";
 }

@@ -11,7 +11,7 @@ import java.util.Optional;
  * @since 26.02.2023
  */
 public interface UserService {
-    Optional<User> save(User user);
+    User save(User user);
 
     Optional<User> getById(long id);
 

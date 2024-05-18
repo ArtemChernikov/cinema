@@ -2,19 +2,18 @@ package ru.cinema.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.cinema.model.dto.TicketDto;
-import ru.cinema.model.FilmSession;
+import ru.cinema.exception.TicketExistsException;
 import ru.cinema.model.Ticket;
-import ru.cinema.model.User;
-import ru.cinema.repository.FilmSessionRepository;
+import ru.cinema.model.dto.TicketDto;
 import ru.cinema.repository.TicketRepository;
 import ru.cinema.service.TicketService;
-import ru.cinema.service.UserService;
+import ru.cinema.utils.mapper.TicketMapper;
 
 import java.util.Optional;
 
+import static ru.cinema.exception.message.TicketExceptionMessage.TICKET_ALREADY_EXISTS;
+
 /**
- *
  * @author Artem Chernikov
  * @version 1.0
  * @since 15.02.2023
@@ -22,32 +21,17 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class TicketServiceImpl implements TicketService {
-
-    private final UserService userService;
-    private final FilmSessionRepository filmSessionRepository;
     private final TicketRepository ticketRepository;
+    private final TicketMapper ticketMapper;
 
     @Override
-    public Optional<Ticket> save(TicketDto ticketDto) {
-        //TODO сделать нормальный маппинг
-        Optional<FilmSession> optionalFilmSession = filmSessionRepository
-                .findById(ticketDto.getFilmSessionId());
-        Optional<User> optionalUser = userService.getById(ticketDto.getUserId());
-        if (optionalFilmSession.isEmpty() || optionalUser.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
+    public Ticket save(TicketDto ticketDto) {
         Optional<Ticket> ticket = ticketRepository.findByFilmSessionIdAndRowNumberAndPlaceNumber(
                 ticketDto.getFilmSessionId(), ticketDto.getRowNumber(), ticketDto.getPlaceNumber());
         if (ticket.isPresent()) {
-            return Optional.empty();
+            throw new TicketExistsException(TICKET_ALREADY_EXISTS);
         }
-        Ticket newTicket = Ticket.builder()
-                .filmSession(optionalFilmSession.get())
-                .user(optionalUser.get())
-                .placeNumber(ticketDto.getPlaceNumber())
-                .rowNumber(ticketDto.getRowNumber())
-                .build();
-        return Optional.of(ticketRepository.save(newTicket));
+        return ticketRepository.save(ticketMapper.ticketDtoToTicket(ticketDto));
     }
 
 }

@@ -13,7 +13,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 import ru.cinema.exception.ApiError;
-import ru.cinema.exception.FilmNotFoundException;
+import ru.cinema.exception.NotFoundException;
 import ru.cinema.model.dto.response.FilmDto;
 
 import java.util.List;
@@ -55,7 +55,7 @@ public class FilmClient extends BaseClient {
             ApiError apiError = objectMapper.readValue((String) response.getBody(), ApiError.class);
             if (httpStatus.equals(HttpStatus.NOT_FOUND)) {
                 log.warn("cinema-main-service FilmClient: " + apiError);
-                throw new FilmNotFoundException(apiError.getMessage());
+                throw new NotFoundException(apiError.getMessage());
             }
         } catch (JsonProcessingException e) {
             log.warn("cinema-main-service FilmClient: " + e.getMessage());

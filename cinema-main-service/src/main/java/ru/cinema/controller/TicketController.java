@@ -10,17 +10,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.cinema.model.User;
 import ru.cinema.model.dto.FilmSessionDto;
 import ru.cinema.model.dto.TicketDto;
-import ru.cinema.model.Hall;
-import ru.cinema.model.User;
 import ru.cinema.service.FilmSessionService;
-import ru.cinema.service.HallService;
 import ru.cinema.service.TicketService;
 import ru.cinema.service.UserService;
 
 import java.security.Principal;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -36,27 +33,16 @@ import java.util.Optional;
 public class TicketController {
 
     private final TicketService ticketService;
-
     private final FilmSessionService filmSessionService;
-
-    private final HallService hallService;
-
     private final UserService userService;
 
     @GetMapping("/{id}")
     public String getById(Model model, @PathVariable long id, Principal principal) {
-        Optional<FilmSessionDto> optFilmSession = filmSessionService.getFilmSessionById(id);
-        if (optFilmSession.isEmpty()) {
-            model.addAttribute("message", "Указанный киносеанс не найден");
-            return "errors/404";
-        }
+        FilmSessionDto filmSession = filmSessionService.getFilmSessionById(id);
         Optional<User> optionalUser = userService.getByUsername(principal.getName());
         optionalUser.ifPresent(user -> model.addAttribute("user", user));
-        FilmSessionDto filmSession = optFilmSession.get();
-        List<Integer> rows = filmSession.getHallDto().getRows();
-        List<Integer> places = filmSession.getHallDto().getRows();
-        model.addAttribute("rows", rows);
-        model.addAttribute("places", places);
+        model.addAttribute("rows", filmSession.getHallDto().getRows());
+        model.addAttribute("places", filmSession.getHallDto().getPlaces());
         model.addAttribute("filmSession", filmSession);
         model.addAttribute("ticket", new TicketDto());
         return "tickets/buyTicket";
@@ -64,23 +50,10 @@ public class TicketController {
 
     @PostMapping("/buy")
     public String buyTicket(@ModelAttribute TicketDto ticketDto, Model model) {
-        try {
-            var optSavedTicket = ticketService.save(ticketDto);
-            if (optSavedTicket.isEmpty()) {
-                model.addAttribute("message", """
-                        Не удалось приобрести билет на заданное место. Вероятно оно уже занято.
-                        Перейдите на страницу бронирования билетов и попробуйте снова.
-                        """);
-                return "errors/404";
-            }
-            model.addAttribute("ticket", ticketDto);
-            model.addAttribute("filmSession", filmSessionService
-                    .getFilmSessionById(ticketDto.getFilmSessionId()).get());
-            return "success/201";
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            model.addAttribute("message", e.getMessage());
-            return "errors/404";
-        }
+        ticketService.save(ticketDto);
+        model.addAttribute("ticket", ticketDto);
+        model.addAttribute("filmSession", filmSessionService
+                .getFilmSessionById(ticketDto.getFilmSessionId()));
+        return "success/201";
     }
 }

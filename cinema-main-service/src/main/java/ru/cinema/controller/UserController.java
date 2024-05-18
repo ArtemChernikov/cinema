@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.cinema.model.User;
 import ru.cinema.service.UserService;
 
-import java.util.Optional;
-
 /**
- *
  * @author Artem Chernikov
  * @version 1.0
  * @since 26.02.2023
@@ -33,12 +30,8 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(Model model, @ModelAttribute User user) {
-        Optional<User> newUser = userService.save(user);
-        if (newUser.isEmpty()) {
-            model.addAttribute("message", "Пользователь с данным логином уже существует.");
-            return "errors/404";
-        }
+    public String register(@ModelAttribute User user) {
+        userService.save(user);
         return "redirect:/users/login";
     }
 

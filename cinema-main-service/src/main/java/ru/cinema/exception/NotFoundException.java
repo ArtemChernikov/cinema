@@ -5,8 +5,8 @@ package ru.cinema.exception;
  * @version 1.0
  * @since 08.05.2024
  */
-public class FilmNotFoundException extends RuntimeException {
-    public FilmNotFoundException(String message) {
+public class NotFoundException extends RuntimeException {
+    public NotFoundException(String message) {
         super(message);
     }
 }

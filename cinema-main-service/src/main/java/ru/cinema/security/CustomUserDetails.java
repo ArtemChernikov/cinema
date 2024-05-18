@@ -4,14 +4,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.cinema.exception.RoleNotFoundException;
+import ru.cinema.exception.NotFoundException;
 import ru.cinema.model.Role;
 import ru.cinema.model.User;
 import ru.cinema.repository.RoleRepository;
-import ru.cinema.utils.Constants;
 
 import java.util.Collection;
 import java.util.List;
+
+import static ru.cinema.exception.message.RoleExceptionMessage.ROLE_NOT_FOUND;
 
 /**
  * @author Artem Chernikov
@@ -26,7 +27,7 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Role role = roleRepository.findById(user.getRole().getId())
-                .orElseThrow(() -> new RoleNotFoundException(Constants.ROLE_NOT_FOUND));
+                .orElseThrow(() -> new NotFoundException(ROLE_NOT_FOUND));
         return List.of(new SimpleGrantedAuthority(role.getName()));
     }
 

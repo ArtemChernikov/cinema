@@ -3,6 +3,7 @@ package ru.cinema.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.cinema.exception.NotCorrectDateTimeException;
+import ru.cinema.exception.NotFoundException;
 import ru.cinema.model.FilmSession;
 import ru.cinema.model.dto.FilmSessionCreateDto;
 import ru.cinema.model.dto.FilmSessionDto;
@@ -13,9 +14,9 @@ import ru.cinema.utils.mapper.FilmSessionMapper;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 import static ru.cinema.exception.message.FilmSessionExceptionMessage.END_TIME_BEFORE_START_TIME;
+import static ru.cinema.exception.message.FilmSessionExceptionMessage.FILM_SESSION_NOT_FOUND;
 import static ru.cinema.exception.message.FilmSessionExceptionMessage.START_END_BEFORE_CURRENT;
 
 /**
@@ -38,13 +39,10 @@ public class FilmSessionServiceImpl implements FilmSessionService {
     }
 
     @Override
-    public Optional<FilmSessionDto> getFilmSessionById(long id) {
-        var optionalFilmSession = filmSessionRepository.findById(id);
-        if (optionalFilmSession.isEmpty()) {
-            return Optional.empty();
-        }
-        FilmSession filmSession = optionalFilmSession.get();
-        return Optional.of(filmSessionMapper.filmSessionToFilmSessionDto(filmSession));
+    public FilmSessionDto getFilmSessionById(long id) {
+        FilmSession filmSession = filmSessionRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(FILM_SESSION_NOT_FOUND));
+        return filmSessionMapper.filmSessionToFilmSessionDto(filmSession);
     }
 
     @Override

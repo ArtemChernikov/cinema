@@ -1,9 +1,7 @@
 package ru.cinema.service;
 
-import ru.cinema.model.dto.TicketDto;
 import ru.cinema.model.Ticket;
-
-import java.util.Optional;
+import ru.cinema.model.dto.TicketDto;
 
 /**
  *
@@ -12,5 +10,5 @@ import java.util.Optional;
  * @since 15.02.2023
  */
 public interface TicketService {
-    Optional<Ticket> save(TicketDto ticketDto);
+    Ticket save(TicketDto ticketDto);
 }
