@@ -37,7 +37,8 @@
                     <td class="white" th:text="${#temporals.format(filmSession.startTime, 'd MMMM HH:mm')}"/>
                     <td class="white" th:text="${#temporals.format(filmSession.endTime, 'd MMMM HH:mm')}"/>
                     <td class="white" th:text="|${filmSession.price} руб.|"/>
-                    <td><a th:href="@{/ticket/{filmSessionId}(filmSessionId=${filmSession.id})}">Купить билет</a></td>
+                    <td><a th:href="@{/ticket/{filmSessionId}(filmSessionId=${filmSession.id})}" class="btn btn-info">Купить
+                        билет</a></td>
                 </tr>
             </table>
         </div>
