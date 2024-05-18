@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- *
  * @author Artem Chernikov
  * @version 1.0
  * @since 25.02.2023
@@ -54,9 +53,8 @@ public class TicketController {
         Optional<User> optionalUser = userService.getByUsername(principal.getName());
         optionalUser.ifPresent(user -> model.addAttribute("user", user));
         FilmSessionDto filmSession = optFilmSession.get();
-        Hall hall = hallService.getHallById(filmSession.getHallId()).get();
-        List<Integer> rows = hallService.getRows(hall);
-        List<Integer> places = hallService.getPlaces(hall);
+        List<Integer> rows = filmSession.getHallDto().getRows();
+        List<Integer> places = filmSession.getHallDto().getRows();
         model.addAttribute("rows", rows);
         model.addAttribute("places", places);
         model.addAttribute("filmSession", filmSession);

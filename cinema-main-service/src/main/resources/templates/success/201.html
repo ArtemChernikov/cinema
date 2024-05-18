@@ -23,7 +23,7 @@
 
     <div class="container">
         <h3 class="mt-3 white">Вы успешно приобрели билет, с нетерпением ждем Вас!</h3>
-        <h4 class="text-success" th:text="|Фильм: ${filmSession.film}|"></h4>
+        <h4 class="text-success" th:text="|Фильм: ${filmSession.getName}|"></h4>
         <h4 class="text-success" th:text="|Начало киносеанса: ${#temporals.format(filmSession.startTime, 'd MMMM HH:mm')}|"></h4>
         <h4 class="text-success" th:text="|Ваш ряд: ${ticket.rowNumber}, Ваше место: ${ticket.placeNumber}|"></h4>
     </div>

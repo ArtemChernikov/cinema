@@ -1,24 +1,19 @@
 package ru.cinema.model.dto;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 /**
  * @author Artem Chernikov
- * @version 1.0
- * @since 18.05.2024
+ * @version 1.1
+ * @since 17.05.2024
  */
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
 @Data
-public class HallDto {
-
+public class HallShortDto {
+    private long id;
     private String name;
-
-    private List<Integer> rows;
-
-    private List<Integer> places;
 }

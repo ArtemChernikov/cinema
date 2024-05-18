@@ -1,7 +1,7 @@
 package ru.cinema.service;
 
 import ru.cinema.model.Hall;
-import ru.cinema.model.dto.HallDto;
+import ru.cinema.model.dto.HallShortDto;
 
 import java.util.Collection;
 import java.util.List;
@@ -18,7 +18,7 @@ public interface HallService {
 
     Collection<Hall> getAllHalls();
 
-    List<HallDto> getAllHallsAsDto();
+    List<HallShortDto> getAllHallsAsDto();
 
     List<Integer> getRows(Hall hall);
 

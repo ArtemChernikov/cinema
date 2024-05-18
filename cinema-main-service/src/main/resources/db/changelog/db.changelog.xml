@@ -16,10 +16,9 @@
     <include file="scripts/009_dml_insert_genres.sql" relativeToChangelogFile="true"/>
     <include file="scripts/010_dml_insert_films.sql" relativeToChangelogFile="true"/>
     <include file="scripts/011_dml_insert_halls.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/012_dml_insert_film_sessions.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/013_ddl_create_roles_table.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/014_ddl_alter_users_table.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/015_dml_insert_roles.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/016_dml_insert_user.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/012_ddl_create_roles_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/013_ddl_alter_users_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/014_dml_insert_roles.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/015_dml_insert_user.sql" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FilmSessionCreateDto {
+    private String name;
     private long filmId;
     private long hallId;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)

@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 /**
- *
  * @author Artem Chernikov
  * @version 1.0
  * @since 15.02.2023
@@ -19,11 +18,9 @@ public class FilmSessionDto {
 
     private long id;
 
-    private String film;
+    private String name;
 
-    private String hall;
-
-    private long hallId;
+    private HallDto hallDto;
 
     private LocalDateTime startTime;
 

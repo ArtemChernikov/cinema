@@ -32,8 +32,8 @@
                     <th></th>
                 </tr>
                 <tr th:each="filmSession : ${filmSessions}">
-                    <td class="white" th:text="${filmSession.film}">
-                    <td class="white" th:text="${filmSession.hall}">
+                    <td class="white" th:text="${filmSession.name}">
+                    <td class="white" th:text="${filmSession.hallDto.name}">
                     <td class="white" th:text="${#temporals.format(filmSession.startTime, 'd MMMM HH:mm')}"/>
                     <td class="white" th:text="${#temporals.format(filmSession.endTime, 'd MMMM HH:mm')}"/>
                     <td class="white" th:text="|${filmSession.price} руб.|"/>

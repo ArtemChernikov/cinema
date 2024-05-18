@@ -79,10 +79,11 @@
                                           th:action="@{/admin/add-film-session}"
                                           th:object="${newFilmSession}">
                                         <input type="hidden" th:name="filmId" th:value="${film.id}">
-                                        <label for="film-name"><b>Название фильма</b></label>
-                                        <input class="form-control" id="film-name"
+                                        <label for="film-session-name"><b>Название фильма</b></label>
+                                        <input class="form-control" id="film-session-name"
                                                th:type="text"
-                                               th:value="${film.name}" readonly/>
+                                               th:name="name"
+                                               th:value="${film.name}" readonly required/>
                                         <br>
                                         <label for="hall-select"><b>Выберите зал</b></label>
                                         <select class="form-control" id="hall-select" th:name="hallId" required>

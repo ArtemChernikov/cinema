@@ -36,6 +36,8 @@ public class FilmSession {
     @EqualsAndHashCode.Include
     private long id;
 
+    private String name;
+
     private long filmId;
 
     @ManyToOne

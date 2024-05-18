@@ -3,7 +3,7 @@ package ru.cinema.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.cinema.model.Hall;
-import ru.cinema.model.dto.HallDto;
+import ru.cinema.model.dto.HallShortDto;
 import ru.cinema.repository.HallRepository;
 import ru.cinema.service.HallService;
 
@@ -34,7 +34,7 @@ public class SimpleHallService implements HallService {
     }
 
     @Override
-    public List<HallDto> getAllHallsAsDto() {
+    public List<HallShortDto> getAllHallsAsDto() {
         return hallRepository.findAllHallsAsDto();
     }
 

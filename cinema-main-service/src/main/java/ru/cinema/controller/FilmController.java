@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.cinema.model.dto.FilmSessionCreateDto;
-import ru.cinema.model.dto.HallDto;
+import ru.cinema.model.dto.HallShortDto;
 import ru.cinema.model.dto.response.FilmDto;
 import ru.cinema.service.HallService;
 import ru.cinema.service.impl.FilmServiceImpl;
 
-import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 
@@ -39,7 +38,7 @@ public class FilmController {
         Collection<FilmDto> films = filmServiceImpl.getAllFilms();
         model.addAttribute("films", films);
         if (isAdmin()) {
-            List<HallDto> halls = hallService.getAllHallsAsDto();
+            List<HallShortDto> halls = hallService.getAllHallsAsDto();
             model.addAttribute("halls", halls);
             model.addAttribute("newFilmSession", new FilmSessionCreateDto());
         }
