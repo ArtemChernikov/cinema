@@ -19,7 +19,7 @@ import java.util.stream.IntStream;
  */
 @RequiredArgsConstructor
 @Service
-public class SimpleHallService implements HallService {
+public class HallServiceImpl implements HallService {
 
     private final HallRepository hallRepository;
 

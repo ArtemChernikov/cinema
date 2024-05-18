@@ -21,7 +21,7 @@ import java.util.Optional;
  */
 @RequiredArgsConstructor
 @Service
-public class SimpleUserService implements UserService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;

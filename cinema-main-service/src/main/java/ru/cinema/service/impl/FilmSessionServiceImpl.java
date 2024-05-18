@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.cinema.exception.NotCorrectDateTimeException;
 import ru.cinema.model.FilmSession;
-import ru.cinema.model.Hall;
 import ru.cinema.model.dto.FilmSessionCreateDto;
 import ru.cinema.model.dto.FilmSessionDto;
 import ru.cinema.repository.FilmSessionRepository;
@@ -26,7 +25,7 @@ import static ru.cinema.exception.message.FilmSessionExceptionMessage.START_END_
  */
 @RequiredArgsConstructor
 @Service
-public class SimpleFilmSessionService implements FilmSessionService {
+public class FilmSessionServiceImpl implements FilmSessionService {
 
     private final FilmSessionRepository filmSessionRepository;
     private final FilmSessionMapper filmSessionMapper;

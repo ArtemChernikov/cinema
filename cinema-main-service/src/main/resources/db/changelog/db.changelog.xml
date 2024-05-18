@@ -7,18 +7,16 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
     <include file="scripts/001_ddl_create_files_table.sql" relativeToChangelogFile="true"/>
     <include file="scripts/002_ddl_create_genres_table.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/003_ddl_create_films_table.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/004_ddl_create_halls_table.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/005_ddl_create_film_sessions_table.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/006_ddl_create_users_table.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/007_ddl_create_tickets_table.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/008_dml_insert_files.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/009_dml_insert_genres.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/010_dml_insert_films.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/011_dml_insert_halls.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/012_ddl_create_roles_table.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/013_ddl_alter_users_table.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/014_dml_insert_roles.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/015_dml_insert_user.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/003_ddl_create_halls_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/004_ddl_create_film_sessions_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/005_ddl_create_users_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/006_ddl_create_tickets_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/007_dml_insert_files.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/008_dml_insert_genres.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/009_dml_insert_halls.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/010_ddl_create_roles_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/011_ddl_alter_users_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/012_dml_insert_roles.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/013_dml_insert_user.sql" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

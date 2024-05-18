@@ -6,8 +6,9 @@ import org.springframework.stereotype.Service;
 import ru.cinema.client.FilmClient;
 import ru.cinema.model.dto.response.BackdropDto;
 import ru.cinema.model.dto.response.FilmDto;
+import ru.cinema.service.FilmService;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Artem Chernikov
@@ -16,14 +17,14 @@ import java.util.Collection;
  */
 @RequiredArgsConstructor
 @Service
-public class FilmServiceImpl {
+public class FilmServiceImpl implements FilmService {
 
     private final FilmClient filmClient;
 
     @Value("${default.backdrop.url.path}")
     private String defaultBackdropUrl;
 
-    public Collection<FilmDto> getAllFilms() {
+    public List<FilmDto> getAllFilms() {
         return filmClient.getAllFilms();
     }
 

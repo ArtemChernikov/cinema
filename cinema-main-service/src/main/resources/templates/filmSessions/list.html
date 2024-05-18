@@ -29,16 +29,15 @@
                     <th class="white">Начало сеанса</th>
                     <th class="white">Конец сеанса</th>
                     <th class="white">Цена</th>
-                    <th></th>
+                    <th/>
                 </tr>
                 <tr th:each="filmSession : ${filmSessions}">
-                    <td class="white" th:text="${filmSession.name}">
-                    <td class="white" th:text="${filmSession.hallDto.name}">
-                    <td class="white" th:text="${#temporals.format(filmSession.startTime, 'd MMMM HH:mm')}"/>
-                    <td class="white" th:text="${#temporals.format(filmSession.endTime, 'd MMMM HH:mm')}"/>
-                    <td class="white" th:text="|${filmSession.price} руб.|"/>
-                    <td><a th:href="@{/ticket/{filmSessionId}(filmSessionId=${filmSession.id})}" class="btn btn-info">Купить
-                        билет</a></td>
+                    <td class="white" th:text="${filmSession.name}"></td>
+                    <td class="white" th:text="${filmSession.hallDto.name}"></td>
+                    <td class="white" th:text="${#temporals.format(filmSession.startTime, 'd MMMM HH:mm')}"></td>
+                    <td class="white" th:text="${#temporals.format(filmSession.endTime, 'd MMMM HH:mm')}"></td>
+                    <td class="white" th:text="|${filmSession.price} руб.|"></td>
+                    <td><a th:href="@{/ticket/{filmSessionId}(filmSessionId=${filmSession.id})}" class="btn btn-info">Купить билет</a></td>
                 </tr>
             </table>
         </div>

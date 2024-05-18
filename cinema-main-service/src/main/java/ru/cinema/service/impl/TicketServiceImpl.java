@@ -21,7 +21,7 @@ import java.util.Optional;
  */
 @RequiredArgsConstructor
 @Service
-public class SimpleTicketService implements TicketService {
+public class TicketServiceImpl implements TicketService {
 
     private final UserService userService;
     private final FilmSessionRepository filmSessionRepository;

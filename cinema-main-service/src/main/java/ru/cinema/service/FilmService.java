@@ -1,20 +1,17 @@
 package ru.cinema.service;
 
-import ru.cinema.model.dto.FilmDto;
+import ru.cinema.model.dto.response.FilmDto;
 
-import java.util.Collection;
-import java.util.Optional;
+import java.util.List;
 
 /**
- *
  * @author Artem Chernikov
  * @version 1.0
- * @since 15.02.2023
+ * @since 18.05.2024
  */
 public interface FilmService {
+    List<FilmDto> getAllFilms();
 
-    Optional<FilmDto> getFilmById(long id);
-
-    Collection<FilmDto> getAllFilms();
+    FilmDto getFilmById(Long id);
 
 }

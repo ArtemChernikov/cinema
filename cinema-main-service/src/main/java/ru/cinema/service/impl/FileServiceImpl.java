@@ -22,7 +22,7 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class SimpleFileService implements FileService {
+public class FileServiceImpl implements FileService {
 
     private final FileRepository fileRepository;
 

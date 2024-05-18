@@ -29,7 +29,7 @@
                         <label for="film" class="form-label white"><b>Название фильма</b></label>
                         <p type="text" class="form-control" id="film" th:text="${filmSession.getName}"></p>
                         <label for="hall" class="form-label white"><b>Зал</b></label>
-                        <p type="text" class="form-control" id="hall" th:text="${filmSession.hall}"></p>
+                        <p type="text" class="form-control" id="hall" th:text="${filmSession.hallDto.name}"></p>
                         <label for="startTime" class="form-label white"><b>Начало киносеанса</b></label>
                         <p type="text" class="form-control" id="startTime"
                            th:text="${#temporals.format(filmSession.startTime, 'd MMMM HH:mm')}"></p>
