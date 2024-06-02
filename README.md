@@ -25,25 +25,25 @@ UI приложения включает в себя следующие комп
 
 ## Инструменты
 
-- **Java 17**
-- **Spring Boot 2.7.6**
+- **Java 20**
+- **Spring Boot 3.3.0**
 - **PostgreSQL 14**
-- **Spring Security 5**
+- **Spring Security 6**
 - **Hibernate**
 - **RestTemplate**
 - **Docker**
-- **Mapstruct 1.5.5**
+- **Mapstruct**
 - **HTML 5**
 - **CSS**
-- **Thymeleaf 2.7.6**
-- **Bootstrap 4.4.1**
-- **H2database 1.4.2**
-- **Commons-dbcp2 2.9.0**
+- **Thymeleaf**
+- **Bootstrap**
+- **H2database**
+- **Commons-dbcp2**
 - **Slf4j**
 - **Lombok**
 - **Junit 5**
-- **Mockito 4.8.0**
-- **Liquibase 4.15.0**
+- **Mockito**
+- **Liquibase**
 - **Maven 3.8**
 - **Git**
 
