@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -25,25 +26,25 @@ public class FilmClient extends BaseClient {
     private static final String API_PREFIX = "/films";
 
     @Autowired
-    public FilmClient(RestTemplateBuilder builder, @Value("${films.api.url}") String serverUrl,
+    public FilmClient(RestTemplateBuilder builder,
+                      @Value("${films.api.url}") String serverUrl,
                       ObjectMapper objectMapper) {
-        super(
-                builder.uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl + API_PREFIX))
-                        .requestFactory(HttpComponentsClientHttpRequestFactory::new)
-                        .build()
+        super(builder
+                .uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl + API_PREFIX))
+                .requestFactory(() -> new HttpComponentsClientHttpRequestFactory(HttpClients.createDefault()))
+                .build()
         );
         this.objectMapper = objectMapper;
     }
 
     public List<FilmDto> getAllFilms() {
         ResponseEntity<Object> response = get("");
-        return objectMapper.convertValue(response.getBody(), new TypeReference<>() {
-        });
+        return objectMapper.convertValue(response.getBody(), new TypeReference<>() {});
     }
 
     public FilmDto getFilmById(Long id) {
         ResponseEntity<Object> response = get("/" + id);
-        HttpStatus statusCode = response.getStatusCode();
+        HttpStatus statusCode = HttpStatus.valueOf(response.getStatusCode().value());
         if (!statusCode.is2xxSuccessful()) {
             checkStatusCode(response, statusCode);
         }
