@@ -1,5 +1,6 @@
 package ru.films.client;
 
+import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -20,7 +21,7 @@ public class KinopoiskClient extends BaseClient {
                            @Value("${kinopoisk.api.headers}") String headers) {
         super(
                 builder.uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl + API_PREFIX))
-                        .requestFactory(HttpComponentsClientHttpRequestFactory::new)
+                        .requestFactory(() -> new HttpComponentsClientHttpRequestFactory(HttpClients.createDefault()))
                         .build(),
                 apiKey, headers
         );
