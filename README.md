@@ -29,6 +29,8 @@ UI приложения включает в себя следующие комп
 - **Spring Boot 3.3.0**
 - **PostgreSQL 14**
 - **Spring Security 6**
+- **Spring Cloud**
+- **Eureka**
 - **Hibernate**
 - **RestTemplate**
 - **Docker**
