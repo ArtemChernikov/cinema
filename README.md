@@ -6,6 +6,8 @@
 
 * микросервиса, который получает фильмы из kinopoisk API и сохраняет фильмы в БД
 * микросервиса, который отвечает за UI часть web-приложения
+* микросервиса eureka-server для Spring Cloud окружения
+* микросервиса api-gateway для единой точки входа всех REST сервисов
 
 ### UI приложения
 
@@ -29,6 +31,8 @@ UI приложения включает в себя следующие комп
 - **Spring Boot 3.3.0**
 - **PostgreSQL 14**
 - **Spring Security 6**
+- **Spring Cloud**
+- **Eureka**
 - **Hibernate**
 - **RestTemplate**
 - **Docker**
