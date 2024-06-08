@@ -47,7 +47,7 @@ public class FilmController {
     }
 
     @GetMapping("/{id}")
-    public String getFilmById(@PathVariable long id, Model model) {
+    public String getFilmById(@PathVariable("id") long id, Model model) {
         log.info("cinema-main-service: выполнение запроса на получение фильма по {}", id);
         FilmDto film = filmServiceImpl.getFilmById(id);
         model.addAttribute("film", film);
