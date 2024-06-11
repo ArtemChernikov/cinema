@@ -17,6 +17,7 @@ import ru.cinema.exception.ApiError;
 import ru.cinema.exception.NotFoundException;
 import ru.cinema.model.dto.response.FilmDto;
 
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -39,7 +40,11 @@ public class FilmClient extends BaseClient {
 
     public List<FilmDto> getAllFilms() {
         ResponseEntity<Object> response = get("");
-        return objectMapper.convertValue(response.getBody(), new TypeReference<>() {});
+        Object body = response.getBody();
+        if (body == null || body.toString().isEmpty()) {
+            return Collections.emptyList();
+        }
+        return objectMapper.convertValue(body, new TypeReference<>() {});
     }
 
     public FilmDto getFilmById(Long id) {
