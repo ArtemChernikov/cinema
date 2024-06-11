@@ -53,7 +53,7 @@ public class FilmServiceImpl implements FilmService {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         List<Document> documents = objectMapper
                 .convertValue(kinopoiskClient.getPopularFilms().getBody(), Response.class).getDocs();
-        List<Film> films = filmMapper.documentListToFilmList(documents);
+        List<Film> films = filmMapper.documentListToFilmList(cleanDocuments(documents));
         setCountry(films);
         setGenre(films);
         filmRepository.saveAll(films);
@@ -133,5 +133,32 @@ public class FilmServiceImpl implements FilmService {
         backdropRepository.deleteAllInBatch();
         posterRepository.deleteAllInBatch();
         ratingRepository.deleteAllInBatch();
+    }
+
+    private List<Document> cleanDocuments(List<Document> documents) {
+        return documents.stream()
+                .filter(this::isValidDocument)
+                .toList();
+    }
+
+    private boolean isValidDocument(Document document) {
+        if (document == null) {
+            return false;
+        }
+
+        return document.getId() != null
+                && document.getName() != null
+                && document.getAlternativeName() != null
+                && document.getType() != null
+                && document.getYear() != null
+                && document.getDescription() != null
+                && document.getShortDescription() != null
+                && document.getRating() != null
+                && document.getMovieLength() != null
+                && document.getAgeRating() != null
+                && document.getPoster() != null
+                && document.getBackdrop() != null
+                && document.getGenres() != null && !document.getGenres().isEmpty()
+                && document.getCountries() != null && !document.getCountries().isEmpty();
     }
 }

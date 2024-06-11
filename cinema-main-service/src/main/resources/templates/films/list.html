@@ -41,12 +41,12 @@
                     <td><a th:href="@{/films/{filmId}(filmId=${film.id})}">
                         <img th:src="${film.poster.previewUrl}" width="250" alt="No image">
                     </a></td>
-                    <td th:text="${film.name != null ? film.name : 'Нет данных'}"></td>
-                    <td th:text="${film.shortDescription != null ? film.shortDescription : 'Нет данных'}"></td>
-                    <td th:text="${film.ageRating != null ? film.ageRating + '+' : 'Нет данных'}"/>
-                    <td th:text="${film.genres != null ? #strings.listJoin(film.genres, ', ') : 'Нет данных'}"></td>
-                    <td th:text="${film.year != null ? film.year : 'Нет данных'}"></td>
-                    <td th:text="${film.movieLength != null ? film.movieLength + ' мин.' : 'Нет данных'}"/>
+                    <td th:text="${film.name}"></td>
+                    <td th:text="${film.shortDescription}"></td>
+                    <td th:text="${film.ageRating}"/>
+                    <td th:text="${#strings.listJoin(film.genres, ', ')}"></td>
+                    <td th:text="${film.year}"></td>
+                    <td th:text="${film.movieLength + ' мин.'}"/>
                     <td><a th:href="@{/films/{filmId}(filmId=${film.id})}" class="btn btn-info">Подробнее</a>
                         <br/>
                         <br/>

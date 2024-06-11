@@ -15,7 +15,7 @@ public interface FilmMapper {
     @Mapping(target = "name", source = "name")
     @Mapping(target = "alternativeName", source = "alternativeName")
     @Mapping(target = "type", source = "type")
-    @Mapping(target = "year", expression = "java(Integer.parseInt(document.getYear()))")
+    @Mapping(target = "year", source = "year")
     @Mapping(target = "description", source = "description")
     @Mapping(target = "shortDescription", source = "shortDescription")
     @Mapping(target = "rating", source = "rating")

@@ -39,7 +39,7 @@ create table if not exists films
     name varchar not null,
     alternative_name varchar,
     type varchar not null,
-    year integer not null,
+    year varchar not null,
     description text,
     short_description text,
     rating_id bigint references ratings(id) not null,

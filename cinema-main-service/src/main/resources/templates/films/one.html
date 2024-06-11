@@ -31,31 +31,31 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-4">
-            <img th:src="${film.poster != null ? film.poster.url : '/images/poster_not_found.jpg'}"
+            <img th:src="${film.poster.url}"
                  class="img-fluid poster" alt="Постер фильма">
         </div>
         <div class="col-md-8 text-for-background">
-            <h5 th:text="${film.name != null ? film.name : 'Нет данных'}">Название фильма</h5>
-            <p th:text="${film.alternativeName != null ? film.alternativeName : 'Нет данных'}">
+            <h5 th:text="${film.name}">Название фильма</h5>
+            <p th:text="${film.alternativeName}">
                 <strong>Альтернативное название:</strong> Альтернативное название фильма
             </p>
-            <p th:text="${film.shortDescription != null ? film.shortDescription : 'Нет данных'}">
+            <p th:text="${film.shortDescription}">
                 <strong>Краткое описание:</strong> Краткое описание фильма
             </p>
-            <p class="card-text" th:text="${film.description != null ? film.description : 'Нет данных'}"><strong>Описание:</strong>
+            <p class="card-text" th:text="${film.description}"><strong>Описание:</strong>
                 Описание фильма</p>
-            <p class="card-text" th:text="${film.year != null ? film.year : 'Нет данных'}"><strong>Год
+            <p class="card-text" th:text="${film.year}"><strong>Год
                 выпуска:</strong>
                 Год</p>
             <p class="card-text"
-               th:text="${film.genres != null ? #strings.listJoin(film.genres, ', ') : 'Нет данных'}">
+               th:text="${#strings.listJoin(film.genres, ', ')}">
                 <strong>Жанры:</strong> Жанр1, Жанр2</p>
             <p class="card-text"
-               th:text="${film.countries != null ? #strings.listJoin(film.countries, ', ') : 'Нет данных'}">
+               th:text="${#strings.listJoin(film.countries, ', ')}">
                 <strong>Страны:</strong> Страна1, Страна2</p>
-            <p class="card-text" th:text="${film.movieLength != null ? film.movieLength + ' мин.' : 'Нет данных'}">
+            <p class="card-text" th:text="${film.movieLength + ' мин.'}">
                 <strong>Длительность:</strong> Длительность минут</p>
-            <p class="card-text" th:text="${film.ageRating != null ? film.ageRating + '+' : 'Нет данных'}"><strong>Возрастное
+            <p class="card-text" th:text="${film.ageRating + '+'}"><strong>Возрастное
                 ограничение:</strong> Возрастное ограничение+</p>
             <p class="card-text"><strong>Рейтинги:</strong> КиноПоиск: Рейтинг КП, IMDb: Рейтинг IMDb</p>
             <p class="card-text"><strong>Рейтинги:</strong> КиноПоиск: <span

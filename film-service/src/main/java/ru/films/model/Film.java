@@ -1,6 +1,7 @@
 package ru.films.model;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,8 +40,8 @@ public class Film {
     @NotBlank(message = TYPE_VALUE_IS_INVALID)
     private String type;
 
-    @NotNull(message = YEAR_VALUE_IS_INVALID)
-    private Integer year;
+    @NotEmpty(message = YEAR_VALUE_IS_INVALID)
+    private String year;
 
     private String description;
 
