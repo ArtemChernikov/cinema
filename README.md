@@ -32,13 +32,14 @@ UI приложения включает в себя следующие комп
 
 - **Java 20**
 - **Spring Boot 3.3.0**
-- **PostgreSQL 14**
 - **Spring Security 6**
 - **Spring Cloud**
-- **Eureka**
-- **Hibernate**
-- **RestTemplate**
+- **OpenFeign**
+- **API Gateway**
+- **Eureka-server**
 - **Docker**
+- **PostgreSQL 14**
+- **Hibernate**
 - **Mapstruct**
 - **HTML 5**
 - **CSS**
