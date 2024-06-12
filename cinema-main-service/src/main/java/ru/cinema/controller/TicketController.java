@@ -37,7 +37,7 @@ public class TicketController {
     private final UserService userService;
 
     @GetMapping("/{id}")
-    public String getById(Model model, @PathVariable("id") long id, Principal principal) {
+    public String getById(Model model, @PathVariable long id, Principal principal) {
         FilmSessionDto filmSession = filmSessionService.getFilmSessionById(id);
         Optional<User> optionalUser = userService.getByUsername(principal.getName());
         optionalUser.ifPresent(user -> model.addAttribute("user", user));
