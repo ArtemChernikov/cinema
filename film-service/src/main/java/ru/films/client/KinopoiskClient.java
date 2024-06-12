@@ -1,38 +1,20 @@
 package ru.films.client;
 
-import org.apache.hc.client5.http.impl.classic.HttpClients;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.stereotype.Service;
-import org.springframework.web.util.DefaultUriBuilderFactory;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import ru.films.config.FeignClientConfiguration;
+import ru.films.model.response.KinopoiskApiResponse;
 
-import java.util.Map;
+/**
+ * @author Artem Chernikov
+ * @version 1.0
+ * @since 12.06.2024
+ */
+@FeignClient(name = "kinopoiskClient", url = "${kinopoisk.api.url}/movie", configuration = FeignClientConfiguration.class)
+public interface KinopoiskClient {
 
-@Service
-public class KinopoiskClient extends BaseClient {
-    private static final String API_PREFIX = "/movie";
-
-    @Autowired
-    public KinopoiskClient(RestTemplateBuilder builder, @Value("${kinopoisk.api.url}") String serverUrl,
-                           @Value("${kinopoisk.api.key}") String apiKey,
-                           @Value("${kinopoisk.api.headers}") String headers) {
-        super(
-                builder.uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl + API_PREFIX))
-                        .requestFactory(() -> new HttpComponentsClientHttpRequestFactory(HttpClients.createDefault()))
-                        .build(),
-                apiKey, headers
-        );
-    }
-
-    public ResponseEntity<Object> getPopularFilms() {
-        Map<String, Object> parameters = Map.of(
-                "limit", 250,
-                "lists", new String[]{"popular-films"}
-        );
-        return get("?limit={limit}&lists={lists}", parameters);
-    }
-
+    @GetMapping
+    KinopoiskApiResponse getFilms(@RequestParam("limit") int limit,
+                                         @RequestParam("lists") String[] lists);
 }

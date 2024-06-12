@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Response {
+public class KinopoiskApiResponse {
     private List<Document> docs;
     private int total;
     private int limit;

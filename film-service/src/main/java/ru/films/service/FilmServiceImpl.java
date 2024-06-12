@@ -1,19 +1,20 @@
 package ru.films.service;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.films.client.KinopoiskClient;
 import ru.films.exception.FilmNotFoundException;
+import ru.films.model.Country;
 import ru.films.model.Film;
+import ru.films.model.Genre;
 import ru.films.model.dto.FilmDto;
 import ru.films.model.response.Document;
-import ru.films.model.response.Response;
+import ru.films.model.response.KinopoiskApiResponse;
 import ru.films.repository.FilmRepository;
 import ru.films.utils.mapper.FilmMapper;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -30,13 +31,13 @@ public class FilmServiceImpl implements FilmService {
     private final KinopoiskClient kinopoiskClient;
     private final FilmRepository filmRepository;
     private final FilmMapper filmMapper;
-    private final ObjectMapper objectMapper;
+    private final CountryService countryService;
+    private final GenreService genreService;
 
     public void addFilms() {
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        List<Document> documents = objectMapper
-                .convertValue(kinopoiskClient.getPopularFilms().getBody(), Response.class).getDocs();
-        List<Film> films = filmMapper.documentListToFilmList(cleanDocuments(documents));
+        KinopoiskApiResponse popularFilms = kinopoiskClient.getFilms(250, new String[]{"popular-films"});
+        List<Document> documents = cleanDocuments(popularFilms.getDocs());
+        List<Film> films = filmMapper.documentListToFilmList(documents);
         saveNewFilms(films);
     }
 
@@ -62,8 +63,38 @@ public class FilmServiceImpl implements FilmService {
                 .filter(film -> !existingFilmIds.contains(film.getId()))
                 .toList();
         if (!newFilms.isEmpty()) {
+            setCountry(newFilms);
+            setGenre(newFilms);
             filmRepository.saveAll(newFilms);
         }
+    }
+
+    private void setCountry(List<Film> films) {
+        Set<String> allCountryNames = films.stream()
+                .flatMap(film -> film.getCountries().stream())
+                .map(Country::getName)
+                .collect(Collectors.toSet());
+        Map<String, Country> countryMap = countryService.saveNotExistsCountry(allCountryNames);
+        films.forEach(film -> {
+            Set<Country> updatedCountries = film.getCountries().stream()
+                    .map(country -> countryMap.get(country.getName()))
+                    .collect(Collectors.toSet());
+            film.setCountries(updatedCountries);
+        });
+    }
+
+    private void setGenre(List<Film> films) {
+        Set<String> allGenreNames = films.stream()
+                .flatMap(film -> film.getGenres().stream())
+                .map(Genre::getName)
+                .collect(Collectors.toSet());
+        Map<String, Genre> genreMap = genreService.saveNotExistsGenre(allGenreNames);
+        films.forEach(film -> {
+            Set<Genre> updatedGenres = film.getGenres().stream()
+                    .map(genre -> genreMap.get(genre.getName()))
+                    .collect(Collectors.toSet());
+            film.setGenres(updatedGenres);
+        });
     }
 
     private List<Document> cleanDocuments(List<Document> documents) {

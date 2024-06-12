@@ -43,7 +43,7 @@
                     </a></td>
                     <td th:text="${film.name}"></td>
                     <td th:text="${film.shortDescription}"></td>
-                    <td th:text="${film.ageRating}"/>
+                    <td th:text="${film.ageRating + '+'}"/>
                     <td th:text="${#strings.listJoin(film.genres, ', ')}"></td>
                     <td th:text="${film.year}"></td>
                     <td th:text="${film.movieLength + ' мин.'}"/>
