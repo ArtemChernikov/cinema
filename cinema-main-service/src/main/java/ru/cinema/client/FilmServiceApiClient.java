@@ -7,8 +7,8 @@ import ru.cinema.model.dto.response.FilmDto;
 
 import java.util.List;
 
-@FeignClient(name = "filmServiceClient", url = "${films.api.url}")
-public interface FilmApiClient {
+@FeignClient(name = "filmServiceApiClient", url = "${films.api.url}")
+public interface FilmServiceApiClient {
 
     @GetMapping("/films")
     List<FilmDto> getAllFilms();

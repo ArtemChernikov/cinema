@@ -11,8 +11,8 @@ import ru.films.model.response.KinopoiskApiResponse;
  * @version 1.0
  * @since 12.06.2024
  */
-@FeignClient(name = "kinopoiskClient", url = "${kinopoisk.api.url}", configuration = FeignClientConfiguration.class)
-public interface KinopoiskClient {
+@FeignClient(name = "kinopoiskApiClient", url = "${kinopoisk.api.url}", configuration = FeignClientConfiguration.class)
+public interface KinopoiskApiClient {
 
     @GetMapping("/movie")
     KinopoiskApiResponse getFilms(@RequestParam("limit") int limit,

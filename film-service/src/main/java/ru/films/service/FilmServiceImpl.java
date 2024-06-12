@@ -2,7 +2,7 @@ package ru.films.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.films.client.KinopoiskClient;
+import ru.films.client.KinopoiskApiClient;
 import ru.films.exception.FilmNotFoundException;
 import ru.films.model.Country;
 import ru.films.model.Film;
@@ -28,14 +28,14 @@ import static ru.films.exception.message.FilmExceptionMessage.FILM_NOT_FOUND;
 @Service
 @RequiredArgsConstructor
 public class FilmServiceImpl implements FilmService {
-    private final KinopoiskClient kinopoiskClient;
+    private final KinopoiskApiClient kinopoiskApiClient;
     private final FilmRepository filmRepository;
     private final FilmMapper filmMapper;
     private final CountryService countryService;
     private final GenreService genreService;
 
     public void addFilms() {
-        KinopoiskApiResponse popularFilms = kinopoiskClient.getFilms(250, new String[]{"popular-films"});
+        KinopoiskApiResponse popularFilms = kinopoiskApiClient.getFilms(250, new String[]{"popular-films"});
         List<Document> documents = cleanDocuments(popularFilms.getDocs());
         List<Film> films = filmMapper.documentListToFilmList(documents);
         saveNewFilms(films);
