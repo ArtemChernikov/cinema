@@ -11,10 +11,10 @@ import ru.films.model.response.KinopoiskApiResponse;
  * @version 1.0
  * @since 12.06.2024
  */
-@FeignClient(name = "kinopoiskClient", url = "${kinopoisk.api.url}/movie", configuration = FeignClientConfiguration.class)
+@FeignClient(name = "kinopoiskClient", url = "${kinopoisk.api.url}", configuration = FeignClientConfiguration.class)
 public interface KinopoiskClient {
 
-    @GetMapping
+    @GetMapping("/movie")
     KinopoiskApiResponse getFilms(@RequestParam("limit") int limit,
                                          @RequestParam("lists") String[] lists);
 }

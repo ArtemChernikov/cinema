@@ -2,7 +2,7 @@ package ru.cinema.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.cinema.client.FilmClient;
+import ru.cinema.client.FilmApiClient;
 import ru.cinema.model.dto.response.FilmDto;
 import ru.cinema.service.FilmService;
 
@@ -17,13 +17,13 @@ import java.util.List;
 @Service
 public class FilmServiceImpl implements FilmService {
 
-    private final FilmClient filmClient;
+    private final FilmApiClient filmApiClient;
 
     public List<FilmDto> getAllFilms() {
-        return filmClient.getAllFilms();
+        return filmApiClient.getAllFilms();
     }
 
     public FilmDto getFilmById(Long id) {
-        return filmClient.getFilmById(id);
+        return filmApiClient.getFilmById(id);
     }
 }
