@@ -1,3 +1,4 @@
+[![GitHub Action](https://github.com/ArtemChernikov/cinema/actions/workflows/maven.yml/badge.svg)](https://github.com/ArtemChernikov/cinema/actions/workflows/maven.yml)
 # Кинотеатр
 
 ## О проекте
