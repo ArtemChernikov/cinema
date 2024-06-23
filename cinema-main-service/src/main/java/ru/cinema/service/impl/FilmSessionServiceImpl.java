@@ -39,7 +39,7 @@ public class FilmSessionServiceImpl implements FilmSessionService {
     }
 
     @Override
-    public FilmSessionDto getFilmSessionById(long id) {
+    public FilmSessionDto getFilmSessionById(Long id) {
         FilmSession filmSession = filmSessionRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(FILM_SESSION_NOT_FOUND));
         return filmSessionMapper.filmSessionToFilmSessionDto(filmSession);

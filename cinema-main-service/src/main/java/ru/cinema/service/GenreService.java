@@ -11,5 +11,5 @@ import java.util.Optional;
  * @since 15.02.2023
  */
 public interface GenreService {
-    Optional<Genre> getGenreById(long id);
+    Optional<Genre> getGenreById(Long id);
 }

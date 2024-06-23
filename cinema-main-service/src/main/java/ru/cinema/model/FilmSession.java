@@ -27,11 +27,11 @@ public class FilmSession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private long id;
+    private Long id;
 
     private String name;
 
-    private long filmId;
+    private Long filmId;
 
     @ManyToOne
     @JoinColumn(name = "hall_id")
@@ -43,6 +43,6 @@ public class FilmSession {
     @Column(name = "end_time")
     private LocalDateTime endTime;
 
-    private int price;
+    private Integer price;
 
 }

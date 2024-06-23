@@ -26,15 +26,15 @@ public class Hall {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private long id;
+    private Long id;
 
     private String name;
 
     @Column(name = "row_count")
-    private int rowCount;
+    private Integer rowCount;
 
     @Column(name = "place_count")
-    private int placeCount;
+    private Integer placeCount;
 
     private String description;
 

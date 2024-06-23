@@ -21,7 +21,7 @@ public class Document {
     private String enName;
     private List<Name> names;
     private String type;
-    private int typeNumber;
+    private Integer typeNumber;
     private String year;
     private String description;
     private String shortDescription;
@@ -39,6 +39,6 @@ public class Document {
     private List<Country> countries;
     private Integer top10;
     private Integer top250;
-    private boolean isSeries;
-    private boolean ticketsOnSale;
+    private Boolean isSeries;
+    private Boolean ticketsOnSale;
 }

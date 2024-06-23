@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Votes {
-    private int kp;
-    private int imdb;
-    private int filmCritics;
-    private int russianFilmCritics;
-    private int await;
+    private Integer kp;
+    private Integer imdb;
+    private Integer filmCritics;
+    private Integer russianFilmCritics;
+    private Integer await;
 }

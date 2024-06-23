@@ -17,11 +17,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class FilmSessionCreateDto {
     private String name;
-    private long filmId;
-    private long hallId;
+    private Long filmId;
+    private Long hallId;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime startTime;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime endTime;
-    private int price;
+    private Integer price;
 }

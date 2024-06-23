@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @Data
 public class HallShortDto {
-    private long id;
+    private Long id;
     private String name;
 }

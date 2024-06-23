@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class FilmSessionDto {
 
-    private long id;
+    private Long id;
 
     private String name;
 
@@ -26,6 +26,6 @@ public class FilmSessionDto {
 
     private LocalDateTime endTime;
 
-    private int price;
+    private Integer price;
 
 }

@@ -38,7 +38,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public Optional<FileDto> getFileById(long id) {
+    public Optional<FileDto> getFileById(Long id) {
         var file = fileRepository.findById(id);
         if (file.isEmpty()) {
             return Optional.empty();

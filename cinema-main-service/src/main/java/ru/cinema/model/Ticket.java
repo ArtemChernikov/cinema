@@ -26,17 +26,17 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "session_id")
     private FilmSession filmSession;
 
     @Column(name = "row_number")
-    private int rowNumber;
+    private Integer rowNumber;
 
     @Column(name = "place_number")
-    private int placeNumber;
+    private Integer placeNumber;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

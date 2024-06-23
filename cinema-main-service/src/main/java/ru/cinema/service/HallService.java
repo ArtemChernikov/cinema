@@ -14,7 +14,7 @@ import java.util.Optional;
  * @since 15.02.2023
  */
 public interface HallService {
-    Optional<Hall> getHallById(long id);
+    Optional<Hall> getHallById(Long id);
 
     Collection<Hall> getAllHalls();
 

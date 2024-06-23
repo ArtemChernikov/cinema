@@ -14,7 +14,7 @@ public interface FilmSessionService {
 
     void createFilmSession(FilmSessionCreateDto filmSessionCreateDto);
 
-    FilmSessionDto getFilmSessionById(long id);
+    FilmSessionDto getFilmSessionById(Long id);
 
     Collection<FilmSessionDto> getAllFilmSessions();
 }

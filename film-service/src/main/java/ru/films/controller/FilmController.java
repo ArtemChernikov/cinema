@@ -40,7 +40,7 @@ public class FilmController {
     }
 
     @GetMapping("/{id}")
-    public FilmDto getFilmById(@PathVariable long id) {
+    public FilmDto getFilmById(@PathVariable("id") Long id) {
         log.info("film-api: выполнение запроса на получение фильма по id: {}", id);
         FilmDto film = filmService.getById(id);
         log.info("film-api: выполнен запрос на получение фильма по id: {}, фильм: {}", id, film);

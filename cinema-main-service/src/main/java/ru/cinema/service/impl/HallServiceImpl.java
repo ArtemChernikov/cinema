@@ -24,7 +24,7 @@ public class HallServiceImpl implements HallService {
     private final HallRepository hallRepository;
 
     @Override
-    public Optional<Hall> getHallById(long id) {
+    public Optional<Hall> getHallById(Long id) {
         return hallRepository.findById(id);
     }
 

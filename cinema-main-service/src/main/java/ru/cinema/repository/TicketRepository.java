@@ -11,6 +11,6 @@ import java.util.Optional;
  * @since 13.02.2023
  */
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
-    Optional<Ticket> findByFilmSessionIdAndRowNumberAndPlaceNumber(long filmSessionId, int rowNumber,
-                                                                   int placeNumber);
+    Optional<Ticket> findByFilmSessionIdAndRowNumberAndPlaceNumber(Long filmSessionId, Integer rowNumber,
+                                                                   Integer placeNumber);
 }
