@@ -57,7 +57,6 @@
                 <strong>Длительность:</strong> Длительность минут</p>
             <p class="card-text" th:text="${film.ageRating + '+'}"><strong>Возрастное
                 ограничение:</strong> Возрастное ограничение+</p>
-            <p class="card-text"><strong>Рейтинги:</strong> КиноПоиск: Рейтинг КП, IMDb: Рейтинг IMDb</p>
             <p class="card-text"><strong>Рейтинги:</strong> КиноПоиск: <span
                     th:text="${film.rating.kpRate}">Рейтинг КП</span>,
                 IMDb: <span th:text="${film.rating.imdbRate}">Рейтинг IMDb</span>,
