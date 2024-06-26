@@ -33,7 +33,13 @@
                     <th class="white">Жанр</th>
                     <th class="white">Год</th>
                     <th class="white">Продолжительность</th>
-                    <th></th>
+                    <th>
+                        <button sec:authorize="${hasRole('ADMIN')}" class="btn btn-primary"
+                                data-bs-target="#addFilmsModal"
+                                data-bs-toggle="modal"
+                                type="button">Добавить фильмы
+                        </button>
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -122,6 +128,51 @@
                     </div>
                 </tr>
                 </tbody>
+
+                <!-- Модальное окно Add films -->
+                <div class="modal fade" id="addFilmsModal"
+                     th:id="addFilmsModal"
+                     tabindex="-1" role="dialog"
+                     aria-labelledby="addFilmsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Заголовок модального окна -->
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addFilmsModalLabel">Добавить фильмы</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+
+                            <!-- Тело модального окна -->
+                            <div class="modal-body">
+                                <!-- Форма -->
+                                <form th:method="POST"
+                                      th:action="@{/admin/add-films}"
+                                      th:object="${requestAddFilms}">
+                                    <label for="hall-select"><b>Выберите подборку фильмов</b></label>
+                                    <select class="form-control" id="collection-select" th:name="collection" required>
+                                        <option th:each="collection : ${filmsCollections}" th:value="${collection}"
+                                                th:text="${collection}">Подборка
+                                        </option>
+                                    </select>
+                                    <br>
+                                    <br><br>
+                                    <button class="btn btn-success btn-lg" th:type="submit"
+                                            value="Добавить киносеанс">Добавить подборку фильмов
+                                    </button>
+                                </form>
+                            </div>
+                            <!-- Подвал модального окна -->
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary"
+                                        data-bs-dismiss="modal"
+                                        type="button">Закрыть
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </table>
         </div>
     </div>

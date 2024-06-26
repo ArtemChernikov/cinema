@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.cinema.model.dto.FilmSessionCreateDto;
 import ru.cinema.model.dto.HallShortDto;
+import ru.cinema.model.dto.RequestAddFilms;
 import ru.cinema.model.dto.response.FilmDto;
 import ru.cinema.service.HallService;
 import ru.cinema.service.impl.FilmServiceImpl;
@@ -41,6 +42,8 @@ public class FilmController {
             List<HallShortDto> halls = hallService.getAllHallsAsDto();
             model.addAttribute("halls", halls);
             model.addAttribute("newFilmSession", new FilmSessionCreateDto());
+            model.addAttribute("filmsCollections", new String[]{"popular-films"});
+            model.addAttribute("requestAddFilms", new RequestAddFilms());
         }
         log.info("cinema-main-service: выполнен запрос на получение всех фильмов, количество фильмов: {}", films.size());
         return "films/list";

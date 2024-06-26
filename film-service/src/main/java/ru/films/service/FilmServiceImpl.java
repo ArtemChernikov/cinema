@@ -1,6 +1,8 @@
 package ru.films.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import ru.films.client.KinopoiskApiClient;
 import ru.films.exception.FilmNotFoundException;
@@ -8,6 +10,7 @@ import ru.films.model.Country;
 import ru.films.model.Film;
 import ru.films.model.Genre;
 import ru.films.model.dto.FilmDto;
+import ru.films.model.dto.RequestAddFilms;
 import ru.films.model.response.Document;
 import ru.films.model.response.KinopoiskApiResponse;
 import ru.films.repository.FilmRepository;
@@ -25,6 +28,7 @@ import static ru.films.exception.message.FilmExceptionMessage.FILM_NOT_FOUND;
  * @version 1.0
  * @since 06.05.2024
  */
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class FilmServiceImpl implements FilmService {
@@ -34,13 +38,22 @@ public class FilmServiceImpl implements FilmService {
     private final CountryService countryService;
     private final GenreService genreService;
 
-    public void addFilms() {
-        KinopoiskApiResponse popularFilms = kinopoiskApiClient.getFilms(250, new String[]{"popular-films"});
-        List<Document> documents = cleanDocuments(popularFilms.getDocs());
-        List<Film> films = filmMapper.documentListToFilmList(documents);
-        saveNewFilms(films);
+    @KafkaListener(topics = "films", groupId = "cinema")
+    public void addFilms(RequestAddFilms requestAddFilms) {
+        log.info("film-api: выполнение запроса на добавление фильмов из kinopoisk API");
+        KinopoiskApiResponse kinopoiskApiResponse = kinopoiskApiClient
+                .getFilms(250, new String[]{requestAddFilms.getCollection()});
+        addNotExistedFilms(kinopoiskApiResponse);
+        log.info("film-api: выполен запрос на добавление фильмов из kinopoisk API");
     }
 
+    public void addFilms() {
+        KinopoiskApiResponse kinopoiskApiResponse = kinopoiskApiClient
+                .getFilms(250, new String[]{"popular-films"});
+        addNotExistedFilms(kinopoiskApiResponse);
+    }
+
+    @Override
     public List<FilmDto> getAll() {
         return filmMapper.filmListToFilmDtoList(filmRepository.findAll());
     }
@@ -49,6 +62,12 @@ public class FilmServiceImpl implements FilmService {
     public FilmDto getById(Long id) {
         return filmMapper.filmToFilmDto(filmRepository.findById(id)
                 .orElseThrow(() -> new FilmNotFoundException(FILM_NOT_FOUND)));
+    }
+
+    private void addNotExistedFilms(KinopoiskApiResponse response) {
+        List<Document> documents = cleanDocuments(response.getDocs());
+        List<Film> films = filmMapper.documentListToFilmList(documents);
+        saveNewFilms(films);
     }
 
     private void saveNewFilms(List<Film> films) {

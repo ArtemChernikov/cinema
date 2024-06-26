@@ -34,6 +34,7 @@ UI приложения включает в себя следующие комп
 - **Java 20**
 - **Spring Boot 3.3.0**
 - **Spring Security 6**
+- **Apache Kafka**
 - **Spring Cloud**
 - **OpenFeign**
 - **API Gateway**
