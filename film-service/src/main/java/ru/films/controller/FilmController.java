@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.films.model.dto.CollectionDto;
 import ru.films.model.dto.FilmDto;
+import ru.films.service.CollectionService;
 import ru.films.service.FilmService;
 
 import java.util.List;
@@ -23,6 +25,7 @@ import java.util.List;
 @RequestMapping("/films")
 public class FilmController {
     private final FilmService filmService;
+    private final CollectionService collectionService;
 
     @PostMapping("/add-popular-films")
     public void addPopularFilms() {
@@ -45,5 +48,13 @@ public class FilmController {
         FilmDto film = filmService.getById(id);
         log.info("film-api: выполнен запрос на получение фильма по id: {}, фильм: {}", id, film);
         return film;
+    }
+
+    @GetMapping("/collections")
+    public List<CollectionDto> getAllCollections() {
+        log.info("film-api: выполнение запроса на получение названий коллекций");
+        List<CollectionDto> collections = collectionService.getAll();
+        log.info("film-api: выполнен запрос на получение названий коллекций");
+        return collections;
     }
 }

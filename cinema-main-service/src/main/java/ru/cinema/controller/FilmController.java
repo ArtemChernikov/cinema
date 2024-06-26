@@ -39,11 +39,7 @@ public class FilmController {
         Collection<FilmDto> films = filmServiceImpl.getAllFilms();
         model.addAttribute("films", films);
         if (isAdmin()) {
-            List<HallShortDto> halls = hallService.getAllHallsAsDto();
-            model.addAttribute("halls", halls);
-            model.addAttribute("newFilmSession", new FilmSessionCreateDto());
-            model.addAttribute("filmsCollections", new String[]{"popular-films"});
-            model.addAttribute("requestAddFilms", new RequestAddFilms());
+            addModelAttributesForAdmin(model);
         }
         log.info("cinema-main-service: выполнен запрос на получение всех фильмов, количество фильмов: {}", films.size());
         return "films/list";
@@ -63,5 +59,13 @@ public class FilmController {
         return authentication != null && authentication.isAuthenticated() &&
                 authentication.getAuthorities().stream()
                         .anyMatch(grantedAuthority -> "ROLE_ADMIN".equals(grantedAuthority.getAuthority()));
+    }
+
+    private void addModelAttributesForAdmin(Model model) {
+        List<HallShortDto> halls = hallService.getAllHallsAsDto();
+        model.addAttribute("halls", halls);
+        model.addAttribute("newFilmSession", new FilmSessionCreateDto());
+        model.addAttribute("filmsCollections", filmServiceImpl.getAllCollections());
+        model.addAttribute("requestAddFilms", new RequestAddFilms());
     }
 }

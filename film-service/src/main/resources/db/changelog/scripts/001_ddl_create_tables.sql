@@ -64,3 +64,11 @@ create table if not exists films_countries
     country_id bigint references countries(id) not null,
     unique (film_id, country_id)
 );
+
+create table if not exists collections
+(
+    id bigserial primary key,
+    name varchar not null,
+    search_name varchar not null,
+    UNIQUE (name, search_name)
+);

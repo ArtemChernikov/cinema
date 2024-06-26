@@ -152,8 +152,8 @@
                                       th:object="${requestAddFilms}">
                                     <label for="hall-select"><b>Выберите подборку фильмов</b></label>
                                     <select class="form-control" id="collection-select" th:name="collection" required>
-                                        <option th:each="collection : ${filmsCollections}" th:value="${collection}"
-                                                th:text="${collection}">Подборка
+                                        <option th:each="collection : ${filmsCollections}" th:value="${collection.searchName}"
+                                                th:text="${collection.name}">Подборка
                                         </option>
                                     </select>
                                     <br>

@@ -4,6 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import ru.cinema.config.FeignClientConfiguration;
+import ru.cinema.model.dto.response.CollectionDto;
 import ru.cinema.model.dto.response.FilmDto;
 
 import java.util.List;
@@ -18,4 +19,7 @@ public interface FilmServiceApiClient {
 
     @GetMapping("/films/{id}")
     FilmDto getFilmById(@PathVariable("id") Long id);
+
+    @GetMapping("/films/collections")
+    List<CollectionDto> getAllCollections();
 }

@@ -1,6 +1,7 @@
 package ru.cinema.service;
 
 import ru.cinema.model.dto.RequestAddFilms;
+import ru.cinema.model.dto.response.CollectionDto;
 import ru.cinema.model.dto.response.FilmDto;
 
 import java.util.List;
@@ -16,5 +17,7 @@ public interface FilmService {
     FilmDto getFilmById(Long id);
 
     void addFilms(RequestAddFilms requestAddFilms);
+
+    List<CollectionDto> getAllCollections();
 
 }

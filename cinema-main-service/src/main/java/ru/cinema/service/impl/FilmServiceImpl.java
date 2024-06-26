@@ -5,6 +5,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import ru.cinema.client.FilmServiceApiClient;
 import ru.cinema.model.dto.RequestAddFilms;
+import ru.cinema.model.dto.response.CollectionDto;
 import ru.cinema.model.dto.response.FilmDto;
 import ru.cinema.service.FilmService;
 
@@ -35,5 +36,10 @@ public class FilmServiceImpl implements FilmService {
     @Override
     public void addFilms(RequestAddFilms requestAddFilms) {
         kafkaTemplate.send("films", requestAddFilms);
+    }
+
+    @Override
+    public List<CollectionDto> getAllCollections() {
+        return filmServiceApiClient.getAllCollections();
     }
 }
