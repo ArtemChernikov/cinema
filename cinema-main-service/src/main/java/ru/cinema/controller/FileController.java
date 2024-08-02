@@ -1,6 +1,7 @@
 package ru.cinema.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import ru.cinema.service.FileService;
  * @since 23.02.2023
  */
 @ThreadSafe
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 public class FileController {
@@ -23,6 +25,7 @@ public class FileController {
 
     @GetMapping({"/posters/{id}", "/halls/{id}"})
     public ResponseEntity<?> getFileById(@PathVariable("id") Long id) {
+        log.info("cinema-main-service: выполнение запроса на получение файла по id: {}", id);
         var contentOptional = fileService.getFileById(id);
         if (contentOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
