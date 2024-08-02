@@ -1,8 +1,11 @@
 package ru.cinema.model.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import static ru.cinema.exception.message.FileExceptionMessage.FILE_DTO_NAME_IS_INVALID;
 
 /**
  *
@@ -15,6 +18,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class FileDto {
 
+    @NotEmpty(message = FILE_DTO_NAME_IS_INVALID)
     private String name;
 
     private byte[] content;
