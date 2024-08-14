@@ -38,4 +38,5 @@ public class TicketExceptionMessage {
     public static final String TICKET_DTO_USER_ID_IS_INVALID =
             "Значение поля 'userId' у 'TicketDto' не может быть меньше 1.";
 
+
 }
