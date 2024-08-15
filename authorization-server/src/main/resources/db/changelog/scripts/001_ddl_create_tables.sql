@@ -15,3 +15,11 @@ create table if not exists users
     role_id  bigint references roles (id)
 );
 
+create table if not exists users_roles
+(
+    id bigserial primary key,
+    user_id bigint references users(id) not null,
+    role_id bigint references roles(id) not null,
+    unique (user_id, role_id)
+);
+
