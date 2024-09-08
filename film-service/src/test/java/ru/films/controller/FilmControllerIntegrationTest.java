@@ -237,31 +237,4 @@ class FilmControllerIntegrationTest extends IntegrationTest {
         assertThat(actual).isEqualTo(objectMapper.writeValueAsString(List.of(collectionDto1, collectionDto2)));
     }
 
-//    @DisplayName("Изменение сотрудника успешно")
-//    @Test
-//    @SneakyThrows
-//    void editEmployeeIsSuccess() {
-//        Position position = new Position("Manager");
-//        Department department = new Department("Sales");
-//        Employee employee = new Employee("Vladimir", 4000, position, department);
-//        positionRepository.save(position);
-//        departmentRepository.save(department);
-//        employeeRepository.save(employee);
-//        Long employeeId = employee.getId();
-//        EmployeeDTO employeeDtoForUpdate = new EmployeeDTO("Andrey", 2000, "Manager", "Sales");
-//
-//        String jsonEmployee = new ObjectMapper().writeValueAsString(employeeDtoForUpdate);
-//
-//        mockMvc.perform(put("/employees/{id}", employeeId)
-//                        .with(user("user_admin").roles("ADMIN"))
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content(jsonEmployee))
-//                .andExpect(status().isOk())
-//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(jsonPath("$.name").value("Andrey"))
-//                .andExpect(jsonPath("$.salary").value(2000))
-//                .andExpect(jsonPath("$.positionName").value("Manager"))
-//                .andExpect(jsonPath("$.departmentName").value("Sales"));
-//    }
-
 }
