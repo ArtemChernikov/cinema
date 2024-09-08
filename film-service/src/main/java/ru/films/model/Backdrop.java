@@ -2,6 +2,7 @@ package ru.films.model;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +21,7 @@ import static ru.films.exception.message.BackdropExceptionMessage.URL_VALUE_IS_I
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Backdrop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

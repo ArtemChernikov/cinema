@@ -2,6 +2,7 @@ package ru.films.model;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +21,7 @@ import static ru.films.exception.message.PosterExceptionMessage.URL_VALUE_IS_INV
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Poster {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

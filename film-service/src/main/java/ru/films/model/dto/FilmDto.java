@@ -19,7 +19,7 @@ public class FilmDto {
     private String name;
     private String alternativeName;
     private String type;
-    private Integer year;
+    private String year;
     private String description;
     private String shortDescription;
     private RatingDto rating;

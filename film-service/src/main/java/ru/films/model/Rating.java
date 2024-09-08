@@ -2,6 +2,7 @@ package ru.films.model;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,6 +23,7 @@ import static ru.films.exception.message.RatingExceptionMessage.RUSSIAN_FILM_CRI
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

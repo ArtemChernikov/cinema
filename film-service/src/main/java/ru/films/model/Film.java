@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,6 +28,7 @@ import static ru.films.exception.message.FilmExceptionMessage.YEAR_VALUE_IS_INVA
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Film {
     @Id
     private Long id;
