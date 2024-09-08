@@ -2,10 +2,12 @@ package ru.films.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ru.films.model.dto.CollectionDto;
 import ru.films.model.dto.FilmDto;
@@ -28,6 +30,7 @@ public class FilmController {
     private final CollectionService collectionService;
 
     @PostMapping("/add-popular-films")
+    @ResponseStatus(HttpStatus.CREATED)
     public void addPopularFilms() {
         log.info("film-api: выполнение запроса на добавление популярных фильмов из kinopoisk API");
         filmService.addFilms();
