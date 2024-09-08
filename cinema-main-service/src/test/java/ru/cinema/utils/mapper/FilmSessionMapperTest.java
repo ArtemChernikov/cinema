@@ -29,8 +29,8 @@ class FilmSessionMapperTest {
         FilmSession filmSession = new FilmSession(1L, "Film", 1L, hall, LocalDateTime.now(),
                 LocalDateTime.now().plusHours(2), 500);
         HallDto hallDto = new HallDto("hall", List.of(1, 2), List.of(1, 2, 3));
-        FilmSessionDto expected = new FilmSessionDto(1L, "Film", hallDto, LocalDateTime.now(),
-                LocalDateTime.now().plusHours(2), 500);
+        FilmSessionDto expected = new FilmSessionDto(1L, "Film", hallDto, filmSession.getStartTime(),
+                filmSession.getEndTime(), 500);
         FilmSessionDto actual = filmSessionMapper.filmSessionToFilmSessionDto(filmSession);
         assertThat(actual).isEqualTo(expected);
     }
