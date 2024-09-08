@@ -36,8 +36,8 @@ class FilmControllerIntegrationTest extends IntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private FilmService filmService;
+//    @Autowired
+//    private FilmService filmService;
 
     @Autowired
     private CountryService countryService;
