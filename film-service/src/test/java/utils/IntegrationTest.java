@@ -21,7 +21,7 @@ public abstract class IntegrationTest {
     private static final String DATABASE_NAME = "test-database";
 
     @Container
-    public static final PostgreSQLContainer<?> testContainer = new PostgreSQLContainer<>("postgres")
+    public static final PostgreSQLContainer<?> testContainer = new PostgreSQLContainer<>(PostgreSQLContainer.IMAGE)
             .withReuse(true)
             .withDatabaseName(DATABASE_NAME);
 
