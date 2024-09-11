@@ -14,7 +14,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @ActiveProfiles("integration-test")
 @SpringBootTest
 @Testcontainers
-@AutoConfigureMockMvc(addFilters = false)
 @ContextConfiguration(initializers = {IntegrationTest.Initializer.class})
 public abstract class IntegrationTest {
 
