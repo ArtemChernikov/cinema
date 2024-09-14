@@ -3,6 +3,7 @@ package ru.films.utils.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import ru.films.model.Rating;
+import ru.films.model.dto.RatingDto;
 
 @Mapper(componentModel = "spring")
 public interface RatingMapper {
@@ -12,4 +13,6 @@ public interface RatingMapper {
     @Mapping(target = "filmCriticsRate", source = "filmCritics")
     @Mapping(target = "russianFilmCriticsRate", source = "russianFilmCritics")
     Rating responseRatingToResponseEntity(ru.films.model.response.Rating rating);
+
+    RatingDto ratingToRatingDto(Rating rating);
 }

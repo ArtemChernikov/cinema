@@ -38,6 +38,7 @@ public class TicketController {
 
     @GetMapping("/{id}")
     public String getById(Model model, @PathVariable("id") Long id, Principal principal) {
+        log.info("cinema-main-service: выполнение запроса для перехода на страницу создания билета по: {}", id);
         FilmSessionDto filmSession = filmSessionService.getFilmSessionById(id);
         Optional<User> optionalUser = userService.getByUsername(principal.getName());
         optionalUser.ifPresent(user -> model.addAttribute("user", user));
@@ -50,6 +51,7 @@ public class TicketController {
 
     @PostMapping("/buy")
     public String buyTicket(@ModelAttribute TicketDto ticketDto, Model model) {
+        log.info("cinema-main-service: выполнение запроса на создание билета: {}", ticketDto);
         ticketService.save(ticketDto);
         model.addAttribute("ticket", ticketDto);
         model.addAttribute("filmSession", filmSessionService

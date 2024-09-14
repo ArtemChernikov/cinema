@@ -1,6 +1,7 @@
 package ru.cinema.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import ru.cinema.service.UserService;
  * @since 26.02.2023
  */
 @ThreadSafe
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/users")
@@ -26,22 +28,26 @@ public class UserController {
 
     @GetMapping("/register")
     public String getRegistrationPage() {
+        log.info("cinema-main-service: выполнение запроса для перехода на страницу регистрации пользователя");
         return "users/registration";
     }
 
     @PostMapping("/register")
     public String register(@ModelAttribute User user) {
+        log.info("cinema-main-service: выполнение запроса на регистрацию (создание) нового пользователя: {}", user);
         userService.save(user);
         return "redirect:/users/login";
     }
 
     @GetMapping("/login")
     public String getLoginPage() {
+        log.info("cinema-main-service: выполнение запроса для перехода на страницу автоизации пользователя");
         return "users/login";
     }
 
     @GetMapping("/login-error")
     public String getLoginError(Model model) {
+        log.info("cinema-main-service: логин или пароль введены неверно");
         model.addAttribute("error", "Логин или пароль введены неверно");
         return "users/login";
     }

@@ -1,6 +1,7 @@
 package ru.cinema.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import ru.cinema.service.FilmSessionService;
  * @since 17.05.2024
  */
 @RequiredArgsConstructor
+@Slf4j
 @RequestMapping("/admin")
 @Controller
 public class AdminController {
@@ -25,12 +27,14 @@ public class AdminController {
 
     @PostMapping("/add-film-session")
     public String addFilmSession(@ModelAttribute FilmSessionCreateDto filmSessionCreateDto) {
+        log.info("cinema-main-service: выполнение запроса на добавление нового киносеанса: {}", filmSessionCreateDto);
         filmSessionService.createFilmSession(filmSessionCreateDto);
         return "redirect:/films";
     }
 
     @PostMapping("/add-films")
     public String addFilms(@ModelAttribute RequestAddFilms requestAddFilms) {
+        log.info("cinema-main-service: выполнение запроса на добавление новых фильмов");
         filmService.addFilms(requestAddFilms);
         return "redirect:/films";
     }

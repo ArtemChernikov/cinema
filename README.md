@@ -41,6 +41,7 @@ UI приложения включает в себя следующие комп
 - **API Gateway**
 - **Eureka-server**
 - **Docker**
+- **Testcontainers**
 - **PostgreSQL 14**
 - **Hibernate**
 - **Mapstruct**
