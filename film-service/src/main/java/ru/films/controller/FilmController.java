@@ -32,32 +32,21 @@ public class FilmController {
     @PostMapping("/add-popular-films")
     @ResponseStatus(HttpStatus.CREATED)
     public void addPopularFilms() {
-        log.info("film-api: выполнение запроса на добавление популярных фильмов из kinopoisk API");
-        filmService.addFilms();
-        log.info("film-api: выполен запрос на добавление популярных фильмов из kinopoisk API");
+        filmService.addPopularFilms();
     }
 
     @GetMapping
     public List<FilmDto> getAll() {
-        log.info("film-api: выполнение запроса на получение всех фильмов");
-        List<FilmDto> films = filmService.getAll();
-        log.info("film-api: выполнен запрос на получение всех фильмов, количество фильмов: {}", films.size());
-        return films;
+        return filmService.getAll();
     }
 
     @GetMapping("/{id}")
     public FilmDto getFilmById(@PathVariable("id") Long id) {
-        log.info("film-api: выполнение запроса на получение фильма по id: {}", id);
-        FilmDto film = filmService.getById(id);
-        log.info("film-api: выполнен запрос на получение фильма по id: {}, фильм: {}", id, film);
-        return film;
+        return filmService.getById(id);
     }
 
     @GetMapping("/collections")
     public List<CollectionDto> getAllCollections() {
-        log.info("film-api: выполнение запроса на получение названий коллекций");
-        List<CollectionDto> collections = collectionService.getAll();
-        log.info("film-api: выполнен запрос на получение названий коллекций");
-        return collections;
+        return collectionService.getAll();
     }
 }
