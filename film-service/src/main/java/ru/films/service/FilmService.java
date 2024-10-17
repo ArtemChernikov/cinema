@@ -1,6 +1,7 @@
 package ru.films.service;
 
 import ru.films.model.dto.FilmDto;
+import ru.films.model.dto.RequestAddFilms;
 
 import java.util.List;
 
@@ -10,7 +11,9 @@ import java.util.List;
  * @since 04.05.2024
  */
 public interface FilmService {
-    void addFilms();
+    void addFilms(RequestAddFilms requestAddFilms);
+
+    void addPopularFilms();
 
     List<FilmDto> getAll();
 

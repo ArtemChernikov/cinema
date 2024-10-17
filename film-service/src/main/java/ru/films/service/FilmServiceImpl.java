@@ -38,6 +38,7 @@ public class FilmServiceImpl implements FilmService {
     private final CountryService countryService;
     private final GenreService genreService;
 
+    @Override
     @KafkaListener(topics = "films", groupId = "cinema")
     public void addFilms(RequestAddFilms requestAddFilms) {
         log.info("film-api: выполнение запроса на добавление фильмов из kinopoisk API");
@@ -47,7 +48,8 @@ public class FilmServiceImpl implements FilmService {
         log.info("film-api: выполен запрос на добавление фильмов из kinopoisk API");
     }
 
-    public void addFilms() {
+    @Override
+    public void addPopularFilms() {
         KinopoiskApiResponse kinopoiskApiResponse = kinopoiskApiClient
                 .getFilms(250, new String[]{"popular-films"});
         addNotExistedFilms(kinopoiskApiResponse);
